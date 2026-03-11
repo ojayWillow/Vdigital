@@ -1,9 +1,30 @@
 // WEB STUDIJA — MAIN JS
 
+// ── Theme toggle (runs FIRST to prevent flash) ──
+const html = document.documentElement;
+const savedTheme = localStorage.getItem('ws-theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+
+function applyTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  localStorage.setItem('ws-theme', theme);
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  // Update nav scroll bg
+  if (nav) {
+    nav.style.background = window.scrollY > 40
+      ? (theme === 'dark' ? 'rgba(8,9,13,0.97)' : 'rgba(255,255,255,0.98)')
+      : (theme === 'dark' ? 'rgba(8,9,13,0.8)'  : 'rgba(255,255,255,0.85)');
+  }
+}
+
 // ── Nav scroll effect ──
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.style.background = window.scrollY > 40 ? 'rgba(8,9,13,0.97)' : 'rgba(8,9,13,0.8)';
+  const theme = html.getAttribute('data-theme');
+  nav.style.background = window.scrollY > 40
+    ? (theme === 'dark' ? 'rgba(8,9,13,0.97)' : 'rgba(255,255,255,0.98)')
+    : (theme === 'dark' ? 'rgba(8,9,13,0.8)'  : 'rgba(255,255,255,0.85)');
 });
 
 // ── Mobile menu (burger animation + smooth reveal) ──
@@ -18,6 +39,18 @@ mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => 
   mobileMenu.classList.remove('open');
   burger.classList.remove('active');
 }));
+
+// ── Theme toggle button ──
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  // Set correct icon on load
+  btn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  btn.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+});
 
 // ── Smooth scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -40,12 +73,19 @@ if (hero && spotlight) {
   });
 }
 
-// ── Aceternity: Floating particles ──
+// ── Aceternity: Floating particles (theme-aware colours) ──
 (function initParticles() {
   const canvas = document.getElementById('hero-particles');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles;
+
+  function getColors() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    return theme === 'light'
+      ? ['91,82,240', '124,111,247']
+      : ['108,99,255', '167,139,250'];
+  }
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
@@ -57,12 +97,13 @@ if (hero && spotlight) {
   function rand(min, max) { return Math.random() * (max - min) + min; }
 
   function makeParticle() {
+    const colors = getColors();
     return {
       x: rand(0, W), y: rand(0, H),
       r: rand(1, 2.5),
       vx: rand(-0.15, 0.15), vy: rand(-0.25, -0.05),
       alpha: rand(0.2, 0.7),
-      color: Math.random() > 0.5 ? '108,99,255' : '167,139,250'
+      color: colors[Math.random() > 0.5 ? 0 : 1]
     };
   }
 
@@ -70,9 +111,10 @@ if (hero && spotlight) {
 
   function tick() {
     ctx.clearRect(0, 0, W, H);
+    const colors = getColors();
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
-      if (p.y < -4) { p.y = H + 4; p.x = rand(0, W); }
+      if (p.y < -4) { p.y = H + 4; p.x = rand(0, W); p.color = colors[Math.random() > 0.5 ? 0 : 1]; }
       if (p.x < -4 || p.x > W + 4) p.x = rand(0, W);
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
