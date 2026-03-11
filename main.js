@@ -71,19 +71,6 @@ if (hero && spotlight) {
   });
 }
 
-// Hero headline glitch — fires once, class removed after animation ends cleanly
-window.addEventListener('load', () => {
-  const hl = document.querySelector('.hero__headline');
-  if (!hl) return;
-  hl.classList.add('glitch');
-  // Remove after glitch animation fully completes (1.2s delay + 5 × 0.06s = ~1.5s)
-  setTimeout(() => {
-    hl.classList.remove('glitch');
-    // Explicitly clear any lingering text-shadow
-    hl.style.textShadow = 'none';
-  }, 1600);
-});
-
 // Particles (theme-aware)
 (function initParticles() {
   const canvas = document.getElementById('hero-particles');
