@@ -58,7 +58,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── STEP 1: Hero spotlight + particles ──
+// ── STEP 1: Hero spotlight ──
 const hero = document.querySelector('.hero');
 const spotlight = document.querySelector('.hero__spotlight');
 if (hero && spotlight) {
@@ -71,10 +71,17 @@ if (hero && spotlight) {
   });
 }
 
-// Hero headline glitch on load
+// Hero headline glitch — fires once, class removed after animation ends cleanly
 window.addEventListener('load', () => {
   const hl = document.querySelector('.hero__headline');
-  if (hl) { hl.classList.add('glitch'); setTimeout(() => hl.classList.remove('glitch'), 2000); }
+  if (!hl) return;
+  hl.classList.add('glitch');
+  // Remove after glitch animation fully completes (1.2s delay + 5 × 0.06s = ~1.5s)
+  setTimeout(() => {
+    hl.classList.remove('glitch');
+    // Explicitly clear any lingering text-shadow
+    hl.style.textShadow = 'none';
+  }, 1600);
 });
 
 // Particles (theme-aware)
@@ -135,9 +142,7 @@ if (!isTouchDevice) {
       const y = (e.clientY - rect.top)  / rect.height - 0.5;
       card.style.transform = `perspective(600px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 }
 
@@ -163,9 +168,7 @@ if (!isTouchDevice) {
       const y = (e.clientY - rect.top  - rect.height / 2) * 0.06;
       card.style.transform = `translate(${x}px,${y}px) scale(1.02)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 }
 

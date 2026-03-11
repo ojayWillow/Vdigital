@@ -153,7 +153,7 @@ img { max-width: 100%; display: block; }
   background-image: linear-gradient(var(--hero-grid-color) 1px,transparent 1px), linear-gradient(90deg,var(--hero-grid-color) 1px,transparent 1px);
   background-size: 60px 60px; pointer-events: none; z-index: 0;
 }
-/* Scanline overlay — very faint cyberpunk texture */
+/* Scanline overlay */
 .hero::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
@@ -209,8 +209,7 @@ img { max-width: 100%; display: block; }
 .hero__typewriter::after { content: '|'; -webkit-text-fill-color: var(--accent-2); animation: blink 0.9s step-end infinite; margin-left: 2px; }
 @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
 
-/* Glitch on headline */
-.hero__headline.glitch { animation: hero-in 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) both, glitch-flicker 0.06s 1.2s steps(1) 5; }
+/* Glitch — fires once on load via JS class, cleans itself up */
 @keyframes glitch-flicker {
   0%   { text-shadow: 2px 0 #ff0060, -2px 0 #00eaff; transform: translateX(0); }
   20%  { text-shadow: -2px 0 #ff0060, 2px 0 #00eaff; transform: translateX(-2px); }
@@ -219,6 +218,11 @@ img { max-width: 100%; display: block; }
   80%  { text-shadow: 1px 0 #ff0060; transform: translateX(1px); }
   100% { text-shadow: none; transform: translateX(0); }
 }
+.hero__headline.glitch {
+  animation: hero-in 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) both,
+             glitch-flicker 0.06s 1.2s steps(1) 5;
+}
+/* After glitch class is removed by JS, headline returns to plain state — no persistent red */
 
 .hero__sub { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 460px; animation: hero-in 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) both; }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; animation: hero-in 0.8s 0.3s cubic-bezier(0.4,0,0.2,1) both; }
@@ -263,7 +267,6 @@ img { max-width: 100%; display: block; }
 .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.65); }
 .whatsapp-float__tooltip { position: absolute; right: 68px; background: #1a1a1a; color: #fff; font-size: 0.8rem; font-weight: 500; white-space: nowrap; padding: 6px 12px; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .whatsapp-float:hover .whatsapp-float__tooltip { opacity: 1; }
-/* Step 6 — WhatsApp pulse ring */
 .whatsapp-float::before {
   content: ''; position: absolute; inset: -4px; border-radius: 50%;
   border: 2px solid #25d366; opacity: 0;
@@ -288,11 +291,9 @@ img { max-width: 100%; display: block; }
   background: var(--bg-2); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 32px; position: relative; overflow: hidden;
   transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-  /* 3D tilt set via JS */
   transform-style: preserve-3d;
   will-change: transform;
 }
-/* Glowing top border sweep on hover */
 .service-card::before {
   content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
@@ -320,14 +321,20 @@ img { max-width: 100%; display: block; }
    STEP 3 — PACKAGES: Bold & Confident
    =========================================== */
 .packages { background: var(--packages-bg); transition: background 0.3s ease; }
-.packages__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; align-items: start; }
+
+/* Grid needs overflow visible so the badge above featured card shows */
+.packages__grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  align-items: start;
+  overflow: visible;
+}
 
 .package-card {
   background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 32px; position: relative; overflow: hidden;
+  border-radius: var(--radius); padding: 32px; position: relative;
+  overflow: hidden;
   transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
-/* Per-card spotlight — position set via JS */
 .package-card::after {
   content: ''; position: absolute; inset: 0; border-radius: var(--radius); pointer-events: none; z-index: 0;
   background: radial-gradient(300px circle at var(--cx,50%) var(--cy,50%), rgba(108,99,255,0.07) 0%, transparent 70%);
@@ -337,22 +344,34 @@ img { max-width: 100%; display: block; }
 .package-card > * { position: relative; z-index: 1; }
 .package-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.3); }
 
-/* Shimmer streak on featured card */
+/* Featured card: allow badge to overflow the top */
 .package-card--featured {
+  overflow: visible;
   border-color: var(--accent);
   background: linear-gradient(160deg,rgba(108,99,255,0.12),var(--bg-3));
   box-shadow: 0 0 60px rgba(108,99,255,0.15); transform: scale(1.03);
 }
+/* Shimmer streak — needs a clip wrapper since card is now overflow:visible */
 .package-card--featured::before {
   content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; z-index: 2;
   background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.07) 50%, transparent 60%);
   animation: shimmer-streak 3s ease-in-out infinite;
   pointer-events: none;
+  /* clip to card body only */
+  clip-path: inset(0 0 0 0 round var(--radius));
 }
 @keyframes shimmer-streak { 0%{left:-60%} 60%,100%{left:150%} }
 .package-card--featured:hover { transform: scale(1.03) translateY(-4px); }
 
-.package-card__badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 14px; border-radius: var(--radius-pill); }
+/* Badge sits above the card top edge */
+.package-card__badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 16px; border-radius: var(--radius-pill);
+  white-space: nowrap; z-index: 10;
+}
+
 .package-card__header { margin-bottom: 16px; }
 .package-card__tier { display: block; font-size: 0.82rem; font-weight: 600; color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
 .package-card__price { display: flex; align-items: baseline; gap: 4px; }
@@ -382,13 +401,11 @@ img { max-width: 100%; display: block; }
   display: block; border-radius: var(--radius); overflow: hidden;
   background: var(--bg-2); border: 1px solid var(--border);
   transition: box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
-  /* transform handled by magnetic JS */
   cursor: pointer; will-change: transform;
 }
 .work-card:hover { box-shadow: var(--card-shadow-hover); border-color: rgba(108,99,255,0.4); }
 .work-card.hidden { opacity: 0; pointer-events: none; transform: scale(0.96) !important; }
 
-/* Per-category tag colours */
 .work-card[data-category="ecommerce"] .work-card__tag { color: #f59e0b; }
 .work-card[data-category="beauty"]    .work-card__tag { color: #ec4899; }
 .work-card[data-category="services"]  .work-card__tag { color: #10b981; }
@@ -399,7 +416,6 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .work-card[data-category="services"]  .work-card__tag { background: rgba(16,185,129,0.1);  padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; }
 [data-theme="light"] .work-card[data-category="creator"]   .work-card__tag { background: rgba(99,102,241,0.1);  padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; }
 
-/* Light mode card hover accent per category */
 [data-theme="light"] .work-card[data-category="ecommerce"]:hover { border-color: rgba(245,158,11,0.4); box-shadow: 0 16px 48px rgba(245,158,11,0.12); }
 [data-theme="light"] .work-card[data-category="beauty"]:hover    { border-color: rgba(236,72,153,0.3); box-shadow: 0 16px 48px rgba(236,72,153,0.1); }
 [data-theme="light"] .work-card[data-category="services"]:hover  { border-color: rgba(16,185,129,0.3); box-shadow: 0 16px 48px rgba(16,185,129,0.1); }
@@ -431,8 +447,6 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .cta-banner {
   background: linear-gradient(135deg,#5b52f0 0%,#7c6ff7 40%,#a78bfa 100%);
 }
-
-/* Floating orbs */
 .cta-banner__orb {
   position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
   animation: orb-drift 10s ease-in-out infinite alternate;
@@ -451,8 +465,6 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .cta-banner__orb--3 { background: rgba(255,200,100,0.2); }
 
 .cta-banner__inner { position: relative; z-index: 1; }
-
-/* Animated gradient headline */
 .cta-banner__inner h2 {
   font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 700; margin-bottom: 12px;
   background: linear-gradient(90deg, #fff 0%, #a78bfa 30%, #6c63ff 50%, #a78bfa 70%, #fff 100%);
@@ -489,7 +501,6 @@ img { max-width: 100%; display: block; }
 }
 [data-theme="light"] .contact__form { background: #fff; border-color: rgba(0,0,0,0.08); box-shadow: 0 4px 32px rgba(0,0,0,0.07); }
 
-/* Floating label inputs */
 .form-group { display: flex; flex-direction: column; gap: 0; position: relative; }
 .form-group label {
   font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
@@ -587,7 +598,6 @@ img { max-width: 100%; display: block; }
   .footer__links { gap:14px; }
   .whatsapp-float { bottom:20px; right:16px; width:52px; height:52px; }
   .whatsapp-float__tooltip { display:none; }
-  /* disable heavy effects on mobile */
   .service-card { transform:none !important; }
   .package-card::after { display:none; }
 }
