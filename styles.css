@@ -134,7 +134,7 @@ img { max-width: 100%; display: block; }
 .mobile-menu .btn { margin-top: 16px; width: 100%; justify-content: center; }
 
 /* ===========================================
-   STEP 1 — HERO: Tech / Futuristic
+   STEP 1 — HERO
    =========================================== */
 .hero {
   position: relative; min-height: 100vh;
@@ -153,7 +153,6 @@ img { max-width: 100%; display: block; }
   background-image: linear-gradient(var(--hero-grid-color) 1px,transparent 1px), linear-gradient(90deg,var(--hero-grid-color) 1px,transparent 1px);
   background-size: 60px 60px; pointer-events: none; z-index: 0;
 }
-/* Scanline overlay */
 .hero::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
@@ -199,7 +198,6 @@ img { max-width: 100%; display: block; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-/* Typewriter */
 .hero__typewriter {
   display: inline-block;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -209,7 +207,6 @@ img { max-width: 100%; display: block; }
 .hero__typewriter::after { content: '|'; -webkit-text-fill-color: var(--accent-2); animation: blink 0.9s step-end infinite; margin-left: 2px; }
 @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
 
-/* Glitch — fires once on load via JS class, cleans itself up */
 @keyframes glitch-flicker {
   0%   { text-shadow: 2px 0 #ff0060, -2px 0 #00eaff; transform: translateX(0); }
   20%  { text-shadow: -2px 0 #ff0060, 2px 0 #00eaff; transform: translateX(-2px); }
@@ -222,7 +219,6 @@ img { max-width: 100%; display: block; }
   animation: hero-in 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) both,
              glitch-flicker 0.06s 1.2s steps(1) 5;
 }
-/* After glitch class is removed by JS, headline returns to plain state — no persistent red */
 
 .hero__sub { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 460px; animation: hero-in 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) both; }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; animation: hero-in 0.8s 0.3s cubic-bezier(0.4,0,0.2,1) both; }
@@ -282,7 +278,7 @@ img { max-width: 100%; display: block; }
 @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* ===========================================
-   STEP 2 — SERVICES: Serious / Corporate
+   SERVICES
    =========================================== */
 .services { background: var(--services-bg); transition: background 0.3s ease; }
 .services__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -318,11 +314,10 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .service-card__icon { filter: drop-shadow(0 2px 6px rgba(91,82,240,0.2)); }
 
 /* ===========================================
-   STEP 3 — PACKAGES: Bold & Confident
+   PACKAGES
    =========================================== */
 .packages { background: var(--packages-bg); transition: background 0.3s ease; }
 
-/* Grid needs overflow visible so the badge above featured card shows */
 .packages__grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
   align-items: start;
@@ -344,26 +339,22 @@ img { max-width: 100%; display: block; }
 .package-card > * { position: relative; z-index: 1; }
 .package-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.3); }
 
-/* Featured card: allow badge to overflow the top */
 .package-card--featured {
   overflow: visible;
   border-color: var(--accent);
   background: linear-gradient(160deg,rgba(108,99,255,0.12),var(--bg-3));
   box-shadow: 0 0 60px rgba(108,99,255,0.15); transform: scale(1.03);
 }
-/* Shimmer streak — needs a clip wrapper since card is now overflow:visible */
 .package-card--featured::before {
   content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; z-index: 2;
   background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.07) 50%, transparent 60%);
   animation: shimmer-streak 3s ease-in-out infinite;
   pointer-events: none;
-  /* clip to card body only */
   clip-path: inset(0 0 0 0 round var(--radius));
 }
 @keyframes shimmer-streak { 0%{left:-60%} 60%,100%{left:150%} }
 .package-card--featured:hover { transform: scale(1.03) translateY(-4px); }
 
-/* Badge sits above the card top edge */
 .package-card__badge {
   position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
   background: var(--accent); color: #fff;
@@ -388,7 +379,7 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .package-card::after { background: radial-gradient(300px circle at var(--cx,50%) var(--cy,50%), rgba(91,82,240,0.06) 0%, transparent 70%); }
 
 /* ===========================================
-   STEP 4 — PORTFOLIO: Playful & Creative
+   PORTFOLIO
    =========================================== */
 .work { background: var(--work-bg); transition: background 0.3s ease; }
 .work__filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
@@ -438,7 +429,7 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .browser-bar { background: #f0f1f8; }
 
 /* ===========================================
-   STEP 5 — CTA BANNER: Emotional / Punchy
+   CTA BANNER
    =========================================== */
 .cta-banner {
   position: relative; overflow: hidden; padding: 100px 0; text-align: center;
@@ -483,7 +474,7 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .cta-banner__inner .btn--primary:hover { background: rgba(255,255,255,0.9); }
 
 /* ===========================================
-   STEP 6 — CONTACT: Warm & Trustworthy
+   CONTACT
    =========================================== */
 .contact { background: var(--contact-bg); transition: background 0.3s ease; }
 .contact__inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
@@ -540,69 +531,107 @@ img { max-width: 100%; display: block; }
 /* =============================================
    RESPONSIVE
    ============================================= */
-@media (max-width:1024px) {
-  .hero__inner { flex-direction:column; gap:48px; padding:60px 0; }
-  .hero__right { flex:none; width:100%; max-width:480px; margin:0 auto; }
-  .services__grid { grid-template-columns:repeat(2,1fr); }
-  .packages__grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; }
-  .package-card--featured { transform:none; }
-  .package-card--featured:hover { transform:translateY(-4px); }
-  .work__grid { grid-template-columns:1fr 1fr; }
-  .contact__inner { grid-template-columns:1fr; gap:48px; }
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+  .hero__inner { flex-direction: column; gap: 48px; padding: 60px 0; }
+  .hero__right { flex: none; width: 100%; max-width: 480px; margin: 0 auto; }
+  .services__grid { grid-template-columns: repeat(2,1fr); }
+  .packages__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .package-card--featured { transform: none; }
+  .package-card--featured:hover { transform: translateY(-4px); }
+  .work__grid { grid-template-columns: 1fr 1fr; }
+  .contact__inner { grid-template-columns: 1fr; gap: 48px; }
 }
-@media (max-width:768px) {
-  .container { padding:0 20px; }
-  .section { padding:64px 0; }
-  .section-header { margin-bottom:40px; }
-  .section-title { font-size:clamp(1.7rem,7vw,2.4rem); }
-  .nav__links,.nav__cta { display:none; }
-  .nav__burger { display:flex; }
-  .theme-toggle { width:36px; height:36px; font-size:1rem; }
-  .hero { min-height:100svh; align-items:flex-start; padding-top:68px; }
-  .hero::after { display:none; }
-  .hero__inner { flex-direction:column; gap:36px; padding:40px 0 60px; }
-  .hero__left { gap:20px; }
-  .hero__headline { font-size:clamp(2rem,9vw,2.8rem); }
-  .hero__sub { font-size:0.97rem; max-width:100%; }
-  .hero__badge { font-size:0.72rem; }
-  .hero__actions { flex-direction:column; gap:10px; }
-  .hero__actions .btn { width:100%; justify-content:center; }
-  .hero__stats { flex-wrap:wrap; gap:0; row-gap:0; border-top:1px solid var(--border); padding-top:16px; }
-  .hero__stats .stat { flex:1 1 calc(33% - 1px); text-align:center; padding:8px 4px; }
-  .hero__stats .stat__num { font-size:1.5rem; }
-  .hero__stats .stat__label { font-size:0.7rem; }
-  .stat__divider { display:none; }
-  .hero__right { width:100%; max-width:100%; }
-  .preview-card-wrap { max-width:360px; margin:0 auto; }
-  .preview-card__body { padding:16px; gap:8px; }
-  .preview-metrics { gap:8px; }
-  .preview-metric__val { font-size:1.1rem; }
-  .services__grid { grid-template-columns:1fr; gap:14px; }
-  .service-card { padding:24px; }
-  .packages__grid { grid-template-columns:1fr; max-width:100%; gap:16px; }
-  .package-card { padding:24px; }
-  .package-card--featured { transform:none; }
-  .package-card--featured:hover { transform:translateY(-4px); }
-  .work__grid { grid-template-columns:1fr; gap:16px; }
-  .browser-viewport { height:185px; }
-  .browser-viewport iframe { transform:scale(0.225); }
-  .work-card:hover .browser-viewport iframe { transform:scale(0.225) translateY(-160px); }
-  .work__filters { gap:8px; }
-  .filter-btn { padding:7px 14px; font-size:0.8rem; }
-  .contact__inner { gap:32px; }
-  .contact__form { padding:20px 16px; gap:16px; }
-  .form-group input,.form-group select,.form-group textarea { font-size:16px; }
-  .cta-banner { padding:64px 0; }
-  .footer { padding:40px 0 20px; }
-  .footer__inner { flex-direction:column; gap:24px; }
-  .footer__links { gap:14px; }
-  .whatsapp-float { bottom:20px; right:16px; width:52px; height:52px; }
-  .whatsapp-float__tooltip { display:none; }
-  .service-card { transform:none !important; }
-  .package-card::after { display:none; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  .container { padding: 0 16px; }
+  .section { padding: 56px 0; }
+  .section-header { margin-bottom: 32px; }
+  .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .section-sub { font-size: 0.95rem; }
+
+  /* Nav */
+  .nav__links, .nav__cta { display: none; }
+  .nav__burger { display: flex; }
+  .theme-toggle { width: 36px; height: 36px; font-size: 1rem; }
+
+  /* Hero */
+  .hero { min-height: 100svh; align-items: flex-start; padding-top: 68px; }
+  .hero::after { display: none; }
+  .hero__inner { flex-direction: column; gap: 28px; padding: 32px 0 48px; }
+  .hero__left { gap: 16px; }
+  .hero__badge { font-size: 0.68rem; padding: 5px 12px; }
+  .hero__headline { font-size: clamp(1.75rem, 8.5vw, 2.6rem); }
+  .hero__sub { font-size: 0.92rem; max-width: 100%; }
+  .hero__actions { flex-direction: column; gap: 10px; }
+  .hero__actions .btn { width: 100%; justify-content: center; font-size: 0.95rem; }
+  .hero__stats { flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); padding-top: 16px; }
+  .hero__stats .stat { flex: 1 1 calc(33% - 1px); text-align: center; padding: 8px 4px; }
+  .hero__stats .stat__num { font-size: 1.35rem; }
+  .hero__stats .stat__label { font-size: 0.65rem; }
+  .stat__divider { display: none; }
+  .hero__right { width: 100%; max-width: 100%; }
+  .preview-card-wrap { max-width: 320px; margin: 0 auto; }
+  .preview-card__body { padding: 14px; gap: 8px; }
+  .preview-metrics { gap: 6px; }
+  .preview-metric { padding: 8px 4px; }
+  .preview-metric__val { font-size: 1rem; }
+  .preview-metric__label { font-size: 0.58rem; }
+
+  /* Services */
+  .services__grid { grid-template-columns: 1fr; gap: 12px; }
+  .service-card { padding: 20px; }
+  .service-card__icon { font-size: 1.6rem; margin-bottom: 12px; }
+  .service-card h3 { font-size: 1rem; }
+  .service-card p { font-size: 0.88rem; }
+  .service-card { transform: none !important; }
+
+  /* Packages */
+  .packages__grid { grid-template-columns: 1fr; max-width: 100%; gap: 14px; }
+  .package-card { padding: 20px; }
+  .package-card--featured { transform: none; }
+  .package-card--featured:hover { transform: translateY(-4px); }
+  .package-card::after { display: none; }
+  .price-num { font-size: 1.9rem; }
+
+  /* Portfolio */
+  .work__grid { grid-template-columns: 1fr; gap: 14px; }
+  .browser-viewport { height: 175px; }
+  .browser-viewport iframe { transform: scale(0.21); width: 1280px; }
+  .work-card:hover .browser-viewport iframe { transform: scale(0.21) translateY(-150px); }
+  .work__filters { gap: 8px; }
+  .filter-btn { padding: 6px 13px; font-size: 0.78rem; }
+
+  /* CTA Banner */
+  .cta-banner { padding: 56px 0; }
+  .cta-banner__inner h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .cta-banner__inner p { font-size: 0.95rem; }
+
+  /* Contact */
+  .contact__inner { gap: 28px; }
+  .contact__form { padding: 18px 14px; gap: 14px; }
+  .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
+
+  /* Footer */
+  .footer { padding: 36px 0 18px; }
+  .footer__inner { flex-direction: column; gap: 20px; }
+  .footer__links { gap: 12px; }
+
+  /* WhatsApp */
+  .whatsapp-float { bottom: 16px; right: 14px; width: 50px; height: 50px; }
+  .whatsapp-float__tooltip { display: none; }
 }
-@media (max-width:420px) {
-  .hero__headline { font-size:clamp(1.8rem,10vw,2.4rem); }
-  .price-num { font-size:1.9rem; }
-  .preview-card-wrap { max-width:100%; }
+
+/* ── Small phones ── */
+@media (max-width: 390px) {
+  html { font-size: 14px; }
+  .hero__headline { font-size: clamp(1.6rem, 9.5vw, 2.2rem); }
+  .hero__badge { font-size: 0.62rem; letter-spacing: 0.05em; }
+  .price-num { font-size: 1.7rem; }
+  .preview-card-wrap { max-width: 100%; }
+  .cta-banner__inner h2 { font-size: clamp(1.4rem, 8vw, 1.8rem); }
+  .btn--lg { padding: 13px 24px; font-size: 0.95rem; }
 }
