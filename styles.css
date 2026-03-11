@@ -213,7 +213,7 @@ img { max-width: 100%; display: block; }
 }
 .work-card:hover .browser-visit { opacity: 1; }
 
-/* Unified viewport height for ALL cards including wide */
+/* ALL cards — same height, same scale */
 .browser-viewport {
   position: relative;
   width: 100%;
@@ -221,7 +221,6 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: #fff;
 }
-
 .browser-viewport iframe {
   position: absolute;
   top: 0;
@@ -234,16 +233,9 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
-/* Wide card: scale up slightly more since it has double the width */
-.work-card--wide .browser-viewport iframe {
-  transform: scale(0.46);
-}
-/* Hover pan down for all cards */
+/* Hover: gently pan down to reveal more */
 .work-card:hover .browser-viewport iframe {
   transform: scale(0.295) translateY(-180px);
-}
-.work-card--wide:hover .browser-viewport iframe {
-  transform: scale(0.46) translateY(-180px);
 }
 
 /* Card meta label below the browser */
@@ -347,9 +339,7 @@ img { max-width: 100%; display: block; }
   .work-card--wide { grid-column: span 1; }
   .browser-viewport { height: 180px; }
   .browser-viewport iframe { transform: scale(0.22); }
-  .work-card:hover .browser-viewport iframe { transform: scale(0.22) translateY(-180px); }
-  .work-card--wide .browser-viewport iframe { transform: scale(0.22); }
-  .work-card--wide:hover .browser-viewport iframe { transform: scale(0.22) translateY(-180px); }
+  .work-card:hover .browser-viewport iframe { transform: scale(0.22) translateY(-150px); }
   .process__steps { grid-template-columns: 1fr; }
   .testimonials__grid { grid-template-columns: 1fr; }
   .hero__stats { flex-wrap: wrap; gap: 16px; } .hero__actions { flex-direction: column; }
