@@ -147,7 +147,7 @@ if (!isTouchDevice) {
 }
 
 // ── STEP 4: Portfolio — iframe dynamic scaling ──
-const IFRAME_SRC_WIDTH = 1280; // iframe is always rendered at 1280px wide
+const IFRAME_SRC_WIDTH = 1280;
 
 function scalePortfolioIframes() {
   document.querySelectorAll('.browser-viewport').forEach(vp => {
@@ -157,10 +157,8 @@ function scalePortfolioIframes() {
     const iframe = vp.querySelector('iframe');
     if (iframe) {
       iframe.style.transform = `scale(${scale})`;
-      // store scale so hover can use it
       vp.dataset.scale = scale;
     }
-    // adjust viewport height to show a nice portion at computed scale
     vp.style.height = Math.round(220 * (cardWidth / 375)) + 'px';
     vp.style.height = Math.min(Math.max(vp.style.height.replace('px',''), 160), 240) + 'px';
   });
@@ -169,10 +167,8 @@ function scalePortfolioIframes() {
 window.addEventListener('resize', scalePortfolioIframes);
 document.addEventListener('DOMContentLoaded', () => {
   scalePortfolioIframes();
-  // re-run once fonts/layout settle
   setTimeout(scalePortfolioIframes, 300);
 });
-// also run immediately for non-DOMContentLoaded cases
 if (document.readyState !== 'loading') scalePortfolioIframes();
 
 // Hover scroll — shift iframe up to reveal more content
@@ -203,26 +199,9 @@ if (!isTouchDevice) {
       const y = (e.clientY - rect.top  - rect.height / 2) * 0.06;
       card.style.transform = `translate(${x}px,${y}px) scale(1.02)`;
     });
-    // mouseleave handled above, reset to base
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 }
-
-// ── Portfolio filter ──
-const filterBtns = document.querySelectorAll('.filter-btn');
-const workCards  = document.querySelectorAll('.work__grid .work-card');
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
-    btn.classList.add('filter-btn--active');
-    const filter = btn.dataset.filter;
-    workCards.forEach(card => {
-      card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
-    });
-    // re-scale iframes after filter changes layout
-    setTimeout(scalePortfolioIframes, 50);
-  });
-});
 
 // ── Scroll fade-in ──
 const fadeStyle = document.createElement('style');
