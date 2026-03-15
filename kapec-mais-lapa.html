@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kāpēc jūsu uzņēmumam vajag mājas lapu? | Vdigital</title>
+  <meta name="description" content="Uzziniet, kā profesionāla mājas lapa palīdz piesaistīt klientus, stiprināt uzticamību un palielināt ieņēmumus. Fakti un padomi Latvijas uzņēmumiem." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vdigital.lv/kapec-mais-lapa" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://vdigital.lv/kapec-mais-lapa" />
+  <meta property="og:title" content="Kāpēc jūsu uzņēmumam vajag mājas lapu? | Vdigital" />
+  <meta property="og:description" content="Uzziniet, kā profesionāla mājas lapa palīdz piesaistīt klientus, stiprināt uzticamību un palielināt ieņēmumus." />
+  <meta property="og:image" content="https://vdigital.lv/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
+  <style>
+    .info-hero {
+      padding: 140px 0 80px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .info-hero__bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--hero-grid-color) 1px,transparent 1px),
+                        linear-gradient(90deg,var(--hero-grid-color) 1px,transparent 1px);
+      background-size: 60px 60px; pointer-events: none; z-index: 0;
+    }
+    .info-hero__glow {
+      position: absolute; border-radius: 50%; filter: blur(140px); pointer-events: none;
+      width: 500px; height: 500px; background: var(--accent);
+      top: -180px; right: -100px; opacity: 0.1; z-index: 0;
+    }
+    .info-hero__inner {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto; text-align: center;
+    }
+    .info-hero__inner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.03em; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .info-hero__inner h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .info-hero__inner p {
+      color: var(--text-muted); font-size: 1.1rem; line-height: 1.75;
+      max-width: 620px; margin: 0 auto 32px;
+    }
+    .info-hero__meta {
+      display: flex; align-items: center; justify-content: center; gap: 24px;
+      font-size: 0.82rem; color: var(--text-dim);
+      border-top: 1px solid var(--border); padding-top: 24px; margin-top: 8px;
+    }
+    .info-hero__meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* Article body */
+    .article {
+      max-width: 760px; margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+    .article h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: var(--text);
+      margin: 64px 0 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .article h2 .h2-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 10px; font-size: 1.1rem; flex-shrink: 0;
+      background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.2);
+    }
+    .article p {
+      color: var(--text-muted); font-size: 1rem; line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .article strong { color: var(--text); }
+
+    /* Stat boxes */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+      margin: 32px 0;
+    }
+    .stat-box {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px; text-align: center;
+    }
+    .stat-box__num {
+      font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      display: block; line-height: 1.1;
+    }
+    .stat-box__label {
+      display: block; font-size: 0.82rem; color: var(--text-muted);
+      margin-top: 8px; line-height: 1.4;
+    }
+
+    /* Benefit cards */
+    .benefit-list {
+      display: flex; flex-direction: column; gap: 16px; margin: 24px 0;
+    }
+    .benefit-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .benefit-item:hover { border-color: rgba(108,99,255,0.3); transform: translateX(4px); }
+    .benefit-item__icon {
+      font-size: 1.6rem; flex-shrink: 0; width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(108,99,255,0.1); border-radius: 12px;
+    }
+    .benefit-item__body h3 {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .benefit-item__body p {
+      font-size: 0.9rem; color: var(--text-muted);
+      line-height: 1.65; margin: 0;
+    }
+
+    /* Compare table */
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin: 24px 0;
+      font-size: 0.92rem;
+    }
+    .compare-table th {
+      font-family: var(--font-display); font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); padding: 12px 16px;
+      border-bottom: 1px solid var(--border); text-align: left;
+    }
+    .compare-table td {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text-muted); vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { color: var(--text); font-weight: 500; }
+    .compare-table .yes { color: #16a34a; font-weight: 600; }
+    .compare-table .no  { color: #dc2626; }
+    .compare-table thead tr { background: var(--bg-2); }
+    .compare-table tbody tr:hover td { background: rgba(108,99,255,0.04); }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 20px 28px; margin: 32px 0;
+      background: rgba(108,99,255,0.06); border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-size: 1.05rem; font-style: italic;
+      color: var(--text); margin: 0; line-height: 1.7;
+    }
+
+    /* Checklist */
+    .checklist {
+      display: flex; flex-direction: column; gap: 10px; margin: 20px 0;
+    }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.95rem; color: var(--text-muted);
+    }
+    .checklist li::before {
+      content: '✓'; color: #16a34a; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* CTA at bottom of article */
+    .article-cta {
+      background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(167,139,250,0.06));
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: var(--radius); padding: 40px; text-align: center;
+      margin-top: 64px;
+    }
+    .article-cta h3 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .article-cta p {
+      color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;
+    }
+    .article-cta .btn-group {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .stat-grid .stat-box:last-child { grid-column: 1 / -1; }
+      .benefit-item:hover { transform: none; }
+      .compare-table { font-size: 0.82rem; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+      .article-cta { padding: 28px 20px; }
+      .article h2 { font-size: 1.3rem; margin-top: 48px; }
+    }
+    @media (max-width: 480px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .stat-grid .stat-box:last-child { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo"><span>V</span>digital.</a>
+      <nav class="nav__links">
+        <a href="/#services">Pakalpojumi</a>
+        <a href="/#packages">Cenas</a>
+        <a href="/#work">Darbi</a>
+        <a href="/#contact">Kontakts</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Mainīt tēmu">☀️</button>
+        <a href="/#contact" class="btn btn--primary nav__cta">Sākt projektu</a>
+        <button class="nav__burger" id="burger" aria-label="Atvērt izvēlni" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#services" class="mobile-menu__link">Pakalpojumi</a>
+    <a href="/#packages" class="mobile-menu__link">Cenas</a>
+    <a href="/#work" class="mobile-menu__link">Darbi</a>
+    <a href="/#contact" class="mobile-menu__link">Kontakts</a>
+    <a href="/#contact" class="btn btn--primary">Sākt projektu</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="info-hero">
+    <div class="info-hero__bg-grid"></div>
+    <div class="info-hero__glow"></div>
+    <div class="container">
+      <div class="info-hero__inner">
+        <div class="section-badge">Biznesa izaugsme</div>
+        <h1>Kāpēc jūsu uzņēmumam<br/>vajag <span>profesionālu mājas lapu</span>?</h1>
+        <p>Šodien klienti meklē uzņēmumus internetā pirms sazvana vai atnāk klātienē. Bez mājas lapas jūs vienkārši nepastāvat viņu acīs.</p>
+        <div class="info-hero__meta">
+          <span>✦ 7 min lasīšanas laiks</span>
+          <span>✦ Latvijas uzņēmumiem</span>
+          <span>✦ Vdigital</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="container">
+    <article class="article">
+
+      <!-- Intro stats -->
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-box__num">81%</span>
+          <span class="stat-box__label">pircēju meklē informāciju internetā pirms pirkuma</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">75%</span>
+          <span class="stat-box__label">cilvēku spriedz par uzņēmuma uzticamību pēc mājas lapas dizaina</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">56%</span>
+          <span class="stat-box__label">mazo uzņēmumu Latvijā vēl joprojām nav funkcionālas vietnes</span>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <h2><span class="h2-icon">👁️</span> Pirmais iespaids notiek tiešsaistē</h2>
+      <p>Pirms klients zvana, raksta vai atnāk — viņš Google. Ja jūsu uzņēmums neparādās vai lapa izskatās novecojusi, viņš vienkārši dodas pie konkurenta. <strong>Jums ir aptuveni 3 sekundes, lai radītu labu pirmo iespaidu.</strong></p>
+      <p>Profesionāla mājas lapa darbojas kā jūsu labākais pārdevējs — 24 stundas diennaktī, 7 dienas nedēļā, bez atvaļinājuma. Tā atbild uz jautājumiem, prezentē pakalpojumus un mudina apmeklētāju sazināties.</p>
+
+      <div class="pull-quote">
+        <p>"Uzņēmums bez mājas lapas 2026. gadā ir kā veikals bez izkārtnes — daži var to atrast, bet lielākā daļa paiet garām."</p>
+      </div>
+
+      <!-- Section 2 -->
+      <h2><span class="h2-icon">🎯</span> Piesaistiet klientus, kamēr guļat</h2>
+      <p>Google katru dienu apstrādā <strong>vairāk nekā 8 miljardu meklēšanas pieprasījumu</strong>. Daļa no tiem ir jūsu potenciālie klienti, kas meklē tieši to, ko jūs piedāvājat. Bez mājas lapas jūs šos klientus neredzat — un viņi neredz jūs.</p>
+      <p>Ar labu SEO optimizāciju jūsu lapa parādās meklēšanas rezultātu augšā tieši tad, kad kāds meklē jūsu pakalpojumu. Tas nozīmē — klienti nāk pie jums, nevis jūs viņiem sekojat ar reklāmām.</p>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="benefit-item__icon">🔍</div>
+          <div class="benefit-item__body">
+            <h3>Google atrašanās spēja</h3>
+            <p>Optimizēta lapa parādās, kad klienti meklē jūsu pakalpojumu. Tas ir bezmaksas, pastāvīgs klientu plūsmas avots.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-item__icon">📍</div>
+          <div class="benefit-item__body">
+            <h3>Lokālā meklēšana</h3>
+            <p>"Santehniķis Rīgā", "frizieris Purvciemā" — cilvēki meklē pakalpojumus savā tuvumā. Jūsu lapa ļauj parādīties šajos rezultātos.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-item__icon">📱</div>
+          <div class="benefit-item__body">
+            <h3>Mobilā pieejamība</h3>
+            <p>Vairāk nekā 60% meklēšanas notiek no telefona. Mobilajam dizainam optimizēta lapa nodrošina, ka apmeklētāji paliek un neaiziet.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-item__icon">🕐</div>
+          <div class="benefit-item__body">
+            <h3>Darbojas 24/7</h3>
+            <p>Pat naktī vai svētdien — klients var izlasīt par jūsu pakalpojumiem, apskatīt cenas un atstāt ziņu. Jūs neko nezaudējat.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <h2><span class="h2-icon">🤝</span> Uzticamība, ko nevar nopirkt citur</h2>
+      <p>Iedomājieties: jūs meklējat elektriķi. Atrodat divus — vienam ir profesionāla mājas lapa ar fotogrāfijām, atsauksmēm un skaidru cenu sarakstu. Otram tikai telefona numurs Facebook grupā. <strong>Kuram jūs zvanāt?</strong></p>
+      <p>Mājas lapa piešķir jūsu uzņēmumam leģitimitāti. Tā parāda, ka esat nopietni, ka pastāvat jau kādu laiku un ka citi klienti jums uzticas.</p>
+
+      <ul class="checklist">
+        <li>Atsauksmes un klientu stāsti stiprina uzticamību</li>
+        <li>Fotogrāfijas no reāla darba pierāda kompetenci</li>
+        <li>Skaidra cenu informācija samazina nenoteiktību</li>
+        <li>Kontaktinformācija un adrese apliecina, ka esat īsts uzņēmums</li>
+        <li>SSL sertifikāts (https) norāda uz drošu vietni</li>
+        <li>Profesionāls dizains liecina par augstu darba kvalitāti</li>
+      </ul>
+
+      <!-- Section 4 — Compare -->
+      <h2><span class="h2-icon">⚖️</span> Ar mājas lapu pret bez tās</h2>
+      <p>Apskatīsim, kā izskatās uzņēmuma ikdiena ar profesionālu vietni salīdzinājumā ar tās neesamību.</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Situācija</th>
+            <th>Bez mājas lapas</th>
+            <th>Ar mājas lapu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Klients meklē Google</td>
+            <td class="no">Jūs neparādāties</td>
+            <td class="yes">Jūs esat pirmajā lapā</td>
+          </tr>
+          <tr>
+            <td>Darba laiks beigās</td>
+            <td class="no">Klienti nevar uzzināt par jums</td>
+            <td class="yes">Lapa strādā 24/7</td>
+          </tr>
+          <tr>
+            <td>Klients vēlas uzzināt cenas</td>
+            <td class="no">Jāzvana vai jāraksta</td>
+            <td class="yes">Atbildes uzreiz lapā</td>
+          </tr>
+          <tr>
+            <td>Atsauksmes un portfolio</td>
+            <td class="no">Grūti prezentēt</td>
+            <td class="yes">Pārliecinoši redzamas</td>
+          </tr>
+          <tr>
+            <td>Salīdzinājums ar konkurentiem</td>
+            <td class="no">Zaudējat uzreiz</td>
+            <td class="yes">Izcilāties profesionāli</td>
+          </tr>
+          <tr>
+            <td>Jauni klienti bez reklāmas</td>
+            <td class="no">Gandrīz neiespējami</td>
+            <td class="yes">SEO nodrošina pastāvīgi</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Section 5 -->
+      <h2><span class="h2-icon">📈</span> Reāla ietekme uz ieņēmumiem</h2>
+      <p>Mājas lapa nav tikai "vizītkarte internetā" — tā ir <strong>aktīvs pārdošanas rīks</strong>. Labi uzbūvēta lapa vada apmeklētāju no "es nezinu par šo uzņēmumu" līdz "es gribu pasūtīt".</p>
+      <p>Kontaktforma ļauj klientam sazināties dažās sekundēs. Aicinājums uz darbību ("Piezvani tagad", "Piesakies konsultācijai") palielina konversiju. Katrs apmeklētājs ir potenciālais klients — un laba lapa to izmanto.</p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-box__num">+34%</span>
+          <span class="stat-box__label">vidējais ieņēmumu pieaugums uzņēmumiem pēc profesionālas lapas izveides</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">3×</span>
+          <span class="stat-box__label">vairāk klientu pieprasījumu, salīdzinot ar tikai sociālo mediju klātbūtni</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">€0</span>
+          <span class="stat-box__label">izmaksas par katru klientu, ko atveda Google organiskā meklēšana</span>
+        </div>
+      </div>
+
+      <!-- Section 6 -->
+      <h2><span class="h2-icon">📣</span> Sociālie mediji nav pietiekami</h2>
+      <p>Instagram un Facebook ir labi, bet tie nevar aizstāt mājas lapu. Algoritmi mainās, konti var tikt bloķēti, un platformas nosaka — kas redz jūsu saturu. <strong>Jūsu mājas lapa pieder jums.</strong></p>
+      <p>Turklāt sociālie mediji labi strādā tad, kad klients jau zina par jums. Mājas lapa ar SEO ļauj atrast jūs tiem, kas par jums vēl nekad nav dzirdējuši — un tas ir daudz vērtīgāk.</p>
+
+      <ul class="checklist">
+        <li>Mājas lapa ir jūsu īpašums — to nevar "bloķēt" vai "noņemt"</li>
+        <li>Google meklēšana atveda klientus, kas aktīvi meklē — augstāka gatavība pirkt</li>
+        <li>Lapa var saturēt daudz vairāk informācijas nekā sociālo mediju profils</li>
+        <li>Iespējams pievienot rezervāciju, maksājumus, katalogu un vēl vairāk</li>
+        <li>Sociālie mediji + mājas lapa = pilnīga digitālā klātbūtne</li>
+      </ul>
+
+      <!-- Section 7 -->
+      <h2><span class="h2-icon">🚀</span> Kad ir īstais laiks sākt?</h2>
+      <p>Visbiežāk dzirdētais arguments ir: <em>"Pagaidām esam pārāk mazi"</em> vai <em>"Iztiekam bez lapas"</em>. Bet patiesībā — <strong>katru dienu bez mājas lapas ir klients, ko atradis jūsu konkurents</strong>.</p>
+      <p>Jo ātrāk sākat, jo ātrāk Google indeksē jūsu lapu, jo ātrāk aug jūsu atrašanās spēja. SEO prasa laiku — un šis laiks sākas tad, kad lapa ir dzīva.</p>
+
+      <div class="pull-quote">
+        <p>"Labākais laiks izveidot mājas lapu bija pirms gada. Otrais labākais laiks ir šodien."</p>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="article-cta">
+        <h3>Gatavs sākt?</h3>
+        <p>Mēs izveidojam jūsu landing page par €50 — un uzturam to par €39 mēnesī. Pirmā konsultācija bez maksas.</p>
+        <div class="btn-group">
+          <a href="/#contact" class="btn btn--primary btn--lg">Sazināties →</a>
+          <a href="/#packages" class="btn btn--outline btn--lg">Skatīt cenas</a>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <a href="/" class="nav__logo"><span>V</span>digital.</a>
+        <p>Jūsu biznesa digitālā identitāte sākas šeit.</p>
+      </div>
+      <div class="footer__links">
+        <a href="/#services">Pakalpojumi</a>
+        <a href="/#packages">Cenas</a>
+        <a href="/#work">Darbi</a>
+        <a href="/#contact">Kontakts</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Vdigital. Visas tiesības aizsargātas.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/37125953807" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Sazināties WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="whatsapp-float__tooltip">Rakstīt WhatsApp</span>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
