@@ -64,8 +64,6 @@
 
   .work__grid { grid-template-columns: 1fr; gap: 14px; }
   .browser-viewport { height: 175px; }
-  .browser-viewport iframe { transform: scale(0.21); width: 1280px; }
-  .work-card:hover .browser-viewport iframe { transform: scale(0.21) translateY(-150px); }
   .work__filters { gap: 8px; }
   .filter-btn { padding: 6px 13px; font-size: 0.78rem; }
 
