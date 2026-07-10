@@ -98,6 +98,11 @@ Professional website agency for Latvian businesses. Standalone static site with 
 
 ## Changelog
 
+### 2026-07 — Design & UX pass
+- **Portfolio category filter.** Added the filter bar (Visi / E-komercija / Skaistums / Pakalpojumi / Radītāji) above the work grid and wired `portfolio.js` to filter cards by `data-category` (the CSS + data attributes already existed but the buttons/JS were never built — `portfolio.js` was leftover iframe-scaling code).
+- **Scroll-spy navigation.** The nav link for the section currently in view is highlighted with an accent underline, via an `IntersectionObserver` in `nav.js`.
+- **Accessibility.** Honour `prefers-reduced-motion` (particles, typewriter, counters, marquee and transitions all stand down) and added visible `:focus-visible` outlines for keyboard users.
+
 ### 2026-07 — Copy, performance & assets pass
 - **Latvian copy proofread.** Fixed ~45 corrupted / space-split words across `index.html` and all three `preview-*.html` pages (e.g. `optimāzācija → optimizācija`, `Raks tīt → Rakstīt`, `salōns → salons`, `Manikjurs → Manikīrs`, `Krasēšana → Krāsošana`).
 - **Portfolio de-iframed.** The 6 live `<iframe>` embeds (each loading a full external site on page load) were replaced with static, optimised **WebP screenshots** in `assets/portfolio/` (~13–42 KB each). Cards use `object-fit: cover` + a hover zoom; clicking still opens the live site. Big drop in homepage weight and no dependency on third-party sites staying up.

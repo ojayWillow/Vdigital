@@ -1,5 +1,6 @@
 // PARTICLES — hero canvas animation (theme-aware)
 (function initParticles() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const canvas = document.getElementById('hero-particles');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
