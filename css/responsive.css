@@ -93,3 +93,16 @@
   .cta-banner__inner h2 { font-size: clamp(1.4rem, 8vw, 1.8rem); }
   .btn--lg { padding: 13px 24px; font-size: 0.95rem; }
 }
+
+/* ── Reduced motion — respect the user's OS preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  .marquee { animation: none !important; transform: none !important; }
+  .whatsapp-float::before { display: none !important; }
+}

@@ -26,3 +26,19 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+// Scroll-spy — highlight the nav link of the section currently in view
+const spyIds = ['services', 'packages', 'work', 'contact'];
+const spyObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const link = document.querySelector(`.nav__links a[href="#${entry.target.id}"]`);
+    if (!link) return;
+    document.querySelectorAll('.nav__links a.active').forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+spyIds.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) spyObserver.observe(el);
+});

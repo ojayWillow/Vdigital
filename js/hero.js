@@ -1,5 +1,7 @@
 // HERO — spotlight, typewriter, glitch, stats counter
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Spotlight
 const heroEl = document.querySelector('.hero');
 const spotlight = document.querySelector('.hero__spotlight');
@@ -18,6 +20,7 @@ if (heroEl && spotlight) {
   const el = document.querySelector('.hero__typewriter');
   if (!el) return;
   const words = ['Profesionāla','Moderna','Ātra','Efektīva'];
+  if (prefersReducedMotion) { el.textContent = words[0]; return; }
   let wi = 0, ci = 0, deleting = false;
   function type() {
     const word = words[wi];
@@ -36,6 +39,7 @@ if (heroEl && spotlight) {
 
 // Stats counter
 function animateCounter(el, target, suffix = '') {
+  if (prefersReducedMotion) { el.textContent = parseFloat(target) + suffix; return; }
   const duration = 1400, start = performance.now();
   const update = time => {
     const p = Math.min((time - start) / duration, 1);

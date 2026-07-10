@@ -16,7 +16,7 @@
   cursor: pointer; will-change: transform;
 }
 .work-card:hover { box-shadow: var(--card-shadow-hover); border-color: rgba(108,99,255,0.4); }
-.work-card.hidden { opacity: 0; pointer-events: none; transform: scale(0.96) !important; }
+.work-card.hidden { display: none; }
 
 /* Per-category tag colours */
 .work-card[data-category="ecommerce"] .work-card__tag { color: #f59e0b; }
