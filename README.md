@@ -96,6 +96,27 @@ Professional website agency for Latvian businesses. Standalone static site with 
 
 ---
 
+## Roadmap — next up
+
+Not yet done, roughly in priority order:
+
+**Design / UX**
+- [ ] **Testimonials / social proof section** on the homepage — the site sells trust but shows no client quotes. Highest-impact addition for conversion.
+- [ ] **Richer portfolio thumbnails** — screenshots are currently hero-only. Capture full-page shots, or add a scroll-on-hover reveal now that the cards are static images.
+- [ ] **Hero mock replacement** — swap the fake "preview card" in the hero for a rotating real screenshot from the portfolio.
+- [ ] **Spacing & typography audit** — tighten vertical rhythm and heading scale for a more premium feel.
+
+**Content / assets**
+- [ ] **Proper OG image** — `og:image` currently points at the square `logo.png`; design a real 1200×630 share image (an `og-image.svg` stub already exists but is unused).
+- [ ] **Re-capture the `samanta` screenshot** — it was caught mid intro-animation (subtitle slightly faded). Recapture with a longer `--virtual-time-budget`.
+- [ ] **Refresh portfolio screenshots periodically** as the live client sites change (regen command is in the Changelog note below).
+
+**Decisions / loose ends**
+- [ ] **Surface the `preview-*` pages** — the 3 industry mock-ups (restaurant / salon / fitness) are in the sitemap but no longer linked from the main nav. Decide whether to link them (e.g. a "Piemēri" entry or from the portfolio) or keep them purely as SEO landing pages.
+- [ ] **Cache headers** — consider `Cache-Control` for `/assets/**` and images via `vercel.json` for repeat-visit performance.
+
+---
+
 ## Changelog
 
 ### 2026-07 — Design & UX pass
