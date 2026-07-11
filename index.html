@@ -107,6 +107,7 @@
   <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="css/packages.css" />
   <link rel="stylesheet" href="css/portfolio.css" />
+  <link rel="stylesheet" href="css/trust.css" />
   <link rel="stylesheet" href="css/cta.css" />
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="css/footer.css" />
@@ -183,19 +184,17 @@
             <div class="preview-card">
               <div class="preview-card__bar">
                 <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
-                <span class="preview-card__url">jusuuznemums.lv</span>
+                <span class="preview-card__url" id="heroUrl">bloom-flower-shop.vercel.app</span>
               </div>
-              <div class="preview-card__body">
-                <div class="preview-line preview-line--hero"></div>
-                <div class="preview-line preview-line--sub"></div>
-                <div class="preview-line preview-line--sub preview-line--short"></div>
-                <div class="preview-line preview-line--btn"></div>
-                <div class="preview-metrics">
-                  <div class="preview-metric"><div class="preview-metric__val">98</div><div class="preview-metric__label">Ātrums</div></div>
-                  <div class="preview-metric"><div class="preview-metric__val">100</div><div class="preview-metric__label">SEO</div></div>
-                  <div class="preview-metric"><div class="preview-metric__val">94</div><div class="preview-metric__label">Mobilā</div></div>
-                </div>
+              <div class="preview-card__shots" id="heroShots">
+                <img class="hero-shot is-active" src="assets/portfolio/bloom.webp"     alt="" data-url="bloom-flower-shop.vercel.app" width="1200" height="1833" fetchpriority="high" />
+                <img class="hero-shot"           src="assets/portfolio/estee.webp"     alt="" data-url="estee-city-beauty.vercel.app" width="1200" height="1833" loading="lazy" />
+                <img class="hero-shot"           src="assets/portfolio/autopro.webp"   alt="" data-url="autopro-riga.vercel.app" width="1200" height="1833" loading="lazy" />
+                <img class="hero-shot"           src="assets/portfolio/tortes.webp"    alt="" data-url="tortes-namins.vercel.app" width="1200" height="1833" loading="lazy" />
+                <img class="hero-shot"           src="assets/portfolio/hairsalon.webp" alt="" data-url="hair-salon-webpage.vercel.app" width="1200" height="1833" loading="lazy" />
+                <img class="hero-shot"           src="assets/portfolio/samanta.webp"   alt="" data-url="samantina.vercel.app" width="1200" height="1833" loading="lazy" />
               </div>
+              <span class="preview-card__badge">⚡ 90+ PageSpeed</span>
             </div>
           </div>
         </div>
@@ -380,45 +379,88 @@
         <a href="https://bloom-flower-shop.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="ecommerce">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">bloom-flower-shop.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/bloom.webp" alt="Bloom Flower Shop — ziedu e-veikala mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/bloom.webp" alt="Bloom Flower Shop — ziedu e-veikala mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">E-komercija · Floristika</span><h4>Bloom Flower Shop</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
         <a href="https://autopro-riga.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="services">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">autopro-riga.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/autopro.webp" alt="TNP Autoserviss — autoservisa mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/autopro.webp" alt="TNP Autoserviss — autoservisa mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">Pakalpojumi · Automobiļi</span><h4>TNP Autoserviss</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
         <a href="https://hair-salon-webpage.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="beauty">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">hair-salon-webpage.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/hairsalon.webp" alt="Matu Studija — matu salona mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/hairsalon.webp" alt="Matu Studija — matu salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">Skaistums · Matu studija</span><h4>Matu Studija</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
         <a href="https://estee-city-beauty.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="beauty">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">estee-city-beauty.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/estee.webp" alt="Estee City Beauty — skaistumkopšanas salona mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/estee.webp" alt="Estee City Beauty — skaistumkopšanas salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">Skaistums · Nagu &amp; Skropstu studija</span><h4>Estee City Beauty</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
         <a href="https://tortes-namins.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="ecommerce">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">tortes-namins.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/tortes.webp" alt="Tortes Namiņš — konditorejas mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/tortes.webp" alt="Tortes Namiņš — konditorejas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">E-komercija · Konditorejas izstrādājumi</span><h4>Tortes Namiņš</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
         <a href="https://samantina.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="creator">
           <div class="browser-frame">
             <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">samantina.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/samanta.webp" alt="Samanta Kopce — UGC satura veidotājas mājas lapa" width="1200" height="750" loading="lazy" /></div>
+            <div class="browser-viewport"><img src="assets/portfolio/samanta.webp" alt="Samanta Kopce — UGC satura veidotājas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
           </div>
           <div class="work-card__meta"><div><span class="work-card__tag">Radītājs · UGC Portfolio</span><h4>Samanta Kopce</h4></div><span class="work-card__arrow">↗</span></div>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST / WHY US -->
+  <section class="section trust" id="trust">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Kāpēc Vdigital</div>
+        <h2 class="section-title">Kāpēc uzņēmumi<br/>izvēlas mūs</h2>
+        <p class="section-sub">Bez slēptām izmaksām, bez ilgtermiņa saistībām un ar vietēju atbalstu latviešu valodā.</p>
+      </div>
+      <div class="trust__grid">
+        <div class="trust-card">
+          <div class="trust-card__icon">💶</div>
+          <h3>Skaidra cena</h3>
+          <p>Vienreizēja izstrādes maksa un fiksēts ikmēneša abonements. Jūs zināt tieši, ko maksājat — jau no pirmās dienas.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-card__icon">⚡</div>
+          <h3>Ātrs sākums</h3>
+          <p>Pirmo maketu redzat jau 48 stundu laikā. Bez gariem gaidīšanas periodiem un liekas birokrātijas.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-card__icon">🔓</div>
+          <h3>Bez ilgtermiņa saistībām</h3>
+          <p>Pēc minimālā 6 mēnešu termiņa varat atcelt jebkurā laikā. Nekādu slēptu līgumu vai soda naudu.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-card__icon">📦</div>
+          <h3>Viss iekļauts</h3>
+          <p>Hostings, mobilā versija, SEO pamati un tehniskais atbalsts — viss vienā ikmēneša abonementā.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-card__icon">🇱🇻</div>
+          <h3>Vietējs atbalsts</h3>
+          <p>Strādājam ar Latvijas uzņēmumiem un sniedzam atbalstu latviešu valodā — WhatsApp vai e-pastā.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-card__icon">🔄</div>
+          <h3>Mēs uzturam lapu</h3>
+          <p>Satura izmaiņas, drošības atjauninājumi un tehniskā uzturēšana — par to rūpējamies mēs, ne jūs.</p>
+        </div>
       </div>
     </div>
   </section>

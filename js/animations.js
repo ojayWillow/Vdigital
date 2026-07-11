@@ -11,7 +11,7 @@ document.head.appendChild(fadeStyle);
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.service-card,.package-card,.work-card').forEach((el, i) => {
+document.querySelectorAll('.service-card,.package-card,.work-card,.trust-card').forEach((el, i) => {
   el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
   el.style.transition = `opacity 0.5s ease ${i * 0.05}s,transform 0.5s ease ${i * 0.05}s`;
   io.observe(el);

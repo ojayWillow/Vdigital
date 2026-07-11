@@ -31,7 +31,8 @@ Professional website agency for Latvian businesses. Standalone static site with 
 │   ├── hero.css            # Hero section (particles, spotlight, glitch, scanline)
 │   ├── services.css        # Services grid (3D tilt, border sweep)
 │   ├── packages.css        # Pricing cards (per-card spotlight, shimmer streak)
-│   ├── portfolio.css       # Work grid (category colours, screenshot cards, hover zoom)
+│   ├── portfolio.css       # Work grid (category colours, screenshot cards, scroll-on-hover pan)
+│   ├── trust.css           # "Kāpēc Vdigital" trust / social-proof cards
 │   ├── cta.css             # CTA banner (animated gradient text, floating orbs) + cookie banner
 │   ├── contact.css         # Contact form + WhatsApp link
 │   ├── footer.css          # Footer
@@ -101,15 +102,14 @@ Professional website agency for Latvian businesses. Standalone static site with 
 Not yet done, roughly in priority order:
 
 **Design / UX**
-- [ ] **Testimonials / social proof section** on the homepage — the site sells trust but shows no client quotes. Highest-impact addition for conversion.
-- [ ] **Richer portfolio thumbnails** — screenshots are currently hero-only. Capture full-page shots, or add a scroll-on-hover reveal now that the cards are static images.
-- [ ] **Hero mock replacement** — swap the fake "preview card" in the hero for a rotating real screenshot from the portfolio.
-- [ ] **Spacing & typography audit** — tighten vertical rhythm and heading scale for a more premium feel.
+- [ ] **Real client testimonials** — the honest "Kāpēc Vdigital" trust section is live, but there are still no client quotes. When real quotes exist (name + business + text), add a testimonials strip. Not fabricating endorsements for a live business.
+- [x] ~~Richer portfolio thumbnails~~ — done: full-page screenshots with a slow scroll-on-hover pan reveal.
+- [x] ~~Hero mock replacement~~ — done: hero card now cross-fades real portfolio screenshots with a matching URL.
+- [x] ~~Spacing & typography audit~~ — done (first pass): tighter heading tracking/line-height and section rhythm. Revisit if a bolder scale is wanted.
 
 **Content / assets**
 - [ ] **Proper OG image** — `og:image` currently points at the square `logo.png`; design a real 1200×630 share image (an `og-image.svg` stub already exists but is unused).
-- [ ] **Re-capture the `samanta` screenshot** — it was caught mid intro-animation (subtitle slightly faded). Recapture with a longer `--virtual-time-budget`.
-- [ ] **Refresh portfolio screenshots periodically** as the live client sites change (regen command is in the Changelog note below).
+- [ ] **Refresh portfolio screenshots periodically** as the live client sites change (regen command is in the Changelog note below — now via `puppeteer-core`, full-page).
 
 **Decisions / loose ends**
 - [ ] **Surface the `preview-*` pages** — the 3 industry mock-ups (restaurant / salon / fitness) are in the sitemap but no longer linked from the main nav. Decide whether to link them (e.g. a "Piemēri" entry or from the portfolio) or keep them purely as SEO landing pages.
@@ -118,6 +118,13 @@ Not yet done, roughly in priority order:
 ---
 
 ## Changelog
+
+### 2026-07 — Design pass 2 (screenshots, hero, trust, type)
+- **Portfolio depth.** Recaptured all 6 sites as **full-page** screenshots (via `puppeteer-core` driving the installed Chrome, clipped to 2200 px) and the cards now **pan down the whole page on hover** (3.2 s) instead of a static zoom. Still ~288 KB for all six.
+- **Hero rotator.** The fake skeleton preview-card (with invented 98/100/94 metrics) is now a browser mock that **cross-fades through the real portfolio screenshots** every 3.4 s with a matching URL bar and a "90+ PageSpeed" badge.
+- **Trust / social-proof section.** New honest **"Kāpēc Vdigital"** section (6 truthful value cards — clear pricing, fast start, no lock-in, all-included, local support, we-maintain-it). No fabricated testimonials.
+- **Typography.** Tighter heading tracking (`-0.02em`) and line-height (`1.14`), tuned section-header rhythm.
+- All motion additions honour `prefers-reduced-motion`.
 
 ### 2026-07 — Mobile overflow fix
 - **Fixed the "zoom out" on phones.** The featured pricing card's animated shimmer streak (`::before`, `left: 150%`) overflowed the viewport; because the card needs `overflow: visible` for its floating badge, the overflow bubbled up to `<html>` (only `body` was clipping horizontally), so mobile browsers shrank the whole page to fit ~735px. Added `overflow-x: hidden` to `html` in `base.css` — page now stays exactly at device width.
@@ -133,6 +140,7 @@ Not yet done, roughly in priority order:
 - **Image optimisation.** `favicon.png` 440 KB → 25 KB (180×180); `logo.png` 168 KB → 50 KB (512×512, matching the schema logo dims). `og:image` dimensions updated to 512×512.
 - **Housekeeping.** Removed the stale `/preview` entry from `sitemap.xml`; repointed dead `/preview` back-links in the preview pages to `/#work`.
 
-> Regenerating portfolio screenshots: capture each live URL with headless Chrome
-> (`chrome --headless=new --no-sandbox --window-size=1440,900 --virtual-time-budget=9000 --screenshot=out.png <url>`),
-> then `ffmpeg -i out.png -vf scale=1200:-1 -c:v libwebp -quality 80 out.webp`.
+> Regenerating portfolio screenshots (full-page): drive the installed Chrome with
+> `puppeteer-core` at a 1440×900 viewport, `page.screenshot({ clip: { x:0, y:0, width:1440, height:2200 } })`,
+> then `ffmpeg -i out.png -vf scale=1200:-1 -c:v libwebp -quality 78 out.webp`.
+> The same six files feed both the portfolio cards and the hero rotator.

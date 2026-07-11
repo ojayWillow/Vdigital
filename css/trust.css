@@ -1,0 +1,23 @@
+/* =============================================
+   TRUST / WHY US
+   ============================================= */
+
+.trust { background: var(--bg); transition: background 0.3s ease; }
+.trust__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.trust-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.trust-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.3); box-shadow: var(--card-shadow-hover); }
+.trust-card__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: var(--radius-sm);
+  background: rgba(108,99,255,0.12); font-size: 1.4rem; margin-bottom: 16px;
+}
+.trust-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.trust-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+[data-theme="light"] .trust-card { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
+[data-theme="light"] .trust-card__icon { background: rgba(91,82,240,0.1); }

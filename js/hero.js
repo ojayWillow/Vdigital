@@ -37,6 +37,20 @@ if (heroEl && spotlight) {
   type();
 })();
 
+// Hero preview — rotate real portfolio screenshots + matching URL
+(function initHeroRotator() {
+  const shots = [...document.querySelectorAll('.hero-shot')];
+  const urlEl = document.getElementById('heroUrl');
+  if (shots.length < 2 || prefersReducedMotion) return;
+  let i = 0;
+  setInterval(() => {
+    shots[i].classList.remove('is-active');
+    i = (i + 1) % shots.length;
+    shots[i].classList.add('is-active');
+    if (urlEl) urlEl.textContent = shots[i].dataset.url;
+  }, 3400);
+})();
+
 // Stats counter
 function animateCounter(el, target, suffix = '') {
   if (prefersReducedMotion) { el.textContent = parseFloat(target) + suffix; return; }
