@@ -119,6 +119,9 @@ Not yet done, roughly in priority order:
 
 ## Changelog
 
+### 2026-07 — Mobile overflow fix
+- **Fixed the "zoom out" on phones.** The featured pricing card's animated shimmer streak (`::before`, `left: 150%`) overflowed the viewport; because the card needs `overflow: visible` for its floating badge, the overflow bubbled up to `<html>` (only `body` was clipping horizontally), so mobile browsers shrank the whole page to fit ~735px. Added `overflow-x: hidden` to `html` in `base.css` — page now stays exactly at device width.
+
 ### 2026-07 — Design & UX pass
 - **Portfolio category filter.** Added the filter bar (Visi / E-komercija / Skaistums / Pakalpojumi / Radītāji) above the work grid and wired `portfolio.js` to filter cards by `data-category` (the CSS + data attributes already existed but the buttons/JS were never built — `portfolio.js` was leftover iframe-scaling code).
 - **Scroll-spy navigation.** The nav link for the section currently in view is highlighted with an accent underline, via an `IntersectionObserver` in `nav.js`.
