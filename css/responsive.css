@@ -41,12 +41,8 @@
   .hero__stats .stat__label { font-size: 0.65rem; }
   .stat__divider { display: none; }
   .hero__right { width: 100%; max-width: 100%; }
-  .preview-card-wrap { max-width: 320px; margin: 0 auto; }
-  .preview-card__body { padding: 14px; gap: 8px; }
-  .preview-metrics { gap: 6px; }
-  .preview-metric { padding: 8px 4px; }
-  .preview-metric__val { font-size: 1rem; }
-  .preview-metric__label { font-size: 0.58rem; }
+  .preview-card-wrap { max-width: 340px; margin: 0 auto; }
+  .preview-card__shots { height: 230px; }
 
   .services__grid { grid-template-columns: 1fr; gap: 12px; }
   .service-card { padding: 20px; }
