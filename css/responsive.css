@@ -105,4 +105,5 @@
   html { scroll-behavior: auto; }
   .marquee { animation: none !important; transform: none !important; }
   .whatsapp-float::before { display: none !important; }
+  .work-card:hover .browser-viewport img { transform: none !important; }
 }
