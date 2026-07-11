@@ -7,6 +7,7 @@
   .hero__inner { flex-direction: column; gap: 48px; padding: 60px 0; }
   .hero__right { flex: none; width: 100%; max-width: 480px; margin: 0 auto; }
   .services__grid { grid-template-columns: repeat(2,1fr); }
+  .trust__grid { grid-template-columns: repeat(2,1fr); }
   .packages__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .package-card--featured { transform: none; }
   .package-card--featured:hover { transform: translateY(-4px); }
@@ -45,6 +46,7 @@
   .preview-card__shots { height: 230px; }
 
   .services__grid { grid-template-columns: 1fr; gap: 12px; }
+  .trust__grid { grid-template-columns: 1fr; gap: 12px; }
   .service-card { padding: 20px; }
   .service-card__icon { font-size: 1.6rem; margin-bottom: 12px; }
   .service-card h3 { font-size: 1rem; }
