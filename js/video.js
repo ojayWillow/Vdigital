@@ -1,4 +1,5 @@
-// VIDEO — reel autoplay in view, tap for sound, hide reels whose file is missing
+// VIDEO — reel autoplay in view, tap for sound, hide reels whose file is missing.
+// Silent reels have no .reel__sound button and simply loop.
 const reels = document.querySelectorAll('.reel');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -9,6 +10,7 @@ reels.forEach(reel => {
 
   // A reel without its file would show an empty frame: hide it instead.
   video.addEventListener('error', () => { reel.hidden = true; });
+  if (!sound) return;
 
   const setSound = on => {
     video.muted = !on;
@@ -22,7 +24,8 @@ reels.forEach(reel => {
     // Only one reel plays with sound at a time.
     if (turnOn) reels.forEach(r => {
       const v = r.querySelector('.reel__video');
-      if (v && v !== video && !v.muted) { v.muted = true; r.querySelector('.reel__sound').textContent = '🔇'; }
+      const b = r.querySelector('.reel__sound');
+      if (v && b && v !== video && !v.muted) { v.muted = true; b.textContent = '🔇'; }
     });
     setSound(turnOn);
     if (video.paused) video.play().catch(() => {});

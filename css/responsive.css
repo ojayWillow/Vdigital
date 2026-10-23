@@ -88,6 +88,7 @@
   .vid-hero__actions .btn { width: 100%; }
   .vid-hero__facts { gap: 16px; font-size: 0.82rem; }
   .reels { grid-template-columns: repeat(3, 72%); overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 8px; }
+  .reels--pair { grid-template-columns: repeat(2, 72%); margin-top: 32px; }
   .reel { scroll-snap-align: center; }
   .step { padding: 22px; }
   .vprice { padding: 26px 22px; }
