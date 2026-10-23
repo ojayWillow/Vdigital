@@ -31,6 +31,8 @@
 .vid-reels { background: var(--bg-2); }
 .reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 960px; margin: 0 auto; }
 .reel { display: grid; gap: 12px; min-width: 0; }
+.reel--wide { max-width: 960px; margin: 0 auto; }
+.reel--wide .reel__frame { aspect-ratio: 16 / 9; }
 .reel[hidden] { display: none; }
 .reel__frame {
   position: relative; aspect-ratio: 9 / 16; max-width: 100%;
