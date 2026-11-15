@@ -124,7 +124,7 @@
 /* ── 7. FOOTER wordmark ── */
 .footer__mark {
   font-family: var(--font-serif); color: var(--text); white-space: nowrap; overflow: hidden;
-  font-size: clamp(5rem, 33vw, 30rem); line-height: 0.9; letter-spacing: -0.045em; padding-bottom: 0.06em; margin-top: 10px;
+  font-size: clamp(2.6rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; padding-bottom: 0.14em; margin-top: 48px;
 }
 .footer__mark em { font-style: normal; color: var(--accent); }
 
