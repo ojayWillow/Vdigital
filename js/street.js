@@ -1,5 +1,5 @@
 // SHOWREEL — one sector at a time, cut like an edit: the viewer plays a clip, the title card swaps,
-// the playhead runs along the timeline, the next clip fades in on top. Plus the visitor's own sign in the finale.
+// the playhead runs along the timeline, the next clip fades in on top.
 
 (function initShowreel() {
   const sec = document.querySelector('.showreel');
@@ -119,39 +119,3 @@
   paint(0);
 })();
 
-// The visitor's sign: put their name on the empty shop, then hand it to the contact form
-(function initSign() {
-  const form = document.getElementById('shopForm');
-  const input = document.getElementById('shopName');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const signs = Array.from(document.querySelectorAll('.shop__sign')).map(el => ({ el, text: el.querySelector('span') })).filter(s => s.text);
-  if (!form || !input || !signs.length) return;
-  const fallback = signs[0].text.textContent;
-  // shrink long names so they stay on the fascia
-  const fit = () => signs.forEach(({ el, text }) => {
-    el.style.setProperty('--sign-fit', 1);
-    const room = el.clientWidth * 0.94, w = text.scrollWidth;
-    if (room && w > room) el.style.setProperty('--sign-fit', (room / w).toFixed(3));
-  });
-  fit();
-  window.addEventListener('resize', fit, { passive: true });
-  let t;
-  input.addEventListener('input', () => {
-    clearTimeout(t);
-    signs.forEach(s => s.el.classList.add('is-swapping'));
-    t = setTimeout(() => {
-      signs.forEach(s => { s.text.textContent = input.value.trim() || fallback; });
-      fit();
-      signs.forEach(s => s.el.classList.remove('is-swapping'));
-    }, 180);
-  });
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = input.value.trim();
-    const msg = document.getElementById('message');
-    if (name && msg && !msg.value) msg.value = 'Uzņēmums: ' + name + '\n';
-    const contact = document.getElementById('contact');
-    if (contact) contact.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-    setTimeout(() => { const f = document.getElementById('name'); if (f) f.focus({ preventScroll: true }); }, reduce ? 0 : 700);
-  });
-})();

@@ -163,30 +163,6 @@
   .showreel__clip.is-on, .showreel__cap, .showreel__cap > *, .showreel__cap.is-on > * { transition: none !important; }
 }
 
-/* ── the visitor's own sign on the empty shop (finale) ── */
+/* ── the empty shop in the finale ── */
 .shop__video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .shop__scene { position: absolute; inset: 0; }
-.shop__sign {
-  position: absolute; left: var(--sign-x, 30%); top: var(--sign-y, 10%);
-  width: var(--sign-w, 40%); height: var(--sign-h, 12%);
-  display: flex; align-items: center; justify-content: center; pointer-events: none;
-  transform: perspective(900px) rotateY(var(--sign-ry, 0deg));
-}
-.shop__sign span {
-  font-family: var(--font-serif); font-size: calc(2.7cqw * var(--sign-fit, 1)); line-height: 1;
-  color: #2a1d0e; letter-spacing: 0.02em; white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(255,240,210,0.35);
-  mix-blend-mode: multiply; opacity: 0.92;
-  transition: opacity 0.4s ease;
-}
-.shop__sign.is-swapping span { opacity: 0; }
-.shop__form { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
-.shop__form input {
-  flex: 1 1 220px; background: rgba(243,237,227,0.06); border: 1px solid rgba(243,237,227,0.18);
-  color: #f3ede3; border-radius: 999px; padding: 12px 18px; font: inherit; font-size: 0.95rem;
-}
-.shop__form input:focus { outline: none; border-color: #d9a441; }
-.finale__hint { margin-top: 18px; color: rgba(243,237,227,0.7); font-size: 0.98rem; max-width: 460px; }
-.finale__form { margin-top: 20px; max-width: 520px; }
-.finale__form input { background: rgba(11,10,8,0.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.finale .finale__form .btn { margin-top: 0; }
