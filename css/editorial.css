@@ -1,11 +1,11 @@
 /* =============================================
-   EDITORIAL — everything below the street (rebrand 2026-11)
+   EDITORIAL — everything below the showreel (rebrand 2026-11)
    Hairlines instead of boxes, big serif statements, mono labels.
    ============================================= */
 :root { --line: rgba(237,231,220,0.14); --line-strong: rgba(237,231,220,0.26); --ease: cubic-bezier(0.2,0.7,0.2,1); }
 [data-theme="light"] { --line: rgba(29,26,20,0.12); --line-strong: rgba(29,26,20,0.28); }
 
-.ed { position: relative; padding: 150px 0; background: var(--bg); }
+.ed { position: relative; padding: 120px 0; background: var(--bg); }
 .ed-label {
   display: inline-block; margin-bottom: 22px;
   font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -19,7 +19,7 @@
 }
 .ed-title em { font-style: italic; color: var(--accent-2); }
 [data-theme="light"] .ed-title em { color: var(--accent); }
-.ed-head { max-width: 1000px; margin-bottom: 84px; }
+.ed-head { max-width: 1000px; margin-bottom: 64px; }
 .ed-head--split { max-width: none; display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: end; }
 .ed-head__aside { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
 
@@ -62,52 +62,22 @@
 .ed-more:hover span { transform: translateX(4px); }
 .ed-more span { transition: transform 0.3s var(--ease); }
 
-/* ── 2. PRICES: one statement, one table ── */
-.ed-price { background: var(--bg-2); }
-.price-hero { margin-bottom: 96px; }
-.price-hero__big { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 0 0.3em; font-family: var(--font-serif); color: var(--text); line-height: 0.82; }
-.price-hero__num { font-size: clamp(7rem, 23vw, 21rem); letter-spacing: -0.045em; }
-.price-hero__plus { font-size: clamp(2.4rem, 6.2vw, 5.6rem); font-style: italic; color: var(--accent-2); padding-bottom: 0.32em; }
-[data-theme="light"] .price-hero__plus { color: var(--accent); }
-.price-hero__plus small { font-size: 0.42em; font-style: normal; color: var(--text-muted); margin-left: 0.08em; }
-.price-hero__note { margin-top: 30px; max-width: 520px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
-
-.ptable { border-top: 1px solid var(--line); }
-.ptable__row {
-  display: grid; grid-template-columns: minmax(0, 1.1fr) 190px minmax(0, 1.6fr) 120px; gap: 32px; align-items: baseline;
-  padding: 32px 0; border-bottom: 1px solid var(--line);
+/* ── 3. WORK: one real piece, shown big ── */
+.case { margin: 0; }
+.case__frame {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: #000;
+  box-shadow: 0 0 0 1px var(--line), 0 60px 120px -60px rgba(0,0,0,0.85);
 }
-.ptable__row--pick { margin: 0 -24px; padding: 32px 24px; background: linear-gradient(90deg, rgba(217,164,65,0.09), rgba(217,164,65,0) 75%); }
-.ptable__name { font-family: var(--font-serif); font-weight: 400; color: var(--text); font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1.05; }
-.ptable__tag {
-  display: inline-block; vertical-align: middle; position: relative; top: -5px; margin-left: 10px;
-  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--on-accent); background: var(--accent); padding: 3px 8px; border-radius: 2px;
+.case__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case__meta {
+  display: grid; grid-template-columns: 90px minmax(0, 1fr) auto auto; gap: 28px; align-items: baseline;
+  padding: 24px 0; border-bottom: 1px solid var(--line);
 }
-.ptable__price { font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.5; color: var(--accent-2); }
-[data-theme="light"] .ptable__price { color: var(--accent); }
-.ptable__inc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-.ptable__go { justify-self: end; white-space: nowrap; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--accent); padding-bottom: 3px; transition: color 0.2s ease; }
-.ptable__go:hover { color: var(--accent-2); }
-.ptable__note { margin-top: 26px; color: var(--text-muted); font-size: 0.88rem; }
-
-/* ── 3. WORK: real pages that scroll inside their frames ── */
-.reel { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; row-gap: 96px; padding-bottom: 140px; }
-.reel__item { display: block; position: relative; }
-.reel__item:nth-child(even) { top: 140px; }
-.reel__frame {
-  position: relative; aspect-ratio: 16 / 11; overflow: hidden; border-radius: 4px; background: var(--bg-3);
-  box-shadow: 0 0 0 1px var(--line), 0 50px 90px -50px rgba(0,0,0,0.8);
-}
-.reel__frame img { width: 100%; height: auto; transform: translate3d(0,0,0); transition: transform 1.2s var(--ease); will-change: transform; }
-.reel__item:hover .reel__frame img { transform: translate3d(0, var(--shift, -45%), 0); transition: transform 6s cubic-bezier(0.45,0.05,0.35,1); }
-.reel__item.is-play .reel__frame img { animation: reel-auto 10s cubic-bezier(0.45,0.05,0.35,1) 0.6s infinite alternate; }
-@keyframes reel-auto { to { transform: translate3d(0, var(--shift, -45%), 0); } }
-.reel__meta { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: baseline; padding-top: 20px; }
-.reel__meta h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text); font-size: 2rem; line-height: 1; transition: color 0.3s ease; }
-.reel__item:hover h3 { font-style: italic; color: var(--accent-2); }
-[data-theme="light"] .reel__item:hover h3 { color: var(--accent); }
-.reel__tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.case__no { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.1em; color: var(--accent); }
+.case__meta h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text); font-size: 2rem; line-height: 1; }
+.case__tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.case__link { white-space: nowrap; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--accent); padding-bottom: 3px; transition: color 0.2s ease; }
+.case__link:hover { color: var(--accent-2); }
 
 /* ── 4. PROMISES: three lines ── */
 .ed-promise { background: var(--bg-2); padding: 130px 0; }
@@ -175,29 +145,26 @@
 }
 #cookie-accept { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
-/* ── WhatsApp: still green, no longer shouting ── */
-.whatsapp-float { width: 52px; height: 52px; background: #12100d; color: #25d366; border: 1px solid rgba(37,211,102,0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.6); }
+/* ── WhatsApp: a quiet gold ring, not a green bubble ── */
+.whatsapp-float {
+  width: 46px; height: 46px; background: rgba(11,10,8,0.82); color: #f0c987;
+  border: 1px solid rgba(240,201,135,0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.whatsapp-float:hover { transform: translateY(-2px); border-color: #f0c987; box-shadow: 0 14px 34px rgba(0,0,0,0.55); }
 .whatsapp-float::before { display: none; }
-.whatsapp-float svg { width: 24px; height: 24px; }
+.whatsapp-float svg { width: 20px; height: 20px; }
+.whatsapp-float__tooltip { display: none; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .ed { padding: 100px 0; }
-  .ed-head { margin-bottom: 56px; }
+  .ed { padding: 84px 0; }
+  .ed-head { margin-bottom: 44px; }
   .ed-head--split { grid-template-columns: 1fr; gap: 18px; }
   .ix__row { grid-template-columns: 40px 1fr; gap: 10px 14px; padding: 26px 0; }
   .ix__desc { grid-column: 2; }
-  .price-hero { margin-bottom: 64px; }
-  .ptable__row { grid-template-columns: 1fr auto; gap: 8px 16px; padding: 26px 0; }
-  .ptable__row--pick { margin: 0 -16px; padding: 26px 16px; }
-  .ptable__name { grid-column: 1; grid-row: 1; }
-  .ptable__go { grid-column: 2; grid-row: 1; }
-  .ptable__price { grid-column: 1 / -1; grid-row: 2; }
-  .ptable__inc { grid-column: 1 / -1; grid-row: 3; }
-  .reel { grid-template-columns: 1fr; row-gap: 64px; padding-bottom: 0; }
-  .reel__item:nth-child(even) { top: 0; }
-  .reel__meta { grid-template-columns: 32px 1fr; }
+  .case__meta { grid-template-columns: 32px 1fr; gap: 8px 14px; padding: 20px 0; }
+  .case__tag, .case__link { grid-column: 2; justify-self: start; }
   .reel__tag { grid-column: 2; }
   .promise li { grid-template-columns: 40px 1fr; gap: 14px; padding: 28px 0; }
   .contact { padding: 100px 0; }

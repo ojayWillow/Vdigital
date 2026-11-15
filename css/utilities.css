@@ -30,7 +30,8 @@
   flex-shrink: 0;
   line-height: 1;
 }
-.theme-toggle:hover { border-color: var(--accent); transform: rotate(20deg) scale(1.1); }
+.theme-toggle { color: var(--text-muted); background: transparent; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ---------- WHATSAPP FLOAT ---------- */
 .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 58px; height: 58px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: transform 0.2s ease, box-shadow 0.2s ease; }
