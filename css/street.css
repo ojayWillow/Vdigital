@@ -162,3 +162,11 @@
 @media (prefers-reduced-motion: reduce) {
   .street__hint span { animation: none; }
 }
+
+/* Sample label on demo windows (never pass a demo off as a client) */
+.shop__tag {
+  position: absolute; left: 12px; top: 12px; z-index: 2; padding: 5px 9px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #f3ede3; background: rgba(11,10,8,0.62); border: 1px solid rgba(243,237,227,0.18);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
