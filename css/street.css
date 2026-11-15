@@ -18,7 +18,7 @@
 }
 .shop { flex: 0 0 auto; width: min(72vw, calc((100vh - 340px) * 16 / 9)); }
 .shop__window {
-  position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000;
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; container-type: inline-size;
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(240,201,135,0.12), 0 40px 120px -30px rgba(217,164,65,0.25);
 }
@@ -30,7 +30,11 @@
 .shop__link { color: #f0c987; font-weight: 600; width: fit-content; }
 .shop__link:hover { text-decoration: underline; }
 
-/* Nr. 4 — the visitor's own sign */
+/* Nr. 4 — the visitor's own sign, painted on the fascia above the empty window */
+.shop--yours .shop__window { --sign-x: 46%; --sign-y: 18%; --sign-w: 19.5%; --sign-h: 10.5%; }
+.shop__scene { position: absolute; inset: 0; }
+/* phones: step closer to the empty shop so the sign stays readable */
+@media (max-width: 640px) { .shop--yours .shop__scene { transform: scale(1.7); transform-origin: 55% 32%; } }
 .shop__sign {
   position: absolute; left: var(--sign-x, 30%); top: var(--sign-y, 10%);
   width: var(--sign-w, 40%); height: var(--sign-h, 12%);
@@ -38,8 +42,8 @@
   transform: perspective(900px) rotateY(var(--sign-ry, 0deg));
 }
 .shop__sign span {
-  font-family: var(--font-serif); font-size: clamp(1rem, 2.4vw, 2.2rem); line-height: 1;
-  color: #2a1d0e; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 92%;
+  font-family: var(--font-serif); font-size: calc(2.7cqw * var(--sign-fit, 1)); line-height: 1;
+  color: #2a1d0e; letter-spacing: 0.02em; white-space: nowrap;
   text-shadow: 0 1px 0 rgba(255,240,210,0.35);
   mix-blend-mode: multiply; opacity: 0.92;
   transition: opacity 0.4s ease;

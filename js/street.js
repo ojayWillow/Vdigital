@@ -54,12 +54,21 @@
   const signText = document.getElementById('shopSignText');
   if (form && input && sign && signText) {
     const fallback = signText.textContent;
+    // shrink long names so they stay on the fascia
+    const fit = () => {
+      sign.style.setProperty('--sign-fit', 1);
+      const room = sign.clientWidth * 0.94, w = signText.scrollWidth;
+      if (room && w > room) sign.style.setProperty('--sign-fit', (room / w).toFixed(3));
+    };
+    fit();
+    window.addEventListener('resize', fit, { passive: true });
     let t;
     input.addEventListener('input', () => {
       clearTimeout(t);
       sign.classList.add('is-swapping');
       t = setTimeout(() => {
         signText.textContent = input.value.trim() || fallback;
+        fit();
         sign.classList.remove('is-swapping');
       }, 180);
     });
