@@ -182,3 +182,4 @@
   .hero__shade { background: linear-gradient(0deg, #0b0a08 0%, rgba(11,10,8,0.55) 30%, rgba(11,10,8,0) 60%), linear-gradient(180deg, rgba(11,10,8,0.6) 0%, rgba(11,10,8,0) 22%); }
   .hero--film .hero__inner { min-height: auto; padding-top: 46svh; }
 }
+.hero__video[data-push] { will-change: transform; transform-origin: 50% 50%; }
