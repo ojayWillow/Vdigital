@@ -76,11 +76,13 @@
   measure();
 
   // 2) Shop windows: load + play only while visible
+  // big or sharp screens get the 1080p cut, phones and small laptops the 720p one
+  const hd = window.innerWidth * (window.devicePixelRatio || 1) >= 1800;
   if (!reduce && !saveData && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(({ target: v, isIntersecting }) => {
         if (isIntersecting) {
-          if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src;
+          if (!v.getAttribute('src') && v.dataset.src) v.src = (hd && v.dataset.srcHd) || v.dataset.src;
           const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
         } else if (v.getAttribute('src')) v.pause();
       });

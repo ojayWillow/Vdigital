@@ -81,7 +81,7 @@
   if (fv && !reduce && !saveData && hasIO) {
     new IntersectionObserver(entries => entries.forEach(({ isIntersecting }) => {
       if (isIntersecting) {
-        if (!fv.getAttribute('src')) fv.src = fv.dataset.src;
+        if (!fv.getAttribute('src')) fv.src = (window.innerWidth * (window.devicePixelRatio || 1) >= 1800 && fv.dataset.srcHd) || fv.dataset.src;
         const p = fv.play(); if (p && p.catch) p.catch(() => {});
       } else if (fv.getAttribute('src')) fv.pause();
     }), { rootMargin: '200px 0px' }).observe(fv);
