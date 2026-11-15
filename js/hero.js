@@ -9,8 +9,11 @@
   if (reduce || saveData) return; // poster image only
 
   function load() {
+    // full-bleed: big or sharp screens get the 1080p cut, phones the 720p one
+    const hd = window.innerWidth * (window.devicePixelRatio || 1) >= 1800;
     [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([k, type]) => {
-      const src = v.dataset['src' + k[0].toUpperCase() + k.slice(1)];
+      const K = k[0].toUpperCase() + k.slice(1);
+      const src = (hd && v.dataset['srcHd' + K]) || v.dataset['src' + K];
       if (!src) return;
       const s = document.createElement('source');
       s.src = src; s.type = type; v.appendChild(s);
