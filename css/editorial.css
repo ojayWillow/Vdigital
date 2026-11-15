@@ -121,13 +121,6 @@
 .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
 .contact__form .btn { align-self: flex-start; width: auto; padding: 16px 36px; }
 
-/* ── 7. FOOTER wordmark ── */
-.footer__mark {
-  font-family: var(--font-serif); color: var(--text); white-space: nowrap; overflow: hidden;
-  font-size: clamp(2.6rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; padding-bottom: 0.14em; margin-top: 48px;
-}
-.footer__mark em { font-style: normal; color: var(--accent); }
-
 /* ── Cookie bar: small and quiet ── */
 #cookie-banner {
   position: fixed; left: 16px; bottom: 16px; z-index: 150; max-width: 440px;
