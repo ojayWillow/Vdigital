@@ -135,32 +135,24 @@
    ============================================= */
 .hero--film { background: #0b0a08; }
 .hero--film::after { display: none; }
-.hero__film { position: absolute; inset: 0; z-index: 0; overflow: hidden; container-type: size; --fx: 66%; --fy: 50%; background: #0b0a08 url('../assets/video/hero-street.jpg') var(--fx) var(--fy) / cover no-repeat; }
-/* a 16:9 frame sized like object-fit: cover, so overlays can be placed in % of the shot */
+.hero__film { position: absolute; inset: 0; z-index: 0; overflow: hidden; container-type: size; --fx: 50%; --fy: 50%; background: #0b0a08; }
+/* a 16:9 frame sized like object-fit: cover; it carries the poster so the first paint is the reel's first shot */
 .hero__frame {
   position: absolute; aspect-ratio: 16 / 9; width: max(100cqw, 100cqh * 16 / 9);
   left: var(--fx); top: var(--fy); transform: translate(calc(var(--fx) * -1), calc(var(--fy) * -1));
+  background: url('../assets/video/hero-reel.jpg') center / cover no-repeat;
 }
 .hero__video {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   opacity: 0; transition: opacity 1.2s ease;
 }
-/* slow push-in toward the hanging sign: the street breathes */
-.hero__frame { transform-origin: 76% 20%; animation: hero-drift 26s ease-in-out infinite alternate; }
-@keyframes hero-drift { from { scale: 1; } to { scale: 1.07; } }
-/* the hanging sign in the shot, repainted with our name (real text, not generated) */
-.hero__sign { position: absolute; left: 72.89%; top: 13.33%; width: 6.17%; height: 12.9%; container-type: inline-size; }
-.hero__sign-board {
-  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5cqw;
-  background:
-    radial-gradient(110% 80% at 25% 90%, rgba(240,201,135,0.07), rgba(240,201,135,0) 60%),
-    linear-gradient(180deg, #262825 0%, #212320 100%);
-  box-shadow: inset 0 0 0 6cqw #232522, inset 0 0 0 7cqw rgba(184,154,99,0.55);
-  color: #b89a63; text-align: center; line-height: 1; filter: blur(0.3px);
+/* desktop: the reel sits right of the headline and melts into the dark on the left, so every product shot stays clear of the text */
+@media (min-width: 641px) {
+  .hero__frame {
+    left: 10%; transform: translate(0, calc(var(--fy) * -1));
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24%); mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
+  }
 }
-.hero__sign-mark { font-family: var(--font-serif); font-style: italic; font-size: 38cqw; color: #cfae74; text-shadow: 0 0 5cqw rgba(240,201,135,0.18); margin-bottom: 2cqw; }
-.hero__sign-name { font-family: var(--font-serif); font-size: 13.5cqw; letter-spacing: 0.06em; text-transform: uppercase; }
-.hero__sign-sub { font-family: var(--font-mono); font-size: 7cqw; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; padding-left: 0.3em; }
 .hero__video.is-ready { opacity: 1; }
 .hero__shade {
   position: absolute; inset: 0;
@@ -184,9 +176,9 @@
 .hero--film .hero__highlight { background: linear-gradient(135deg, #d9a441, #f0c987); -webkit-background-clip: text; background-clip: text; }
 .hero--film .btn--ghost { color: #f3ede3; border-color: rgba(243,237,227,0.3); }
 [data-theme="light"] .hero--film .hero__badge { background: rgba(217,164,65,0.14); border-color: rgba(217,164,65,0.35); color: #f0c987; }
-@media (prefers-reduced-motion: reduce) { .hero__grain, .hero__frame { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .hero__grain { animation: none; } }
 @media (max-width: 640px) {
-  .hero__film { bottom: auto; height: 64svh; --fx: 80%; --fy: 55%; }
+  .hero__film { bottom: auto; height: 64svh; --fx: 55%; --fy: 50%; }
   .hero__shade { background: linear-gradient(0deg, #0b0a08 0%, rgba(11,10,8,0.55) 30%, rgba(11,10,8,0) 60%), linear-gradient(180deg, rgba(11,10,8,0.6) 0%, rgba(11,10,8,0) 22%); }
   .hero--film .hero__inner { min-height: auto; padding-top: 46svh; }
 }
