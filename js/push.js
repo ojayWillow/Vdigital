@@ -1,41 +1,42 @@
-// PUSH-IN — the slow camera push on looping videos, done by the browser at the screen's refresh rate.
-// Baked into 24 fps footage a slow zoom moves in visible steps (it reads as lag); here it glides.
-// <video data-push="1.08">                 scale reached at the end of each loop
-//        data-push-offset="0.4"            the file starts this many seconds into the master loop
-//        data-push-from="0" data-push-to="2.6">  push only during this part of the loop (master seconds)
+// PUSH-IN — the slow camera push on looping shop-window videos, done by the browser.
+// Baked into 24 fps footage a slow zoom moves in visible steps; here it is a looping Web Animation
+// on the compositor (off the main thread, so scrolling can't make it stutter). It resets by its own
+// clock in the dark dip, and is nudged back in line with the video once per loop so it never drifts.
+// <video data-push="1.05"            scale reached at the end of each loop
+//        data-push-offset="0.4">     the file starts this many seconds into the master loop
 (function initPush() {
   const vids = Array.from(document.querySelectorAll('video[data-push]'));
-  if (!vids.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!vids.length || !Element.prototype.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const hasRVFC = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
 
   vids.forEach(v => {
-    const end = parseFloat(v.dataset.push) || 1.08;
+    const end = parseFloat(v.dataset.push) || 1.05;
     const off = parseFloat(v.dataset.pushOffset) || 0;
-    const from = parseFloat(v.dataset.pushFrom) || 0;
-    const to = parseFloat(v.dataset.pushTo) || 0;
-    let media = 0, at = 0, raf = 0, chained = false, last = 0;
+    let anim = null, lastMt = -1, watching = false;
 
-    // anchor on each decoded frame, then run the clock smoothly between frames
-    const onFrame = (now, meta) => { media = meta.mediaTime; at = now; v.requestVideoFrameCallback(onFrame); };
-
-    function tick(now) {
-      const dur = v.duration;
-      if (dur) {
-        let t = hasRVFC && at ? media + Math.min(120, Math.max(0, now - at)) / 1000 * v.playbackRate : v.currentTime;
-        t = (t + off) % dur;
-        if (t < last && last - t < 0.25) t = last; // never step backwards when a late frame re-anchors the clock
-        last = t;
-        const stop = to || dur;
-        const p = Math.min(1, Math.max(0, (t - from) / Math.max(0.001, stop - from)));
-        v.style.transform = 'scale(' + (1 + (end - 1) * p).toFixed(5) + ')';
-      }
-      raf = requestAnimationFrame(tick);
+    const masterTime = t => (t + off) % v.duration;
+    function sync(mt) { // mt = where we are in the master loop, seconds
+      if (!anim) anim = v.animate([{ transform: 'scale(1)' }, { transform: 'scale(' + end + ')' }],
+        { duration: v.duration * 1000, easing: 'linear', iterations: Infinity });
+      const at = (anim.currentTime / 1000) % v.duration;
+      if (Math.abs(at - mt) > 0.04) anim.currentTime = mt * 1000;
+      if (v.paused) anim.pause(); else anim.play();
     }
+    function check(t) { // once per loop, just after the master wraps (inside the dark dip), re-align
+      if (!v.duration) return;
+      const mt = masterTime(t);
+      if (lastMt >= 0 && mt < lastMt - 0.2) sync(mt);
+      lastMt = mt;
+    }
+    const onFrame = (now, meta) => { check(meta.mediaTime); if (!v.paused) v.requestVideoFrameCallback(onFrame); else watching = false; };
 
     v.addEventListener('playing', () => {
-      if (hasRVFC && !chained) { chained = true; v.requestVideoFrameCallback(onFrame); }
-      if (!raf) raf = requestAnimationFrame(tick);
+      if (!v.duration) return;
+      lastMt = masterTime(v.currentTime);
+      sync(lastMt);
+      if (hasRVFC && !watching) { watching = true; v.requestVideoFrameCallback(onFrame); }
     });
-    v.addEventListener('pause', () => { cancelAnimationFrame(raf); raf = 0; });
+    if (!hasRVFC) v.addEventListener('timeupdate', () => check(v.currentTime));
+    v.addEventListener('pause', () => { if (anim) anim.pause(); });
   });
 })();
