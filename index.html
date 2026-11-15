@@ -151,12 +151,15 @@
   <section class="hero hero--film" id="hero">
     <div class="hero__film" aria-hidden="true">
       <div class="hero__frame">
-        <video class="hero__video" id="heroVideo" muted playsinline loop preload="none"
-               poster="assets/video/hero-reel.jpg"
-               data-src-webm="assets/video/hero-reel.webm"
-               data-src-mp4="assets/video/hero-reel.mp4"
-               data-src-hd-webm="assets/video/hero-reel-hd.webm"
-               data-src-hd-mp4="assets/video/hero-reel-hd.mp4"></video>
+        <video class="hero__video" id="heroVideo" muted autoplay playsinline loop preload="auto" poster="assets/video/hero-flat.jpg"></video>
+        <!-- start the reel while the page is still parsing: 1080p on anything wider than 1280 device pixels, 720p otherwise -->
+        <script>(function (v) {
+          var c = navigator.connection || {};
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches || c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
+          var base = 'assets/video/hero-flat' + (innerWidth * (devicePixelRatio || 1) > 1280 ? '-hd' : '');
+          [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (f) { var s = document.createElement('source'); s.src = base + '.' + f[0]; s.type = f[1]; v.appendChild(s); });
+          v.load();
+        })(document.getElementById('heroVideo'));</script>
       </div>
       <div class="hero__shade"></div>
       <div class="hero__grain"></div>
@@ -206,7 +209,7 @@
 
         <article class="shop">
           <div class="shop__window">
-            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" data-src-hd="assets/video/street-1-hd.mp4" aria-hidden="true"></video>
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" data-src-hd="assets/video/street-1-hd.mp4" data-push="1.06" data-push-offset="0.4" aria-hidden="true"></video>
             <span class="shop__tag">Paraugs</span>
           </div>
           <div class="shop__plate">
@@ -219,7 +222,7 @@
 
         <article class="shop">
           <div class="shop__window">
-            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" data-src-hd="assets/video/street-2-hd.mp4" aria-hidden="true"></video>
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" data-src-hd="assets/video/street-2-hd.mp4" data-push="1.06" data-push-offset="0.4" aria-hidden="true"></video>
             <span class="shop__tag">Paraugs</span>
           </div>
           <div class="shop__plate">

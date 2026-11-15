@@ -86,7 +86,7 @@
           const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
         } else if (v.getAttribute('src')) v.pause();
       });
-    }, { rootMargin: '0px 200px', threshold: 0.2 });
+    }, { rootMargin: '300px 300px', threshold: 0.01 }); // start loading a little before the window is on screen
     street.querySelectorAll('.shop__video').forEach(v => io.observe(v));
   }
 
