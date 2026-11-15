@@ -18,7 +18,7 @@
   const playable = !reduce && !saveData && 'IntersectionObserver' in window;
 
   const FADE = 0.7;   // seconds of crossfade into the next clip
-  const PASSES = 2;   // each clip loops once, then hands over before its second dip
+  const PASSES = 1;   // each clip plays once and hands over before its dip
   const dur = clips.map(v => parseFloat(v.dataset.dur) || 5);
   const out = clips.map((v, k) => Math.min(dur[k], parseFloat(v.dataset.out) || dur[k]));
   const len = clips.map((v, k) => dur[k] * (PASSES - 1) + out[k]);
