@@ -60,7 +60,7 @@
 .article h2 .h2-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: 10px; font-size: 1.1rem; flex-shrink: 0;
-  background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.2);
+  background: rgba(217,164,65,0.12); border: 1px solid rgba(217,164,65,0.2);
 }
 .article p {
   color: var(--text-muted); font-size: 1rem; line-height: 1.8;
@@ -98,11 +98,11 @@
   border-radius: var(--radius); padding: 24px;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.benefit-item:hover { border-color: rgba(108,99,255,0.3); transform: translateX(4px); }
+.benefit-item:hover { border-color: rgba(217,164,65,0.3); transform: translateX(4px); }
 .benefit-item__icon {
   font-size: 1.6rem; flex-shrink: 0; width: 48px; height: 48px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(108,99,255,0.1); border-radius: 12px;
+  background: rgba(217,164,65,0.1); border-radius: 12px;
 }
 .benefit-item__body h3 {
   font-family: var(--font-display); font-size: 1rem; font-weight: 600;
@@ -222,7 +222,7 @@
 .pull-quote {
   border-left: 3px solid var(--accent);
   padding: 20px 28px; margin: 32px 0;
-  background: rgba(108,99,255,0.06); border-radius: 0 var(--radius) var(--radius) 0;
+  background: rgba(217,164,65,0.06); border-radius: 0 var(--radius) var(--radius) 0;
 }
 .pull-quote p {
   font-size: 1.05rem; font-style: italic;
@@ -243,8 +243,8 @@
 
 /* CTA at bottom of article */
 .article-cta {
-  background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(167,139,250,0.06));
-  border: 1px solid rgba(108,99,255,0.25);
+  background: linear-gradient(135deg, rgba(217,164,65,0.12), rgba(240,201,135,0.06));
+  border: 1px solid rgba(217,164,65,0.25);
   border-radius: var(--radius); padding: 40px; text-align: center;
   margin-top: 64px;
 }

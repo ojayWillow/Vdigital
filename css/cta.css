@@ -7,14 +7,14 @@
   background: linear-gradient(135deg,#1a0e3c 0%,#2d1b69 40%,#1e1040 100%);
 }
 [data-theme="light"] .cta-banner {
-  background: linear-gradient(135deg,#5b52f0 0%,#7c6ff7 40%,#a78bfa 100%);
+  background: linear-gradient(135deg,#9a6a1c 0%,#b88634 40%,#f0c987 100%);
 }
 .cta-banner__orb {
   position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
   animation: orb-drift 10s ease-in-out infinite alternate;
 }
-.cta-banner__orb--1 { width: 300px; height: 300px; background: rgba(108,99,255,0.35); top: -60px; left: 10%; animation-duration: 9s; }
-.cta-banner__orb--2 { width: 200px; height: 200px; background: rgba(167,139,250,0.3); bottom: -40px; right: 15%; animation-duration: 11s; animation-delay: -3s; }
+.cta-banner__orb--1 { width: 300px; height: 300px; background: rgba(217,164,65,0.35); top: -60px; left: 10%; animation-duration: 9s; }
+.cta-banner__orb--2 { width: 200px; height: 200px; background: rgba(240,201,135,0.3); bottom: -40px; right: 15%; animation-duration: 11s; animation-delay: -3s; }
 .cta-banner__orb--3 { width: 160px; height: 160px; background: rgba(236,72,153,0.2); top: 30%; left: 60%; animation-duration: 13s; animation-delay: -6s; }
 @keyframes orb-drift {
   0%   { transform: translate(0,0) scale(1); }
@@ -29,7 +29,7 @@
 .cta-banner__inner { position: relative; z-index: 1; }
 .cta-banner__inner h2 {
   font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 700; margin-bottom: 12px;
-  background: linear-gradient(90deg, #fff 0%, #a78bfa 30%, #6c63ff 50%, #a78bfa 70%, #fff 100%);
+  background: linear-gradient(90deg, #fff 0%, #f0c987 30%, #d9a441 50%, #f0c987 70%, #fff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradient-flow 4s linear infinite;
@@ -58,7 +58,7 @@
 .cookie-banner__icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 42px; height: 42px; border-radius: var(--radius-sm); flex-shrink: 0;
-  background: rgba(108,99,255,0.15); font-size: 1.3rem;
+  background: rgba(217,164,65,0.15); font-size: 1.3rem;
 }
 .cookie-banner__text { flex: 1; min-width: 0; }
 .cookie-banner__text strong { display: block; font-family: var(--font-display); font-size: 0.98rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
@@ -75,4 +75,4 @@
 #cookie-decline:hover { color: var(--text); border-color: var(--accent); }
 
 [data-theme="light"] #cookie-banner { background: rgba(255,255,255,0.96); box-shadow: 0 16px 44px rgba(0,0,0,0.16); }
-[data-theme="light"] .cookie-banner__icon { background: rgba(91,82,240,0.1); }
+[data-theme="light"] .cookie-banner__icon { background: rgba(154,106,28,0.1); }

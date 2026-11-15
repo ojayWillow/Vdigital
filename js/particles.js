@@ -9,8 +9,8 @@
 
   function getColors() {
     return html.getAttribute('data-theme') === 'light'
-      ? ['91,82,240','124,111,247']
-      : ['108,99,255','167,139,250'];
+      ? ['154,106,28','184,134,52']
+      : ['217,164,65','240,201,135'];
   }
   function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
   window.addEventListener('resize', resize); resize();
