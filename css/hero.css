@@ -9,10 +9,10 @@
 }
 .hero__spotlight {
   position: absolute; inset: 0; pointer-events: none; z-index: 1;
-  background: radial-gradient(600px circle at var(--mx,50%) var(--my,40%), rgba(108,99,255,0.13) 0%, transparent 70%);
+  background: radial-gradient(600px circle at var(--mx,50%) var(--my,40%), rgba(217,164,65,0.13) 0%, transparent 70%);
 }
 [data-theme="light"] .hero__spotlight {
-  background: radial-gradient(600px circle at var(--mx,50%) var(--my,40%), rgba(91,82,240,0.08) 0%, transparent 70%);
+  background: radial-gradient(600px circle at var(--mx,50%) var(--my,40%), rgba(154,106,28,0.08) 0%, transparent 70%);
 }
 .hero__bg-grid {
   position: absolute; inset: 0;
@@ -42,13 +42,13 @@
 
 .hero__badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.25);
+  background: rgba(217,164,65,0.12); border: 1px solid rgba(217,164,65,0.25);
   border-radius: var(--radius-pill); padding: 6px 14px;
   font-size: 0.78rem; font-weight: 600; color: var(--accent-2);
   letter-spacing: 0.08em; text-transform: uppercase; width: fit-content;
   animation: badge-in 0.7s cubic-bezier(0.4,0,0.2,1) both;
 }
-[data-theme="light"] .hero__badge { background: rgba(91,82,240,0.08); border-color: rgba(91,82,240,0.2); }
+[data-theme="light"] .hero__badge { background: rgba(154,106,28,0.08); border-color: rgba(154,106,28,0.2); }
 @keyframes badge-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 
 .hero__headline {
@@ -97,14 +97,14 @@
 .preview-card-wrap {
   position: relative; width: 100%;
   border-radius: calc(var(--radius) + 2px); padding: 2px;
-  background: linear-gradient(135deg,rgba(108,99,255,0.6),rgba(167,139,250,0.2),rgba(108,99,255,0.5));
+  background: linear-gradient(135deg,rgba(217,164,65,0.6),rgba(240,201,135,0.2),rgba(217,164,65,0.5));
   background-size: 200% 200%;
   animation: border-spin 4s linear infinite, float 4s ease-in-out infinite;
-  box-shadow: 0 0 40px rgba(108,99,255,0.25);
+  box-shadow: 0 0 40px rgba(217,164,65,0.25);
 }
 [data-theme="light"] .preview-card-wrap {
-  background: linear-gradient(135deg,rgba(91,82,240,0.5),rgba(124,111,247,0.15),rgba(91,82,240,0.4));
-  box-shadow: 0 8px 48px rgba(91,82,240,0.18);
+  background: linear-gradient(135deg,rgba(154,106,28,0.5),rgba(184,134,52,0.15),rgba(154,106,28,0.4));
+  box-shadow: 0 8px 48px rgba(154,106,28,0.18);
 }
 @keyframes border-spin { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 .preview-card { background: var(--bg-3); border-radius: var(--radius); overflow: hidden; width: 100%; box-shadow: var(--shadow-card); animation: float 4s ease-in-out infinite; }
@@ -125,7 +125,63 @@
 .preview-card__badge {
   position: absolute; bottom: 12px; left: 12px; z-index: 4;
   display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(8,9,13,0.72); color: #fff; backdrop-filter: blur(8px);
+  background: rgba(11,10,8,0.72); color: #fff; backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius-pill);
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; padding: 5px 12px;
+}
+
+/* =============================================
+   HERO — FILM (rebrand: full-bleed video)
+   ============================================= */
+.hero--film { background: #0b0a08; }
+.hero--film::after { display: none; }
+.hero__film { position: absolute; inset: 0; z-index: 0; overflow: hidden; container-type: size; --fx: 50%; --fy: 50%; background: #0b0a08; }
+/* a 16:9 frame sized like object-fit: cover; it carries the poster so the first paint is the reel's first shot */
+.hero__frame {
+  position: absolute; aspect-ratio: 16 / 9; width: max(100cqw, 100cqh * 16 / 9);
+  left: var(--fx); top: var(--fy); transform: translate(calc(var(--fx) * -1), calc(var(--fy) * -1));
+  background: url('../assets/video/hero-flat.jpg') center / cover no-repeat;
+}
+.hero__video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+/* desktop: the reel sits right of the headline and melts into the dark on the left, so every product shot stays clear of the text */
+@media (min-width: 641px) {
+  /* never taller than the reel's own 16:9, so squarer windows don't crop into the shot */
+  .hero__film { bottom: auto; height: min(100%, 56.25vw); }
+  .hero--film { min-height: min(100vh, 56.25vw); }
+  .hero__frame {
+    left: 10%; transform: translate(0, calc(var(--fy) * -1));
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24%); mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
+  }
+}
+.hero__video.is-ready { opacity: 1; }
+.hero__shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11,10,8,0.92) 0%, rgba(11,10,8,0.72) 34%, rgba(11,10,8,0.15) 62%, rgba(11,10,8,0) 100%),
+    linear-gradient(0deg, #0b0a08 0%, rgba(11,10,8,0) 32%);
+}
+.hero__grain {
+  position: absolute; inset: -50%; opacity: 0.07; pointer-events: none; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(4) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 25%{transform:translate(-3%,2%)} 50%{transform:translate(2%,-3%)} 75%{transform:translate(-2%,-1%)} 100%{transform:translate(0,0)} }
+.hero--film .hero__inner { min-height: calc(min(100vh, 56.25vw) - 68px); }
+.hero--film .hero__left { max-width: 560px; }
+/* the film is always dark, so hero text stays light in both themes */
+.hero--film .hero__headline, .hero--film .stat__num { color: #f3ede3; }
+.hero--film .hero__sub, .hero--film .stat__label { color: rgba(243,237,227,0.72); }
+.hero--film .hero__stats { border-top-color: rgba(243,237,227,0.14); }
+.hero--film .stat__divider { background: rgba(243,237,227,0.14); }
+.hero--film .hero__highlight { background: linear-gradient(135deg, #d9a441, #f0c987); -webkit-background-clip: text; background-clip: text; }
+.hero--film .btn--ghost { color: #f3ede3; border-color: rgba(243,237,227,0.3); }
+[data-theme="light"] .hero--film .hero__badge { background: rgba(217,164,65,0.14); border-color: rgba(217,164,65,0.35); color: #f0c987; }
+@media (prefers-reduced-motion: reduce) { .hero__grain { animation: none; } }
+@media (max-width: 640px) {
+  .hero__film { bottom: auto; height: 64svh; --fx: 55%; --fy: 50%; }
+  .hero__shade { background: linear-gradient(0deg, #0b0a08 0%, rgba(11,10,8,0.55) 30%, rgba(11,10,8,0) 60%), linear-gradient(180deg, rgba(11,10,8,0.6) 0%, rgba(11,10,8,0) 22%); }
+  .hero--film .hero__inner { min-height: auto; padding-top: 46svh; }
 }

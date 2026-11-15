@@ -1,76 +1,12 @@
-// HERO — spotlight, typewriter, glitch, stats counter
+// HERO — the reel starts from an inline script right after the <video> (no waiting for the page load).
+// Here: reveal it on its first frame (the poster is that same frame), pause it when the hero is off-screen.
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// Spotlight
-const heroEl = document.querySelector('.hero');
-const spotlight = document.querySelector('.hero__spotlight');
-if (heroEl && spotlight) {
-  heroEl.addEventListener('mousemove', e => {
-    const rect = heroEl.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    heroEl.style.setProperty('--mx', x + '%');
-    heroEl.style.setProperty('--my', y + '%');
-  });
-}
-
-// Typewriter
-(function initTypewriter() {
-  const el = document.querySelector('.hero__typewriter');
-  if (!el) return;
-  const words = ['Profesionāla','Moderna','Ātra','Efektīva'];
-  if (prefersReducedMotion) { el.textContent = words[0]; return; }
-  let wi = 0, ci = 0, deleting = false;
-  function type() {
-    const word = words[wi];
-    if (!deleting) {
-      el.textContent = word.slice(0, ++ci);
-      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
-      setTimeout(type, 68);
-    } else {
-      el.textContent = word.slice(0, --ci);
-      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(type, 300); return; }
-      setTimeout(type, 38);
-    }
-  }
-  type();
+(function initHeroFilm() {
+  const v = document.getElementById('heroVideo');
+  if (!v || !v.querySelector('source')) return; // reduced motion / data saver: poster only
+  const show = () => v.classList.add('is-ready');
+  if (v.readyState >= 2) show(); else v.addEventListener('loadeddata', show, { once: true });
+  const play = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  play();
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) play(); else v.pause(); }, { threshold: 0.05 }).observe(v);
 })();
-
-// Hero preview — rotate real portfolio screenshots + matching URL
-(function initHeroRotator() {
-  const shots = [...document.querySelectorAll('.hero-shot')];
-  const urlEl = document.getElementById('heroUrl');
-  if (shots.length < 2 || prefersReducedMotion) return;
-  let i = 0;
-  setInterval(() => {
-    shots[i].classList.remove('is-active');
-    i = (i + 1) % shots.length;
-    shots[i].classList.add('is-active');
-    if (urlEl) urlEl.textContent = shots[i].dataset.url;
-  }, 3400);
-})();
-
-// Stats counter
-function animateCounter(el, target, suffix = '') {
-  if (prefersReducedMotion) { el.textContent = parseFloat(target) + suffix; return; }
-  const duration = 1400, start = performance.now();
-  const update = time => {
-    const p = Math.min((time - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(eased * parseFloat(target)) + suffix;
-    if (p < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-}
-const sio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const nums = e.target.querySelectorAll('.stat__num');
-      [{val:15,s:'+'},{val:48,s:'h'},{val:100,s:'%'}].forEach(({val,s},i) => { if (nums[i]) animateCounter(nums[i], val, s); });
-      sio.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-const heroStats = document.querySelector('.hero__stats');
-if (heroStats) sio.observe(heroStats);

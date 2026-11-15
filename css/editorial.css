@@ -1,0 +1,189 @@
+/* =============================================
+   EDITORIAL — everything below the showreel (rebrand 2026-11)
+   Hairlines instead of boxes, big serif statements, mono labels.
+   ============================================= */
+:root { --line: rgba(237,231,220,0.14); --line-strong: rgba(237,231,220,0.26); --ease: cubic-bezier(0.2,0.7,0.2,1); }
+[data-theme="light"] { --line: rgba(29,26,20,0.12); --line-strong: rgba(29,26,20,0.28); }
+
+.ed { position: relative; padding: 120px 0; background: var(--bg); }
+.ed-label {
+  display: inline-block; margin-bottom: 22px;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-2);
+}
+.ed-label::before { content: '— '; opacity: 0.6; }
+[data-theme="light"] .ed-label { color: var(--accent); }
+.ed-title {
+  font-family: var(--font-serif); font-weight: 400; color: var(--text);
+  font-size: clamp(2.6rem, 5.6vw, 5.2rem); line-height: 1; letter-spacing: -0.015em;
+}
+.ed-title em { font-style: italic; color: var(--accent-2); }
+[data-theme="light"] .ed-title em { color: var(--accent); }
+.ed-head { max-width: 1000px; margin-bottom: 64px; }
+.ed-head--split { max-width: none; display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: end; }
+.ed-head__aside { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
+
+/* Reveal on scroll (JS adds .js to <html>) */
+.js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease) var(--d, 0s), transform 0.9s var(--ease) var(--d, 0s); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* ── 1. WEBSITES: the index ── */
+.ix { list-style: none; border-top: 1px solid var(--line); }
+.ix__row {
+  display: grid; grid-template-columns: 90px minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px; align-items: baseline;
+  padding: 34px 0; border-bottom: 1px solid var(--line);
+}
+.ix__no, .promise__no, .reel__no { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.1em; color: var(--accent); }
+.ix__name {
+  font-family: var(--font-serif); font-weight: 400; color: var(--text);
+  font-size: clamp(2.1rem, 4.6vw, 4.4rem); line-height: 1; letter-spacing: -0.01em;
+  transition: transform 0.6s var(--ease), color 0.3s ease;
+}
+.ix__desc { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; max-width: 420px; }
+@media (hover: hover) and (pointer: fine) {
+  .js .ix__row.is-in { transition: opacity 0.35s ease, transform 0.9s var(--ease); }
+  .ix:hover .ix__row.is-in { opacity: 0.32; }
+  .ix .ix__row.is-in:hover { opacity: 1; }
+  .ix__row:hover .ix__name { transform: translateX(22px); font-style: italic; color: var(--accent-2); }
+  [data-theme="light"] .ix__row:hover .ix__name { color: var(--accent); }
+}
+.ix__peek {
+  position: fixed; left: 0; top: 0; z-index: 60; width: 300px; aspect-ratio: 4 / 3;
+  overflow: hidden; border-radius: 4px; pointer-events: none; opacity: 0;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(240,201,135,0.18);
+  transition: opacity 0.3s ease;
+}
+.ix__peek img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transform: scale(1.08); transition: transform 0.6s var(--ease); }
+.ix__peek.is-on { opacity: 1; }
+.ix__peek.is-on img { transform: none; }
+@media (hover: none), (pointer: coarse) { .ix__peek { display: none; } }
+.ed-more { display: inline-flex; gap: 8px; margin-top: 44px; color: var(--accent-2); font-weight: 500; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+[data-theme="light"] .ed-more { color: var(--accent); }
+.ed-more:hover span { transform: translateX(4px); }
+.ed-more span { transition: transform 0.3s var(--ease); }
+
+/* ── 3. WORK: one real piece, shown big ── */
+.case { margin: 0; }
+.case__frame {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: #000;
+  box-shadow: 0 0 0 1px var(--line), 0 60px 120px -60px rgba(0,0,0,0.85);
+}
+.case__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case__meta {
+  display: grid; grid-template-columns: 90px minmax(0, 1fr) auto auto; gap: 28px; align-items: baseline;
+  padding: 24px 0; border-bottom: 1px solid var(--line);
+}
+.case__no { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.1em; color: var(--accent); }
+.case__meta h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text); font-size: 2rem; line-height: 1; }
+.case__tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.case__link { white-space: nowrap; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--accent); padding-bottom: 3px; transition: color 0.2s ease; }
+.case__link:hover { color: var(--accent-2); }
+
+/* ── 4. PROMISES: three lines ── */
+.ed-promise { background: var(--bg-2); padding: 130px 0; }
+.promise { list-style: none; border-top: 1px solid var(--line); }
+.promise li { display: grid; grid-template-columns: 90px 1fr; gap: 32px; align-items: baseline; padding: 38px 0; border-bottom: 1px solid var(--line); }
+.promise p { font-family: var(--font-serif); color: var(--text); font-size: clamp(2rem, 4.2vw, 3.8rem); line-height: 1.05; letter-spacing: -0.01em; }
+.promise em { color: var(--text-muted); }
+
+/* ── 5. FINALE: the next shot, the empty shop with the visitor's name ── */
+.finale { position: relative; background: #0b0a08; color: #f3ede3; }
+.finale__window {
+  position: relative; width: min(100%, calc(100vh * 16 / 9)); margin: 0 auto; aspect-ratio: 16 / 9;
+  overflow: hidden; background: #000; container-type: inline-size;
+  --sign-x: 46%; --sign-y: 18%; --sign-w: 19.5%; --sign-h: 10.5%;
+}
+.finale__shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(11,10,8,0.94) 0%, rgba(11,10,8,0.55) 30%, rgba(11,10,8,0) 58%),
+    linear-gradient(to bottom, #0b0a08 0%, rgba(11,10,8,0) 14%),
+    linear-gradient(to right, rgba(11,10,8,0.5) 0%, rgba(11,10,8,0) 45%);
+}
+.finale__copy { position: absolute; left: 0; right: 0; bottom: 9%; }
+.finale .ed-label { color: #f0c987; }
+.finale .ed-title { color: #f3ede3; }
+.finale .ed-title em { color: #f0c987; }
+.finale .btn { margin-top: 32px; }
+
+/* ── 6. CONTACT: quiet form, underlined fields ── */
+.contact { background: var(--bg); padding: 150px 0; }
+.contact__inner { grid-template-columns: 1fr 1.2fr; gap: 110px; }
+.contact__left > p { color: var(--text-muted); font-size: 1.02rem; margin: 26px 0 22px; }
+.contact__form, [data-theme="light"] .contact__form { background: none; border: none; box-shadow: none; padding: 0; gap: 30px; }
+.form-group label { font-family: var(--font-mono); font-weight: 400; font-size: 0.7rem; letter-spacing: 0.1em; margin-bottom: 4px; }
+.form-group input, .form-group select, .form-group textarea {
+  background: transparent; border: none; border-bottom: 1px solid var(--line-strong); border-radius: 0;
+  padding: 10px 0 12px; font-size: 1.12rem; color: var(--text);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-bottom-color: var(--accent); box-shadow: none; background: transparent; }
+.form-group select option { background: var(--bg-2); color: var(--text); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+.contact__form .btn { align-self: flex-start; width: auto; padding: 16px 36px; }
+
+/* ── 7. FOOTER wordmark ── */
+.footer__mark {
+  font-family: var(--font-serif); color: var(--text); white-space: nowrap; overflow: hidden;
+  font-size: clamp(5rem, 33vw, 30rem); line-height: 0.9; letter-spacing: -0.045em; padding-bottom: 0.06em; margin-top: 10px;
+}
+.footer__mark em { font-style: normal; color: var(--accent); }
+
+/* ── Cookie bar: small and quiet ── */
+#cookie-banner {
+  position: fixed; left: 16px; bottom: 16px; z-index: 150; max-width: 440px;
+  display: flex; align-items: center; gap: 16px; padding: 10px 10px 10px 16px;
+  background: rgba(18,16,13,0.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid var(--line); border-radius: 6px; animation: cookie-in 0.45s var(--ease) both;
+}
+[data-theme="light"] #cookie-banner { background: rgba(255,255,255,0.95); }
+@keyframes cookie-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.cookie-banner__text p { color: var(--text-muted); font-size: 0.78rem; line-height: 1.45; }
+.cookie-banner__actions { display: flex; gap: 6px; flex-shrink: 0; }
+#cookie-accept, #cookie-decline {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 8px 12px; border-radius: 3px; cursor: pointer; border: 1px solid var(--line-strong); background: none; color: var(--text);
+}
+#cookie-accept { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* ── WhatsApp: a quiet gold ring, not a green bubble ── */
+.whatsapp-float {
+  width: 46px; height: 46px; background: rgba(11,10,8,0.82); color: #f0c987;
+  border: 1px solid rgba(240,201,135,0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.whatsapp-float:hover { transform: translateY(-2px); border-color: #f0c987; box-shadow: 0 14px 34px rgba(0,0,0,0.55); }
+.whatsapp-float::before { display: none; }
+.whatsapp-float svg { width: 20px; height: 20px; }
+.whatsapp-float__tooltip { display: none; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ed { padding: 84px 0; }
+  .ed-head { margin-bottom: 44px; }
+  .ed-head--split { grid-template-columns: 1fr; gap: 18px; }
+  .ix__row { grid-template-columns: 40px 1fr; gap: 10px 14px; padding: 26px 0; }
+  .ix__desc { grid-column: 2; }
+  .case__meta { grid-template-columns: 32px 1fr; gap: 8px 14px; padding: 20px 0; }
+  .case__tag, .case__link { grid-column: 2; justify-self: start; }
+  .reel__tag { grid-column: 2; }
+  .promise li { grid-template-columns: 40px 1fr; gap: 14px; padding: 28px 0; }
+  .contact { padding: 100px 0; }
+  .contact__inner { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 640px) {
+  .finale__window { width: 100%; }
+  .finale .shop__scene { transform: scale(1.7); transform-origin: 55% 32%; }
+  .finale__shade { background: linear-gradient(to bottom, #0b0a08 0%, rgba(11,10,8,0) 18%, rgba(11,10,8,0) 80%, #0b0a08 100%); }
+  .finale__copy { position: static; padding: 28px 16px 84px; }
+  .finale .btn { width: 100%; justify-content: center; }
+  #cookie-banner { left: 10px; right: 76px; max-width: none; }
+  .whatsapp-float { right: 14px; bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .reel__item:hover .reel__frame img, .reel__item.is-play .reel__frame img { transform: none; animation: none; }
+}
+
+/* Hero: two big lines instead of four narrow ones */
+.hero--film .hero__left { max-width: 900px; }
+.hero--film .hero__sub { max-width: 500px; }

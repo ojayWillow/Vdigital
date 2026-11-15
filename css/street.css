@@ -1,0 +1,168 @@
+/* =============================================
+   SHOWREEL — what we make, one sector at a time.
+   A viewer (16:9 film, viewfinder corners, timecode, title card) over an edit timeline:
+   ruler, clips, a playhead that runs through the reel, and an empty slot for the visitor.
+   ============================================= */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.showreel { background: #0b0a08; color: #f3ede3; padding: 110px 0 80px; position: relative; }
+.showreel .section-title { color: #f3ede3; max-width: 900px; }
+.showreel .section-title em { font-style: italic; color: #f0c987; }
+.showreel__head { margin-bottom: 52px; }
+
+.showreel__deck {
+  width: min(1200px, calc(100% - 48px), calc((100vh - 210px) * 16 / 9)); margin: 0 auto;
+  display: grid; grid-template-columns: 100%; grid-template-areas: "screen" "line" "note";
+}
+
+/* ── the viewer ── */
+.showreel__screen {
+  grid-area: screen; position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(240,201,135,0.12), 0 50px 140px -40px rgba(217,164,65,0.28);
+  touch-action: pan-y;
+}
+/* the incoming clip fades in on top, the outgoing one stays lit underneath until it is covered */
+.showreel__clip { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; }
+.showreel__clip.is-out { opacity: 1; z-index: 1; }
+.showreel__clip.is-on { opacity: 1; z-index: 2; transition: opacity 0.7s ease; }
+.showreel__clip.is-in { opacity: 0; z-index: 2; }
+
+.showreel__shade {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(11,10,8,0.88) 0%, rgba(11,10,8,0.4) 32%, rgba(11,10,8,0) 58%),
+    linear-gradient(to right, rgba(11,10,8,0.55) 0%, rgba(11,10,8,0) 55%),
+    linear-gradient(to bottom, rgba(11,10,8,0.45) 0%, rgba(11,10,8,0) 22%);
+}
+/* viewfinder corners */
+.showreel__corners {
+  --c: rgba(243,237,227,0.55); --l: 18px;
+  position: absolute; inset: 18px; z-index: 4; pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) top left / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / 1px var(--l) no-repeat;
+}
+.showreel__count, .showreel__tc {
+  position: absolute; top: 30px; z-index: 4; pointer-events: none;
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; color: rgba(243,237,227,0.72);
+  font-variant-numeric: tabular-nums; text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+.showreel__count { left: 38px; }
+.showreel__count b { color: #f0c987; font-weight: 500; }
+.showreel__tc { right: 38px; }
+
+/* ── the title card: on the film on desktop, under the timeline on phones ── */
+.showreel__caps {
+  grid-area: screen; align-self: end; z-index: 5; display: grid; pointer-events: none;
+  padding: 0 0 clamp(30px, 4.4vw, 56px) clamp(30px, 4.6vw, 60px); max-width: 680px;
+}
+.showreel__cap { grid-area: 1 / 1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; visibility: hidden; transition: visibility 0s linear 0.3s; }
+.showreel__cap.is-on { visibility: visible; transition-delay: 0s; }
+.showreel__cap > * { opacity: 0; transform: translateY(14px); transition: opacity 0.25s ease, transform 0.3s ease; }
+.showreel__cap.is-on > * { opacity: 1; transform: none; transition: opacity 0.55s ease 0.3s, transform 0.8s cubic-bezier(0.2,0.7,0.2,1) 0.3s; }
+.showreel__cap.is-on > :nth-child(2) { transition-delay: 0.38s; }
+.showreel__cap.is-on > :nth-child(3) { transition-delay: 0.46s; }
+.showreel__cap.is-on > :nth-child(4) { transition-delay: 0.54s; }
+.showreel__label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #f0c987; }
+.showreel__cap h3 {
+  font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.1rem, 3.8vw, 3.6rem); line-height: 1.02; letter-spacing: -0.01em;
+  color: #f3ede3; text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+}
+.showreel__cap p { color: rgba(243,237,227,0.8); font-size: 1rem; line-height: 1.6; max-width: 470px; }
+.showreel__link { color: #f0c987; font-weight: 600; pointer-events: auto; }
+.showreel__link:hover { text-decoration: underline; }
+
+/* ── the timeline ── */
+.showreel__line { grid-area: line; display: grid; grid-template-columns: 1fr minmax(120px, 14%); column-gap: 6px; align-items: end; margin-top: 18px; }
+.showreel__edit { position: relative; }
+.showreel__ruler {
+  position: relative; height: 22px; border-bottom: 1px solid rgba(243,237,227,0.12);
+  background:
+    repeating-linear-gradient(90deg, rgba(243,237,227,0.2) 0 1px, transparent 1px var(--sec, 2.837%)) left bottom / 100% 5px no-repeat,
+    repeating-linear-gradient(90deg, rgba(243,237,227,0.38) 0 1px, transparent 1px calc(var(--sec, 2.837%) * 5)) left bottom / 100% 9px no-repeat;
+}
+.showreel__ruler span {
+  position: absolute; top: 0; padding-left: 5px; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em;
+  color: rgba(243,237,227,0.42); font-variant-numeric: tabular-nums;
+}
+.showreel__ruler span:nth-child(1) { left: 0; } .showreel__ruler span:nth-child(2) { left: 25.5%; }
+.showreel__ruler span:nth-child(3) { left: 50.6%; } .showreel__ruler span:nth-child(4) { left: 74.4%; }
+.showreel__clips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; }
+.showreel__clips button {
+  position: relative; height: 64px; padding: 0; border: 0; border-radius: 3px; overflow: hidden; cursor: pointer;
+  background-color: #15130f; background-position: left center; background-size: auto 100%; background-repeat: repeat-x;
+  box-shadow: inset 0 0 0 1px rgba(243,237,227,0.08);
+  filter: brightness(0.42) saturate(0.7); transition: filter 0.4s ease, box-shadow 0.4s ease;
+}
+.showreel__clips button span {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 10px 7px; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #f3ede3;
+  background: linear-gradient(to top, rgba(11,10,8,0.85), rgba(11,10,8,0));
+}
+.showreel__clips button b { font-weight: 500; color: #f0c987; margin-right: 4px; }
+.showreel__clips button:hover { filter: brightness(0.72) saturate(0.85); }
+.showreel__clips button.is-on { filter: none; box-shadow: inset 0 0 0 1px #d9a441; }
+.showreel__clips button:focus-visible, .showreel__slot:focus-visible { outline: 2px solid #f0c987; outline-offset: 2px; }
+/* the playhead: a box the width of the timeline, slid along; its left edge is the line */
+.showreel__playhead {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 100%; pointer-events: none; z-index: 2;
+  transform: translateX(0); will-change: transform;
+}
+.showreel__playhead::before { content: ''; position: absolute; left: -1px; top: 4px; bottom: -4px; width: 2px; background: #f0c987; box-shadow: 0 0 12px rgba(240,201,135,0.6); }
+.showreel__playhead::after { content: ''; position: absolute; left: -6px; top: 0; width: 12px; height: 12px; background: #f0c987; clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%); }
+/* the empty slot at the end of the reel */
+.showreel__slot {
+  height: 64px; border: 1px dashed rgba(243,237,227,0.28); border-radius: 3px;
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 10px;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(243,237,227,0.6);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease; text-align: center;
+}
+.showreel__slot b { font-size: 1rem; font-weight: 400; color: #f0c987; }
+.showreel__slot:hover { color: #f3ede3; border-color: #d9a441; background: rgba(217,164,65,0.06); }
+.showreel__note {
+  grid-area: note; justify-self: end; margin-top: 14px;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,237,227,0.32);
+}
+
+.showreel__extra { margin-top: 64px; color: rgba(243,237,227,0.6); font-size: 0.95rem; }
+.showreel__extra a { color: #f0c987; font-weight: 600; }
+
+/* Phones and tablets: film edge to edge, timeline under it, title card under the timeline */
+@media (max-width: 900px) {
+  .showreel { padding: 72px 0 56px; }
+  .showreel__head { margin-bottom: 32px; }
+  .showreel__deck { width: 100%; grid-template-areas: "screen" "line" "caps" "note"; }
+  .showreel__screen { border-radius: 0; box-shadow: none; }
+  .showreel__shade { background: linear-gradient(to bottom, rgba(11,10,8,0.5) 0%, rgba(11,10,8,0) 30%); }
+  .showreel__corners { inset: 10px; --l: 12px; }
+  .showreel__count, .showreel__tc { top: 18px; font-size: 0.6rem; }
+  .showreel__count { left: 22px; } .showreel__tc { right: 22px; }
+  .showreel__caps { grid-area: caps; align-self: start; padding: 26px 16px 0; max-width: none; }
+  .showreel__cap { gap: 10px; }
+  .showreel__cap h3 { font-size: 2rem; text-shadow: none; }
+  .showreel__cap p { font-size: 0.95rem; }
+  .showreel__line { grid-template-columns: 1fr; row-gap: 6px; padding: 0 16px; margin-top: 12px; }
+  .showreel__ruler span { font-size: 0.54rem; }
+  .showreel__clips button { height: 46px; }
+  .showreel__clips button span { padding: 10px 6px 5px; font-size: 0.56rem; }
+  .showreel__slot { height: 40px; }
+  .showreel__note { justify-self: start; padding: 0 16px; margin-top: 22px; }
+  .showreel__extra { margin-top: 44px; }
+}
+@media (max-width: 520px) {
+  .showreel__clips button span { font-size: 0; }
+  .showreel__clips button b { font-size: 0.6rem; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showreel__clip.is-on, .showreel__cap, .showreel__cap > *, .showreel__cap.is-on > * { transition: none !important; }
+}
+
+/* ── the empty shop in the finale ── */
+.shop__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shop__scene { position: absolute; inset: 0; }

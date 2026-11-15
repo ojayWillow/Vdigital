@@ -3,8 +3,13 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/kapec",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/kapec-mais-lapa",
-      "destination": "/kapec",
+      "destination": "/",
       "permanent": true
     }
   ]
