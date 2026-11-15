@@ -47,29 +47,28 @@
     street.querySelectorAll('.shop__video').forEach(v => io.observe(v));
   }
 
-  // 3) "Šis skatlogs ir jūsu": put the visitor's name on the sign, then hand it to the contact form
+  // 3) "Šis skatlogs ir jūsu": put the visitor's name on every sign (street + finale), then hand it to the contact form
   const form = document.getElementById('shopForm');
   const input = document.getElementById('shopName');
-  const sign = document.getElementById('shopSign');
-  const signText = document.getElementById('shopSignText');
-  if (form && input && sign && signText) {
-    const fallback = signText.textContent;
+  const signs = Array.from(document.querySelectorAll('.shop__sign')).map(el => ({ el, text: el.querySelector('span') })).filter(s => s.text);
+  if (form && input && signs.length) {
+    const fallback = signs[0].text.textContent;
     // shrink long names so they stay on the fascia
-    const fit = () => {
-      sign.style.setProperty('--sign-fit', 1);
-      const room = sign.clientWidth * 0.94, w = signText.scrollWidth;
-      if (room && w > room) sign.style.setProperty('--sign-fit', (room / w).toFixed(3));
-    };
+    const fit = () => signs.forEach(({ el, text }) => {
+      el.style.setProperty('--sign-fit', 1);
+      const room = el.clientWidth * 0.94, w = text.scrollWidth;
+      if (room && w > room) el.style.setProperty('--sign-fit', (room / w).toFixed(3));
+    });
     fit();
     window.addEventListener('resize', fit, { passive: true });
     let t;
     input.addEventListener('input', () => {
       clearTimeout(t);
-      sign.classList.add('is-swapping');
+      signs.forEach(s => s.el.classList.add('is-swapping'));
       t = setTimeout(() => {
-        signText.textContent = input.value.trim() || fallback;
+        signs.forEach(s => { s.text.textContent = input.value.trim() || fallback; });
         fit();
-        sign.classList.remove('is-swapping');
+        signs.forEach(s => s.el.classList.remove('is-swapping'));
       }, 180);
     });
     form.addEventListener('submit', e => {

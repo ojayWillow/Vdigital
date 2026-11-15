@@ -104,16 +104,12 @@
   <link rel="stylesheet" href="css/utilities.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="css/street.css" />
-  <link rel="stylesheet" href="css/packages.css" />
-  <link rel="stylesheet" href="css/portfolio.css" />
-  <link rel="stylesheet" href="css/trust.css" />
-  <link rel="stylesheet" href="css/cta.css" />
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/brand.css" />
+  <link rel="stylesheet" href="css/editorial.css" />
 
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
 </head>
@@ -257,256 +253,141 @@
     <p class="street__extra container">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section services" id="services">
+  <!-- WEBSITES — editorial index -->
+  <section class="ed ed-index" id="services">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Mājas lapas sīkāk</div>
-        <h2 class="section-title">Viss vienā vietā —<br/>no izstrādes līdz uzturēšanai</h2>
-        <p class="section-sub">Vienreizēja izstrādes maksa — tad viens fiksēts ikmēneša abonements. Skaidri, godīgi, bez slēptām izmaksām.</p>
+      <header class="ed-head" data-reveal>
+        <span class="ed-label">Mājas lapas</span>
+        <h2 class="ed-title">Viena izstrādes maksa.<br/><em>Viens abonements par visu pārējo.</em></h2>
+      </header>
+      <ol class="ix" id="ix">
+        <li class="ix__row" data-reveal data-img="assets/portfolio/estee.webp">
+          <span class="ix__no">01</span>
+          <h3 class="ix__name">Dizains un izstrāde</h3>
+          <p class="ix__desc">Individuāls dizains pēc jūsu zīmola. Mobilā versija un ātra ielāde ir iekļautas.</p>
+        </li>
+        <li class="ix__row" data-reveal data-img="assets/portfolio/autopro.webp">
+          <span class="ix__no">02</span>
+          <h3 class="ix__name">Uzturēšana</h3>
+          <p class="ix__desc">Satura izmaiņas pēc pieprasījuma, drošības atjauninājumi un hostings. Par to rūpējamies mēs.</p>
+        </li>
+        <li class="ix__row" data-reveal data-img="assets/portfolio/hairsalon.webp">
+          <span class="ix__no">03</span>
+          <h3 class="ix__name">Redzamība Google</h3>
+          <p class="ix__desc">Pamata SEO, Google Search Console un ātrs kods, lai jūs atrod īstie klienti.</p>
+        </li>
+        <li class="ix__row" data-reveal data-img="assets/portfolio/bloom.webp">
+          <span class="ix__no">04</span>
+          <h3 class="ix__name">E-veikals</h3>
+          <p class="ix__desc">Produktu katalogs, droši maksājumi un pasūtījumu pārvaldība vienuviet.</p>
+        </li>
+        <li class="ix__row" data-reveal data-img="assets/portfolio/samanta.webp">
+          <span class="ix__no">05</span>
+          <h3 class="ix__name">Zīmols</h3>
+          <p class="ix__desc">Logo, krāsas un fonti. Viens izskats lapā, sociālajos tīklos un video.</p>
+        </li>
+      </ol>
+      <a class="ed-more" href="#contact" data-reveal>Nav skaidrs, ar ko sākt? Bezmaksas konsultācija <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="ix__peek" aria-hidden="true"><img alt="" /></div>
+  </section>
+
+  <!-- PRICES — one statement, one table -->
+  <section class="ed ed-price" id="packages">
+    <div class="container">
+      <div class="price-hero" data-reveal>
+        <span class="ed-label">Cenas</span>
+        <p class="price-hero__big"><span class="price-hero__num">€50</span><span class="price-hero__plus">+&nbsp;€39<small>/mēn.</small></span></p>
+        <p class="price-hero__note">Tik maksā landing lapa. Hostings, mobilā versija, kontaktforma un pamata SEO jau ir iekšā.</p>
       </div>
-      <div class="services__grid">
-        <div class="service-card service-card--featured">
-          <div class="service-card__icon">01</div>
-          <h3>Dizains un izstrāde</h3>
-          <p>Veidojam modernu, ātru un mobilājam ierīcēm piemērotu lapu — pēc jūsu zīmola un vajadzībām.</p>
-          <ul class="service-card__list">
-            <li>Individuāls dizains</li>
-            <li>Mobilā versija iekļauta</li>
-            <li>Ātra ielāde (90+ PageSpeed)</li>
-          </ul>
+      <div class="ptable">
+        <div class="ptable__row" data-reveal>
+          <h3 class="ptable__name">Landing lapa</h3>
+          <p class="ptable__price">€50 izstrāde<br/>+ €39/mēn.</p>
+          <p class="ptable__inc">1 lapa · mobilā versija · kontaktforma · hostings · pamata SEO</p>
+          <a class="ptable__go" href="#contact" data-service="Landing Page (€50 izstrāde + €39/mēn)">Sākt <span aria-hidden="true">→</span></a>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">02</div>
-          <h3>Uzturēšana un atbalsts</h3>
-          <p>Ikmēneša abonementā iekļauta tehniskā uzturēšana, satura atjaunināšana un palīdzība pēc vajadzības.</p>
-          <ul class="service-card__list">
-            <li>Satura izmaiņas pēc pieprasījuma</li>
-            <li>Drošības atjauninājumi</li>
-            <li>Hostings iekļauts</li>
-          </ul>
+        <div class="ptable__row ptable__row--pick" data-reveal>
+          <h3 class="ptable__name">Mājas lapa <span class="ptable__tag">Iesakām</span></h3>
+          <p class="ptable__price">€59/mēn.</p>
+          <p class="ptable__inc">līdz 5 lapām · pilna SEO iestatīšana · Google Analytics · satura atjaunināšana · prioritārs atbalsts</p>
+          <a class="ptable__go" href="#contact" data-service="Mājas lapa (€59/mēn)">Sākt <span aria-hidden="true">→</span></a>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">03</div>
-          <h3>SEO un redzamība</h3>
-          <p>Optimizējam jūsu lapu, lai tā parādās Google meklēšanas rezultātos un piesaista īstos klientus.</p>
-          <ul class="service-card__list">
-            <li>Pamata SEO iestatīšana</li>
-            <li>Google Search Console</li>
-            <li>Ātrdarbīgs kods</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon">04</div>
-          <h3>E-komercija</h3>
-          <p>Ja vēlaties pārdot tiešsaistē — mēs izveidojam ērtu un drošu e-veikalu ar maksājumu integrāciju.</p>
-          <ul class="service-card__list">
-            <li>Produktu katalogs</li>
-            <li>Drošs maksājumu process</li>
-            <li>Pasūtījumu pārvaldība</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon">05</div>
-          <h3>Zīmols un identitāte</h3>
-          <p>Palīdzam izveidot vai sakārtot jūsu vizuālo identitāti — logo, krāsas, fonti un kopējais izskats.</p>
-          <ul class="service-card__list">
-            <li>Logo izstrāde</li>
-            <li>Krāsu un fontu sistēma</li>
-            <li>Saskaņots vizuālais stils</li>
-          </ul>
-        </div>
-        <div class="service-card service-card--cta">
-          <div class="service-card__icon">06</div>
-          <h3>Nav skaidrs, kā sākt?</h3>
-          <p>Pastāstiet par savu uzņēmumu — mēs ieteiksim piemērotāko risinājumu bez maksas.</p>
-          <a href="#contact" class="btn btn--primary">Bezmaksas konsultācija</a>
+        <div class="ptable__row" data-reveal>
+          <h3 class="ptable__name">E-veikals</h3>
+          <p class="ptable__price">Pēc piedāvājuma</p>
+          <p class="ptable__inc">neierobežoti produkti · droši maksājumi · pasūtījumu pārvaldība · pilna SEO</p>
+          <a class="ptable__go" href="#contact" data-service="E-veikals (pēc piedāvājuma)">Pieprasīt <span aria-hidden="true">→</span></a>
         </div>
       </div>
+      <p class="ptable__note">Minimālais līguma termiņš ir 6 mēneši. Pēc tam varat atcelt jebkurā brīdī, bez soda naudas.</p>
     </div>
   </section>
 
-  <!-- PACKAGES -->
-  <section class="section packages" id="packages">
+  <!-- WORK — real pages, they scroll on hover -->
+  <section class="ed ed-work" id="work">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Cenas</div>
-        <h2 class="section-title">Skaidras cenas,<br/>bez pārsteigumiem</h2>
-        <p class="section-sub">Vienreizēja izstrādes maksa + ikmēneša abonements. Jūs zināt tieši, ko maksājat.</p>
-      </div>
-      <div class="packages__grid">
-        <div class="package-card">
-          <div class="package-card__header">
-            <span class="package-card__tier">Landing Page</span>
-            <div class="package-card__price"><span class="price-num">€50</span><span class="price-period"> izstrāde</span></div>
-            <div class="package-card__price" style="margin-top:6px;"><span class="price-num" style="font-size:1.4rem;">€39</span><span class="price-period">/mēnesī</span></div>
-          </div>
-          <p class="package-card__desc">Viena lapa ar visu svarīgāko — ideāli, ja vēlies sākt un vēlāk paplašināt.</p>
-          <ul class="package-card__features">
-            <li><span class="check">✓</span> 1 lapa (landing page)</li>
-            <li><span class="check">✓</span> Mobilā versija</li>
-            <li><span class="check">✓</span> Kontaktforma</li>
-            <li><span class="check">✓</span> Hostings iekļauts</li>
-            <li><span class="check">✓</span> Pamata SEO</li>
-            <li class="faded"><span>✗</span> E-komercija</li>
-            <li class="faded"><span>✗</span> Zīmola izstrāde</li>
-          </ul>
-          <a href="#contact" class="btn btn--outline btn--full">Sākt</a>
+      <header class="ed-head ed-head--split" data-reveal>
+        <div>
+          <span class="ed-label">Darbi</span>
+          <h2 class="ed-title">Lapas, ko varat <em>atvērt.</em></h2>
         </div>
-        <div class="package-card package-card--featured">
-          <div class="package-card__badge">Populārākais</div>
-          <div class="package-card__header">
-            <span class="package-card__tier">Mājas lapa</span>
-            <div class="package-card__price"><span class="price-num">€59</span><span class="price-period">/mēnesī</span></div>
-          </div>
-          <p class="package-card__desc">Pilnvērtīga mājas lapa uzņēmumam ar SEO, analītiku un regulāriem atjauninājumiem.</p>
-          <ul class="package-card__features">
-            <li><span class="check">✓</span> Līdz 5 lapām</li>
-            <li><span class="check">✓</span> Mobilā versija</li>
-            <li><span class="check">✓</span> Pilna SEO iestatīšana</li>
-            <li><span class="check">✓</span> Google Analytics</li>
-            <li><span class="check">✓</span> Satura atjaunināšana</li>
-            <li><span class="check">✓</span> Hostings iekļauts</li>
-            <li><span class="check">✓</span> Prioritārs atbalsts</li>
-          </ul>
-          <a href="#contact" class="btn btn--primary btn--full">Sākt</a>
-        </div>
-        <div class="package-card">
-          <div class="package-card__header">
-            <span class="package-card__tier">E-veikals</span>
-            <div class="package-card__price"><span class="price-num" style="font-size:1.6rem;">Pēc piedāvājuma</span></div>
-          </div>
-          <p class="package-card__desc">Cena atkarīga no projekta sarežģītības. Sazinieties — aprēķināsim individuālu piedāvājumu.</p>
-          <ul class="package-card__features">
-            <li><span class="check">✓</span> Neierobežoti produkti</li>
-            <li><span class="check">✓</span> Drošs maksājumu process</li>
-            <li><span class="check">✓</span> Pasūtījumu pārvaldība</li>
-            <li><span class="check">✓</span> Pilna SEO iestatīšana</li>
-            <li><span class="check">✓</span> Google Analytics</li>
-            <li><span class="check">✓</span> Hostings iekļauts</li>
-            <li><span class="check">✓</span> Prioritārs atbalsts</li>
-          </ul>
-          <a href="#contact" class="btn btn--outline btn--full">Pieprasīt piedāvājumu</a>
-        </div>
-      </div>
-      <p style="text-align:center; color: var(--text-muted); font-size: 0.88rem; margin-top: 32px;">Landing Page plānam — €50 vienreizēja izstrādes maksa + €39/mēn abonements. Pēc minimālā 6 mēnešu termiņa līgumu var atcelt jebkurā laikā.</p>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section class="section work" id="work">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Portfolio</div>
-        <h2 class="section-title">Mūsu darbi</h2>
-        <p class="section-sub">Katrs projekts ir reāla, publicēta lapa. Noklikšķiniet uz jebkura, lai to atvērtu tiešsaistē.</p>
-      </div>
-      <div class="work__filters" id="workFilters" role="group" aria-label="Filtrēt darbus pēc kategorijas">
-        <button class="filter-btn filter-btn--active" data-filter="all" aria-pressed="true">Visi</button>
-        <button class="filter-btn" data-filter="ecommerce" aria-pressed="false">E-komercija</button>
-        <button class="filter-btn" data-filter="beauty" aria-pressed="false">Skaistums</button>
-        <button class="filter-btn" data-filter="services" aria-pressed="false">Pakalpojumi</button>
-        <button class="filter-btn" data-filter="creator" aria-pressed="false">Radītāji</button>
-      </div>
-      <div class="work__grid" id="workGrid">
-        <a href="https://bloom-flower-shop.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="ecommerce">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">bloom-flower-shop.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/bloom.webp" alt="Bloom Flower Shop — ziedu e-veikala mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">E-komercija · Floristika</span><h4>Bloom Flower Shop</h4></div><span class="work-card__arrow">↗</span></div>
+        <p class="ed-head__aside">Katra ir publicēta lapa. Uzbrauciet ar peli, un tā ritinās. Klikšķis to atver.</p>
+      </header>
+      <div class="reel">
+        <a class="reel__item" data-reveal href="https://bloom-flower-shop.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/bloom.webp" alt="Bloom Flower Shop: ziedu e-veikala mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">01</span><h3>Bloom Flower Shop</h3><span class="reel__tag">E-veikals · Floristika</span></div>
         </a>
-        <a href="https://autopro-riga.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="services">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">autopro-riga.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/autopro.webp" alt="TNP Autoserviss — autoservisa mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">Pakalpojumi · Automobiļi</span><h4>TNP Autoserviss</h4></div><span class="work-card__arrow">↗</span></div>
+        <a class="reel__item" data-reveal href="https://autopro-riga.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/autopro.webp" alt="TNP Autoserviss: autoservisa mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">02</span><h3>TNP Autoserviss</h3><span class="reel__tag">Pakalpojumi · Auto</span></div>
         </a>
-        <a href="https://hair-salon-webpage.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="beauty">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">hair-salon-webpage.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/hairsalon.webp" alt="Matu Studija — matu salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">Skaistums · Matu studija</span><h4>Matu Studija</h4></div><span class="work-card__arrow">↗</span></div>
+        <a class="reel__item" data-reveal href="https://hair-salon-webpage.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/hairsalon.webp" alt="Matu Studija: matu salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">03</span><h3>Matu Studija</h3><span class="reel__tag">Skaistums · Matu studija</span></div>
         </a>
-        <a href="https://estee-city-beauty.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="beauty">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">estee-city-beauty.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/estee.webp" alt="Estee City Beauty — skaistumkopšanas salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">Skaistums · Nagu &amp; Skropstu studija</span><h4>Estee City Beauty</h4></div><span class="work-card__arrow">↗</span></div>
+        <a class="reel__item" data-reveal href="https://estee-city-beauty.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/estee.webp" alt="Estee City Beauty: skaistumkopšanas salona mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">04</span><h3>Estee City Beauty</h3><span class="reel__tag">Skaistums · Nagi un skropstas</span></div>
         </a>
-        <a href="https://tortes-namins.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="ecommerce">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">tortes-namins.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/tortes.webp" alt="Tortes Namiņš — konditorejas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">E-komercija · Konditorejas izstrādājumi</span><h4>Tortes Namiņš</h4></div><span class="work-card__arrow">↗</span></div>
+        <a class="reel__item" data-reveal href="https://tortes-namins.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/tortes.webp" alt="Tortes Namiņš: konditorejas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">05</span><h3>Tortes Namiņš</h3><span class="reel__tag">E-veikals · Konditoreja</span></div>
         </a>
-        <a href="https://samantina.vercel.app/" target="_blank" rel="noopener" class="work-card" data-category="creator">
-          <div class="browser-frame">
-            <div class="browser-bar"><span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span><span class="browser-url">samantina.vercel.app</span><span class="browser-visit">↗ Apmeklēt</span></div>
-            <div class="browser-viewport"><img src="assets/portfolio/samanta.webp" alt="Samanta Kopce — UGC satura veidotājas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
-          </div>
-          <div class="work-card__meta"><div><span class="work-card__tag">Radītājs · UGC Portfolio</span><h4>Samanta Kopce</h4></div><span class="work-card__arrow">↗</span></div>
+        <a class="reel__item" data-reveal href="https://samantina.vercel.app/" target="_blank" rel="noopener">
+          <div class="reel__frame"><img src="assets/portfolio/samanta.webp" alt="Samanta Kopce: UGC satura veidotājas mājas lapa" width="1200" height="1833" loading="lazy" /></div>
+          <div class="reel__meta"><span class="reel__no">06</span><h3>Samanta Kopce</h3><span class="reel__tag">Radītāja · UGC portfolio</span></div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- TRUST / WHY US -->
-  <section class="section trust" id="trust">
+  <!-- PROMISES — three lines, no boxes -->
+  <section class="ed ed-promise" id="trust">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Kāpēc Vdigital</div>
-        <h2 class="section-title">Kāpēc uzņēmumi<br/>izvēlas mūs</h2>
-        <p class="section-sub">Bez slēptām izmaksām, bez ilgtermiņa saistībām un ar vietēju atbalstu latviešu valodā.</p>
-      </div>
-      <div class="trust__grid">
-        <div class="trust-card">
-          <div class="trust-card__icon">01</div>
-          <h3>Skaidra cena</h3>
-          <p>Vienreizēja izstrādes maksa un fiksēts ikmēneša abonements. Jūs zināt tieši, ko maksājat — jau no pirmās dienas.</p>
-        </div>
-        <div class="trust-card">
-          <div class="trust-card__icon">02</div>
-          <h3>Ātrs sākums</h3>
-          <p>Pirmo maketu redzat jau 48 stundu laikā. Bez gariem gaidīšanas periodiem un liekas birokrātijas.</p>
-        </div>
-        <div class="trust-card">
-          <div class="trust-card__icon">03</div>
-          <h3>Bez ilgtermiņa saistībām</h3>
-          <p>Pēc minimālā 6 mēnešu termiņa varat atcelt jebkurā laikā. Nekādu slēptu līgumu vai soda naudu.</p>
-        </div>
-        <div class="trust-card">
-          <div class="trust-card__icon">04</div>
-          <h3>Viss iekļauts</h3>
-          <p>Hostings, mobilā versija, SEO pamati un tehniskais atbalsts — viss vienā ikmēneša abonementā.</p>
-        </div>
-        <div class="trust-card">
-          <div class="trust-card__icon">05</div>
-          <h3>Vietējs atbalsts</h3>
-          <p>Strādājam ar Latvijas uzņēmumiem un sniedzam atbalstu latviešu valodā — WhatsApp vai e-pastā.</p>
-        </div>
-        <div class="trust-card">
-          <div class="trust-card__icon">06</div>
-          <h3>Mēs uzturam lapu</h3>
-          <p>Satura izmaiņas, drošības atjauninājumi un tehniskā uzturēšana — par to rūpējamies mēs, ne jūs.</p>
-        </div>
-      </div>
+      <span class="ed-label" data-reveal>Ko solām</span>
+      <ol class="promise">
+        <li data-reveal><span class="promise__no">01</span><p>Pirmais makets <em>48 stundās.</em></p></li>
+        <li data-reveal><span class="promise__no">02</span><p>Viena cena mēnesī. <em>Hostings, drošība un izmaiņas iekšā.</em></p></li>
+        <li data-reveal><span class="promise__no">03</span><p>Rakstāt latviski, WhatsApp. <em>Atbild cilvēks.</em></p></li>
+      </ol>
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <section class="cta-banner">
-    <div class="cta-banner__orb cta-banner__orb--1"></div>
-    <div class="cta-banner__orb cta-banner__orb--2"></div>
-    <div class="cta-banner__orb cta-banner__orb--3"></div>
-    <div class="container cta-banner__inner">
-      <h2>Gatavs iegūt profesionālu lapu?</h2>
-      <p>Sarunāsimies. Pirmā konsultācija ir bez maksas un bez saistībām.</p>
-      <a href="#contact" class="btn btn--primary btn--lg">Sazinies</a>
+  <!-- FINALE — back on the street, the empty shop is still waiting -->
+  <section class="finale" aria-label="Jūsu skatlogs">
+    <div class="finale__window">
+      <div class="shop__scene">
+        <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-4.jpg" data-src="assets/video/street-4.mp4" aria-hidden="true"></video>
+        <div class="shop__sign" data-sign><span data-sign-text>Jūsu uzņēmums</span></div>
+      </div>
+      <div class="finale__shade"></div>
+    </div>
+    <div class="container finale__copy">
+      <span class="ed-label">Ielas galā</span>
+      <h2 class="ed-title">Šis skatlogs<br/><em>vēl ir brīvs.</em></h2>
+      <a href="#contact" class="btn btn--primary btn--lg">Pastāstiet par savu uzņēmumu</a>
     </div>
   </section>
 
@@ -514,9 +395,9 @@
   <section class="section contact" id="contact">
     <div class="container contact__inner">
       <div class="contact__left">
-        <div class="section-badge">Sazinies ar mums</div>
-        <h2 class="section-title">Uzsāksim<br/>sadarbību</h2>
-        <p>Aizpildiet formu un mēs atbildēsim darba dienas laikā. Pastāstiet par savu uzņēmumu — pārējo nokārtosim kopā.</p>
+        <span class="ed-label">Saruna</span>
+        <h2 class="ed-title">Pastāstiet,<br/><em>ko jūs darāt.</em></h2>
+        <p>Atbildam darba dienas laikā. Pārējo izdomāsim kopā.</p>
         <div class="contact__info">
           <a href="https://wa.me/37125953807" target="_blank" rel="noopener" class="contact__whatsapp">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -550,7 +431,7 @@
     <div class="container footer__inner">
       <div class="footer__left">
         <a href="#" class="nav__logo"><span>V</span>digital.</a>
-        <p>Jūsu biznesa digitālā identitāte sākas šeit.</p>
+        <p>Mājas lapas un video reklāmas. Rīga.</p>
       </div>
       <div class="footer__links">
         <a href="#offers">Pakalpojumi</a>
@@ -560,6 +441,7 @@
         <a href="#contact">Kontakts</a>
       </div>
     </div>
+    <div class="container footer__mark" aria-hidden="true">Vdigital<em>.</em></div>
     <div class="container footer__bottom">
       <span>© 2026 Vdigital. Visas tiesības aizsargātas.</span>
     </div>
@@ -575,14 +457,12 @@
 
   <!-- COOKIE CONSENT BANNER -->
   <div id="cookie-banner" role="dialog" aria-label="Sīkdatņu piekrišana" style="display:none;">
-    <div class="cookie-banner__icon">📊</div>
     <div class="cookie-banner__text">
-      <strong>Mēs izmantojam Google Analytics</strong>
-      <p>Lai redzētu, cik apmeklētāju mums ir un no kurienes viņi nāk. Dati ir anonīmi.</p>
+      <p>Google Analytics, lai redzētu, cik apmeklētāju mums ir. Dati ir anonīmi.</p>
     </div>
     <div class="cookie-banner__actions">
       <button id="cookie-accept">Labi</button>
-      <button id="cookie-decline">Nē, paldies</button>
+      <button id="cookie-decline">Nē</button>
     </div>
   </div>
 
@@ -590,8 +470,7 @@
   <script src="js/nav.js"></script>
   <script src="js/hero.js"></script>
   <script src="js/street.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/portfolio.js"></script>
+  <script src="js/editorial.js"></script>
   <script src="js/contact.js"></script>
 
   <script>
