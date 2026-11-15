@@ -191,91 +191,69 @@
     </div>
   </section>
 
-  <!-- VDIGITAL IELA — one street, one shop window per service -->
-  <section class="street" id="offers" aria-label="Ko mēs darām">
-    <div class="street__intro container">
-      <div class="section-badge">Vdigital iela</div>
-      <h2 class="section-title">Pastaigājiet pa mūsu ielu.<br/><em>Katrs skatlogs ir viens pakalpojums.</em></h2>
+  <!-- SHOWREEL — what we make, one sector at a time: a viewer with a title card over an edit timeline -->
+  <section class="showreel" id="offers" aria-label="Ko mēs darām">
+    <div class="container showreel__head">
+      <div class="section-badge">Ko mēs varam uztaisīt</div>
+      <h2 class="section-title">Ko mēs uztaisām<br/><em>jūsu nozarei.</em></h2>
     </div>
-    <div class="street__pin">
-     <div class="street__stage">
-      <div class="street__rain" aria-hidden="true"><i></i></div>
-      <div class="street__track" id="streetTrack">
 
-        <div class="street__corner" aria-hidden="true">
-          <div class="plate"><span class="plate__name">Vdigital iela</span><span class="plate__sub">1 – 4 · Rīga</span></div>
-          <p class="street__hint">Ritiniet, lai ietu pa ielu <span>→</span></p>
-        </div>
-
-        <article class="shop">
-          <div class="shop__window">
-            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" data-src-hd="assets/video/street-1-hd.mp4" aria-hidden="true"></video>
-            <span class="shop__tag">Paraugs</span>
-          </div>
-          <div class="shop__plate">
-            <span class="shop__no"><b class="house">1</b>Restorāns</span>
-            <h3>Lapa, kurā rezervē.</h3>
-            <p>Ēdienkarte, galdiņa rezervācija un jūsu bildes vienā ātrā lapā. Hostings, atbalsts un izmaiņas iekļautas.</p>
-            <a href="#packages" class="shop__link">Skatīt cenas →</a>
-          </div>
-        </article>
-
-        <article class="shop">
-          <div class="shop__window">
-            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" data-src-hd="assets/video/street-2-hd.mp4" aria-hidden="true"></video>
-            <span class="shop__tag">Paraugs</span>
-          </div>
-          <div class="shop__plate">
-            <span class="shop__no"><b class="house">2</b>Auto salons</span>
-            <h3>Reklāma, ko noskatās līdz galam.</h3>
-            <p>Izdomājam ideju un uztaisām īsu video Reels, TikTok un YouTube. Filmējam vai ģenerējam, samontējam, saliekam subtitrus.</p>
-            <a href="/video" class="shop__link">Skatīt piemērus →</a>
-          </div>
-        </article>
-
-        <article class="shop">
-          <div class="shop__window">
-            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" data-src-hd="assets/video/street-3-hd.mp4" aria-hidden="true"></video>
-            <span class="shop__tag">Paraugs, nav īsts sludinājums</span>
-          </div>
-          <div class="shop__plate">
-            <span class="shop__no"><b class="house">3</b>Nekustamais īpašums</span>
-            <h3>Mājoklis, ko grib apskatīt.</h3>
-            <p>Video jūsu sludinājumiem: kadri kā no drona, gluda kamera pa telpām un subtitri. Sludinājumu portāliem, Reels un TikTok.</p>
-            <a href="#contact" class="shop__link">Pajautāt cenu →</a>
-          </div>
-        </article>
-
-        <article class="shop shop--yours">
-          <div class="shop__window">
-            <div class="shop__scene">
-              <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-4.jpg" data-src="assets/video/street-4.mp4" data-src-hd="assets/video/street-4-hd.mp4" aria-hidden="true"></video>
-              <div class="shop__sign" id="shopSign" aria-live="polite"><span id="shopSignText">Jūsu uzņēmums</span></div>
-            </div>
-          </div>
-          <div class="shop__plate">
-            <span class="shop__no"><b class="house">4</b>Brīvs</span>
-            <h3>Šis skatlogs ir jūsu.</h3>
-            <p>Ierakstiet sava uzņēmuma nosaukumu un paskatieties, kā tas izskatās uz mūsu ielas.</p>
-            <form class="shop__form" id="shopForm" autocomplete="off">
-              <label class="visually-hidden" for="shopName">Uzņēmuma nosaukums</label>
-              <input id="shopName" type="text" maxlength="28" placeholder="Piem., Kafejnīca Liepa" />
-              <button type="submit" class="btn btn--primary">Sākam →</button>
-            </form>
-          </div>
-        </article>
-
+    <div class="showreel__deck">
+      <div class="showreel__screen" id="reelScreen">
+        <video class="showreel__clip is-on" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" data-src-hd="assets/video/street-2-hd.mp4" data-dur="4.958" data-out="4.05" aria-hidden="true"></video>
+        <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" data-src-hd="assets/video/street-3-hd.mp4" data-dur="4.417" data-out="4.40" aria-hidden="true"></video>
+        <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/ad-bottle.jpg" data-src="assets/video/ad-bottle.mp4" data-dur="4.208" data-out="4.20" aria-hidden="true"></video>
+        <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" data-src-hd="assets/video/street-1-hd.mp4" data-dur="4.958" data-out="4.05" aria-hidden="true"></video>
+        <div class="showreel__shade" aria-hidden="true"></div>
+        <span class="showreel__corners" aria-hidden="true"></span>
+        <span class="showreel__count" aria-hidden="true"><b>01</b> / 04</span>
+        <span class="showreel__tc" aria-hidden="true">00:00:00:00</span>
       </div>
-      <nav class="street__map" aria-label="Ielas karte">
-        <span class="street__line"><i></i></span>
-        <button type="button" data-stop="0"><b>1</b><span>Restorāns</span></button>
-        <button type="button" data-stop="1"><b>2</b><span>Auto</span></button>
-        <button type="button" data-stop="2"><b>3</b><span>Īpašumi</span></button>
-        <button type="button" data-stop="3"><b>4</b><span>Brīvs</span></button>
-      </nav>
-     </div>
+
+      <div class="showreel__caps">
+        <article class="showreel__cap is-on">
+          <span class="showreel__label">01 · Auto saloni · Video reklāma</span>
+          <h3>Reklāma, ko noskatās līdz galam.</h3>
+          <p>Īss video Reels, TikTok un YouTube: ideja, kadri, montāža un subtitri. Gatavs trīs darba dienās.</p>
+          <a href="/video" class="showreel__link">Skatīt video →</a>
+        </article>
+        <article class="showreel__cap">
+          <span class="showreel__label">02 · Nekustamais īpašums · Video sludinājumam</span>
+          <h3>Mājoklis, ko grib apskatīt.</h3>
+          <p>Kadri kā no drona un gluda kamera pa telpām. Sludinājumu portāliem, Reels un TikTok.</p>
+          <a href="#contact" class="showreel__link">Pajautāt cenu →</a>
+        </article>
+        <article class="showreel__cap">
+          <span class="showreel__label">03 · Produkti · Produkta video</span>
+          <h3>Produkts, kas griežas gaismā.</h3>
+          <p>Studijas gaisma, atspīdumi, lēns apgrieziens. Jūsu produktam, bez dārgas filmēšanas.</p>
+          <a href="/video" class="showreel__link">Skatīt video →</a>
+        </article>
+        <article class="showreel__cap">
+          <span class="showreel__label">04 · Restorāni · Mājas lapa</span>
+          <h3>Lapa, kurā rezervē.</h3>
+          <p>Ēdienkarte, galdiņa rezervācija un jūsu bildes vienā ātrā lapā. Hostings un izmaiņas iekļautas.</p>
+          <a href="#packages" class="showreel__link">Skatīt cenas →</a>
+        </article>
+      </div>
+
+      <div class="showreel__line">
+        <div class="showreel__edit">
+          <div class="showreel__ruler" aria-hidden="true"><span>00:00</span><span>00:09</span><span>00:17</span><span>00:26</span></div>
+          <nav class="showreel__clips" aria-label="Nozares">
+            <button type="button" class="is-on" aria-current="true" style="background-image:url(assets/video/street-2.jpg)"><span><b>01</b> Auto</span></button>
+            <button type="button" style="background-image:url(assets/video/street-3.jpg)"><span><b>02</b> Īpašumi</span></button>
+            <button type="button" style="background-image:url(assets/video/ad-bottle.jpg)"><span><b>03</b> Produkti</span></button>
+            <button type="button" style="background-image:url(assets/video/street-1.jpg)"><span><b>04</b> Restorāni</span></button>
+          </nav>
+          <span class="showreel__playhead" aria-hidden="true"></span>
+        </div>
+        <a class="showreel__slot" href="#yours"><b>+</b><span>Jūsu uzņēmums</span></a>
+      </div>
+      <p class="showreel__note">Demonstrācijas video</p>
     </div>
-    <p class="street__extra container">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
+
+    <p class="showreel__extra container">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
   </section>
 
   <!-- WEBSITES — editorial index -->
@@ -400,8 +378,8 @@
     </div>
   </section>
 
-  <!-- FINALE — back on the street, the empty shop is still waiting -->
-  <section class="finale" aria-label="Jūsu skatlogs">
+  <!-- FINALE — the next shot on the timeline: the empty shop, with the visitor's own name on the sign -->
+  <section class="finale" id="yours" aria-label="Jūsu skatlogs">
     <div class="finale__window">
       <div class="shop__scene">
         <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-4.jpg" data-src="assets/video/street-4.mp4" data-src-hd="assets/video/street-4-hd.mp4" aria-hidden="true"></video>
@@ -410,9 +388,14 @@
       <div class="finale__shade"></div>
     </div>
     <div class="container finale__copy">
-      <span class="ed-label">Ielas galā</span>
+      <span class="ed-label">Nākamais kadrs</span>
       <h2 class="ed-title">Šis skatlogs<br/><em>vēl ir brīvs.</em></h2>
-      <a href="#contact" class="btn btn--primary btn--lg">Pastāstiet par savu uzņēmumu</a>
+      <p class="finale__hint">Ierakstiet sava uzņēmuma nosaukumu, un tas parādīsies uz izkārtnes.</p>
+      <form class="shop__form finale__form" id="shopForm" autocomplete="off">
+        <label class="visually-hidden" for="shopName">Uzņēmuma nosaukums</label>
+        <input id="shopName" type="text" maxlength="28" placeholder="Jūsu uzņēmuma nosaukums" />
+        <button type="submit" class="btn btn--primary">Sākam →</button>
+      </form>
     </div>
   </section>
 

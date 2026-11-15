@@ -116,7 +116,7 @@
 .promise p { font-family: var(--font-serif); color: var(--text); font-size: clamp(2rem, 4.2vw, 3.8rem); line-height: 1.05; letter-spacing: -0.01em; }
 .promise em { color: var(--text-muted); }
 
-/* ── 5. FINALE: back on the street ── */
+/* ── 5. FINALE: the next shot, the empty shop with the visitor's name ── */
 .finale { position: relative; background: #0b0a08; color: #f3ede3; }
 .finale__window {
   position: relative; width: min(100%, calc(100vh * 16 / 9)); margin: 0 auto; aspect-ratio: 16 / 9;

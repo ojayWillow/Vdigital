@@ -1,127 +1,157 @@
-// VDIGITAL IELA — horizontal walk on desktop, lazy shop-window loops, the visitor's sign
+// SHOWREEL — one sector at a time, cut like an edit: the viewer plays a clip, the title card swaps,
+// the playhead runs along the timeline, the next clip fades in on top. Plus the visitor's own sign in the finale.
 
-(function initStreet() {
-  const street = document.querySelector('.street');
-  if (!street) return;
-  const pin = street.querySelector('.street__pin');
-  const track = street.querySelector('.street__track');
+(function initShowreel() {
+  const sec = document.querySelector('.showreel');
+  if (!sec) return;
+  const screen = sec.querySelector('.showreel__screen');
+  const clips = Array.from(sec.querySelectorAll('.showreel__clip'));
+  const caps = Array.from(sec.querySelectorAll('.showreel__cap'));
+  const btns = Array.from(sec.querySelectorAll('.showreel__clips button'));
+  const head = sec.querySelector('.showreel__playhead');
+  const tc = sec.querySelector('.showreel__tc');
+  const count = sec.querySelector('.showreel__count b');
+  const ruler = sec.querySelector('.showreel__ruler');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const conn = navigator.connection || {};
   const saveData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
-  const desktop = window.matchMedia('(min-width: 901px)');
+  const playable = !reduce && !saveData && 'IntersectionObserver' in window;
 
-  // 1) Walk: vertical scroll drives the street sideways while the stage is pinned.
-  //    The window you are passing is lit, the route map follows, rain drifts at two depths.
-  const stage = street.querySelector('.street__stage');
-  const shops = Array.from(track.querySelectorAll('.shop'));
-  const stops = Array.from(street.querySelectorAll('.street__map button'));
-  const line = street.querySelector('.street__line i');
-  const rain = street.querySelector('.street__rain');
-  let distance = 0, ticking = false, lit = -1;
-  const isWalk = () => street.classList.contains('is-walk');
+  const FADE = 0.7;   // seconds of crossfade into the next clip
+  const PASSES = 2;   // each clip loops once, then hands over before its second dip
+  const dur = clips.map(v => parseFloat(v.dataset.dur) || 5);
+  const out = clips.map((v, k) => Math.min(dur[k], parseFloat(v.dataset.out) || dur[k]));
+  const len = clips.map((v, k) => dur[k] * (PASSES - 1) + out[k]);
+  const start = len.map((l, k) => len.slice(0, k).reduce((a, b) => a + b, 0));
+  const total = len.reduce((a, b) => a + b, 0);
 
-  function light(idx, p) {
-    if (line) line.style.transform = 'scaleX(' + p.toFixed(3) + ')';
-    if (idx === lit) return;
-    lit = idx;
-    shops.forEach((s, k) => s.classList.toggle('is-lit', k === idx));
-    stops.forEach((b, k) => { b.classList.toggle('is-on', k === idx); b.setAttribute('aria-current', k === idx ? 'step' : 'false'); });
+  // timeline drawn to scale: clip widths, ruler ticks (1 s and 5 s) and labels follow the real lengths
+  const clipsEl = sec.querySelector('.showreel__clips');
+  if (clipsEl) clipsEl.style.gridTemplateColumns = len.map(l => l.toFixed(2) + 'fr').join(' ');
+  if (ruler) {
+    ruler.style.setProperty('--sec', (100 / total).toFixed(3) + '%');
+    Array.from(ruler.children).forEach((s, k) => {
+      if (start[k] === undefined) return;
+      s.style.left = (start[k] / total * 100).toFixed(2) + '%';
+      s.textContent = '00:' + String(Math.floor(start[k])).padStart(2, '0');
+    });
   }
-  function nearest(offset) { // index of the shop whose centre is closest to the middle of the screen
-    const mid = offset + window.innerWidth / 2;
-    let best = 0, d = Infinity;
-    shops.forEach((s, k) => { const c = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid); if (c < d) { d = c; best = k; } });
-    return best;
+
+  const pad = n => String(n).padStart(2, '0');
+  const timecode = s => { const f = Math.floor(s * 24); return '00:' + pad(Math.floor(f / 1440)) + ':' + pad(Math.floor(f / 24) % 60) + ':' + pad(f % 24); };
+  function paint(elapsed) {
+    const g = Math.min(total, start[cur] + elapsed);
+    if (head) head.style.transform = 'translateX(' + (g / total * 100).toFixed(3) + '%)';
+    if (tc) tc.textContent = timecode(g);
   }
-  function measure() {
-    const walk = desktop.matches && !reduce;
-    street.classList.toggle('is-walk', walk);
-    if (!walk) { pin.style.height = ''; track.style.transform = ''; swipe(); return; }
-    const last = shops[shops.length - 1];
-    const pad = parseFloat(getComputedStyle(track).paddingRight) || 0;
-    distance = Math.max(0, last.offsetLeft + last.offsetWidth + pad - window.innerWidth);
-    pin.style.height = (window.innerHeight - 68 + distance) + 'px';
-    lit = -1; update();
+
+  // 1080p when the film is shown wide on a sharp enough screen, 720p otherwise
+  const wantHd = () => screen.clientWidth * Math.min(2, window.devicePixelRatio || 1) >= 1100;
+  function load(v) {
+    if (!playable || v.getAttribute('src') || !v.dataset.src) return;
+    v.preload = 'auto';
+    v.src = (wantHd() && v.dataset.srcHd) || v.dataset.src;
   }
-  function update() {
-    ticking = false;
-    if (!isWalk()) return;
-    const top = pin.getBoundingClientRect().top - 68;
-    const p = Math.min(1, Math.max(0, -top / Math.max(1, distance)));
-    const x = p * distance;
-    track.style.transform = 'translate3d(' + (-x).toFixed(1) + 'px,0,0)';
-    if (rain) { rain.style.setProperty('--rn', (-x * 0.35).toFixed(1) + 'px'); rain.style.setProperty('--rf', (x * 0.12).toFixed(1) + 'px'); }
-    light(nearest(x), p);
-  }
-  // phones / reduced motion: the row is swiped, the map follows the swipe
-  function swipe() {
-    const max = Math.max(1, track.scrollWidth - track.clientWidth);
-    light(nearest(track.scrollLeft), track.scrollLeft / max);
-  }
-  track.addEventListener('scroll', () => { if (!isWalk()) requestAnimationFrame(swipe); }, { passive: true });
-  stops.forEach((b, k) => b.addEventListener('click', () => {
-    const s = shops[k];
-    const target = s.offsetLeft + s.offsetWidth / 2 - window.innerWidth / 2;
-    if (isWalk()) {
-      const pinTop = pin.getBoundingClientRect().top + window.scrollY - 68;
-      window.scrollTo({ top: pinTop + Math.min(distance, Math.max(0, target)), behavior: reduce ? 'auto' : 'smooth' });
-    } else {
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+  function play(v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+
+  let cur = 0, pass = 0, lastT = 0, visible = false, raf = 0, swapTimer = 0;
+
+  function show(k) {
+    k = (k + clips.length) % clips.length;
+    if (k === cur && clips[k].classList.contains('is-on')) { if (!playable) return; }
+    const prev = clips[cur], next = clips[k];
+    caps.forEach((c, i) => c.classList.toggle('is-on', i === k));
+    btns.forEach((b, i) => { b.classList.toggle('is-on', i === k); if (i === k) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    if (count) count.textContent = pad(k + 1);
+    clearTimeout(swapTimer);
+    clips.forEach(v => { if (v !== prev && v !== next) { v.classList.remove('is-on', 'is-out', 'is-in'); if (!v.paused) v.pause(); } });
+    if (prev !== next) {
+      prev.classList.remove('is-on', 'is-in'); prev.classList.add('is-out');
+      next.classList.remove('is-out'); next.classList.add('is-in');
+      void next.offsetWidth; // commit opacity 0 so the fade runs
+      next.classList.remove('is-in'); next.classList.add('is-on');
+      swapTimer = setTimeout(() => { prev.classList.remove('is-out'); prev.pause(); }, FADE * 1000 + 60);
+      if (reduce) { prev.classList.remove('is-out'); prev.pause(); }
     }
-  }));
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  window.addEventListener('resize', measure);
-  desktop.addEventListener ? desktop.addEventListener('change', measure) : desktop.addListener(measure);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-  measure();
-
-  // 2) Shop windows: load + play only while visible
-  // big or sharp screens get the 1080p cut, phones and small laptops the 720p one
-  const hd = window.innerWidth * (window.devicePixelRatio || 1) >= 1800;
-  if (!reduce && !saveData && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(({ target: v, isIntersecting }) => {
-        if (isIntersecting) {
-          if (!v.getAttribute('src') && v.dataset.src) v.src = (hd && v.dataset.srcHd) || v.dataset.src;
-          const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
-        } else if (v.getAttribute('src')) v.pause();
-      });
-    }, { rootMargin: '300px 300px', threshold: 0.01 }); // start loading a little before the window is on screen
-    street.querySelectorAll('.shop__video').forEach(v => io.observe(v));
+    cur = k; pass = 0; lastT = 0;
+    if (playable) {
+      load(next); load(clips[(k + 1) % clips.length]);
+      try { next.currentTime = 0; } catch (e) { /* not loaded yet */ }
+      if (visible) { play(next); loop(); }
+    }
+    paint(0);
   }
 
-  // 3) "Šis skatlogs ir jūsu": put the visitor's name on every sign (street + finale), then hand it to the contact form
+  function tick() {
+    raf = 0;
+    const v = clips[cur];
+    const t = v.currentTime || 0;
+    if (t < lastT - 1) pass++;   // the clip wrapped round its loop
+    lastT = t;
+    paint(Math.min(len[cur], pass * dur[cur] + t));
+    if (!v.paused && pass >= PASSES - 1 && t >= out[cur] - FADE) { show(cur + 1); return; }
+    loop();
+  }
+  function loop() { if (visible && !raf) raf = requestAnimationFrame(tick); }
+
+  btns.forEach((b, k) => b.addEventListener('click', () => { if (k !== cur) show(k); }));
+
+  // phones: swipe the film to change clip
+  let x0 = null, y0 = 0;
+  screen.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  screen.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) show(cur + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  // play only while the reel is on screen; start loading a little before it arrives
+  if (playable) {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) { load(clips[cur]); load(clips[(cur + 1) % clips.length]); } }, { rootMargin: '600px 0px' }).observe(screen);
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      const v = clips[cur];
+      if (visible) { play(v); loop(); }
+      else { v.pause(); if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+    }, { threshold: 0.25 }).observe(screen);
+  }
+  paint(0);
+})();
+
+// The visitor's sign: put their name on the empty shop, then hand it to the contact form
+(function initSign() {
   const form = document.getElementById('shopForm');
   const input = document.getElementById('shopName');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const signs = Array.from(document.querySelectorAll('.shop__sign')).map(el => ({ el, text: el.querySelector('span') })).filter(s => s.text);
-  if (form && input && signs.length) {
-    const fallback = signs[0].text.textContent;
-    // shrink long names so they stay on the fascia
-    const fit = () => signs.forEach(({ el, text }) => {
-      el.style.setProperty('--sign-fit', 1);
-      const room = el.clientWidth * 0.94, w = text.scrollWidth;
-      if (room && w > room) el.style.setProperty('--sign-fit', (room / w).toFixed(3));
-    });
-    fit();
-    window.addEventListener('resize', fit, { passive: true });
-    let t;
-    input.addEventListener('input', () => {
-      clearTimeout(t);
-      signs.forEach(s => s.el.classList.add('is-swapping'));
-      t = setTimeout(() => {
-        signs.forEach(s => { s.text.textContent = input.value.trim() || fallback; });
-        fit();
-        signs.forEach(s => s.el.classList.remove('is-swapping'));
-      }, 180);
-    });
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = input.value.trim();
-      const msg = document.getElementById('message');
-      if (name && msg && !msg.value) msg.value = 'Uzņēmums: ' + name + '\n';
-      const contact = document.getElementById('contact');
-      if (contact) contact.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-      setTimeout(() => { const f = document.getElementById('name'); if (f) f.focus({ preventScroll: true }); }, reduce ? 0 : 700);
-    });
-  }
+  if (!form || !input || !signs.length) return;
+  const fallback = signs[0].text.textContent;
+  // shrink long names so they stay on the fascia
+  const fit = () => signs.forEach(({ el, text }) => {
+    el.style.setProperty('--sign-fit', 1);
+    const room = el.clientWidth * 0.94, w = text.scrollWidth;
+    if (room && w > room) el.style.setProperty('--sign-fit', (room / w).toFixed(3));
+  });
+  fit();
+  window.addEventListener('resize', fit, { passive: true });
+  let t;
+  input.addEventListener('input', () => {
+    clearTimeout(t);
+    signs.forEach(s => s.el.classList.add('is-swapping'));
+    t = setTimeout(() => {
+      signs.forEach(s => { s.text.textContent = input.value.trim() || fallback; });
+      fit();
+      signs.forEach(s => s.el.classList.remove('is-swapping'));
+    }, 180);
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = input.value.trim();
+    const msg = document.getElementById('message');
+    if (name && msg && !msg.value) msg.value = 'Uzņēmums: ' + name + '\n';
+    const contact = document.getElementById('contact');
+    if (contact) contact.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    setTimeout(() => { const f = document.getElementById('name'); if (f) f.focus({ preventScroll: true }); }, reduce ? 0 : 700);
+  });
 })();
