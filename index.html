@@ -105,6 +105,7 @@
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/services.css" />
+  <link rel="stylesheet" href="css/offers.css" />
   <link rel="stylesheet" href="css/packages.css" />
   <link rel="stylesheet" href="css/portfolio.css" />
   <link rel="stylesheet" href="css/trust.css" />
@@ -122,7 +123,7 @@
     <div class="container nav__inner">
       <a href="#" class="nav__logo"><span>V</span>digital.</a>
       <nav class="nav__links">
-        <a href="#services">Pakalpojumi</a>
+        <a href="#offers">Pakalpojumi</a>
         <a href="#packages">Cenas</a>
         <a href="#work">Darbi</a>
         <a href="/video">Video</a>
@@ -140,7 +141,7 @@
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#services" class="mobile-menu__link">Pakalpojumi</a>
+    <a href="#offers" class="mobile-menu__link">Pakalpojumi</a>
     <a href="#packages" class="mobile-menu__link">Cenas</a>
     <a href="#work" class="mobile-menu__link">Darbi</a>
     <a href="/video" class="mobile-menu__link">Video</a>
@@ -150,54 +151,36 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero__bg-grid"></div>
-    <canvas id="hero-particles"></canvas>
-    <div class="hero__spotlight"></div>
-    <div class="hero__glow hero__glow--1"></div>
-    <div class="hero__glow hero__glow--2"></div>
+  <section class="hero hero--film" id="hero">
+    <div class="hero__film" aria-hidden="true">
+      <video class="hero__video" id="heroVideo" muted playsinline loop preload="none"
+             poster="assets/video/hero-shopwindow.jpg"
+             data-src-webm="assets/video/hero-shopwindow.webm"
+             data-src-mp4="assets/video/hero-shopwindow.mp4"></video>
+      <div class="hero__shade"></div>
+      <div class="hero__grain"></div>
+    </div>
     <div class="container">
       <div class="hero__inner">
         <div class="hero__left">
-          <div class="hero__badge">✦ Mājas lapas Latvijas uzņēmumiem</div>
+          <div class="hero__badge">✦ Mājas lapas · Video reklāmas · Rīga</div>
           <h1 class="hero__headline">
-            <span class="hero__typewriter">Profesionāla</span> lapa<br/>
-            par saprātīgu <span class="hero__highlight">cenu</span><br/>
-            <span class="hero__highlight">bez pārsteigumiem</span>
+            Nezināt, ko reklamēt?<br/>
+            <span class="hero__highlight">Izdomāsim kopā.</span>
           </h1>
           <p class="hero__sub">
-            Mēs izstrādājam jūsu mājas lapu par vienreizēju maksu un uzturam to par fiksētu ikmēneša abonementu.
-            Jūs iegūstat modernu, ātru un profesionālu lapu — ar skaidru cenu jau no pirmās dienas.
+            No skatloga līdz telefona ekrānam: izveidojam mājas lapu, kurā jūs atrod, un īsus video, kurus noskatās līdz galam.
           </p>
           <div class="hero__actions">
-            <a href="#packages" class="btn btn--primary btn--lg">Skatīt cenas</a>
-            <a href="#work" class="btn btn--ghost btn--lg">Mūsu darbi →</a>
+            <a href="#contact" class="btn btn--primary btn--lg">Pastāstiet par savu uzņēmumu</a>
+            <a href="#offers" class="btn btn--ghost btn--lg">Ko mēs darām →</a>
           </div>
           <div class="hero__stats">
-            <div class="stat"><span class="stat__num">15+</span><span class="stat__label">Pabeigtie projekti</span></div>
+            <div class="stat"><span class="stat__num">€50</span><span class="stat__label">Lapas izstrāde</span></div>
             <div class="stat__divider"></div>
             <div class="stat"><span class="stat__num">48h</span><span class="stat__label">Pirmais makets</span></div>
             <div class="stat__divider"></div>
-            <div class="stat"><span class="stat__num">100%</span><span class="stat__label">Latvijas klienti</span></div>
-          </div>
-        </div>
-        <div class="hero__right">
-          <div class="preview-card-wrap">
-            <div class="preview-card">
-              <div class="preview-card__bar">
-                <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
-                <span class="preview-card__url" id="heroUrl">bloom-flower-shop.vercel.app</span>
-              </div>
-              <div class="preview-card__shots" id="heroShots">
-                <img class="hero-shot is-active" src="assets/portfolio/bloom.webp"     alt="" data-url="bloom-flower-shop.vercel.app" width="1200" height="1833" fetchpriority="high" />
-                <img class="hero-shot"           src="assets/portfolio/estee.webp"     alt="" data-url="estee-city-beauty.vercel.app" width="1200" height="1833" loading="lazy" />
-                <img class="hero-shot"           src="assets/portfolio/autopro.webp"   alt="" data-url="autopro-riga.vercel.app" width="1200" height="1833" loading="lazy" />
-                <img class="hero-shot"           src="assets/portfolio/tortes.webp"    alt="" data-url="tortes-namins.vercel.app" width="1200" height="1833" loading="lazy" />
-                <img class="hero-shot"           src="assets/portfolio/hairsalon.webp" alt="" data-url="hair-salon-webpage.vercel.app" width="1200" height="1833" loading="lazy" />
-                <img class="hero-shot"           src="assets/portfolio/samanta.webp"   alt="" data-url="samantina.vercel.app" width="1200" height="1833" loading="lazy" />
-              </div>
-              <span class="preview-card__badge">⚡ 90+ PageSpeed</span>
-            </div>
+            <div class="stat"><span class="stat__num">3 d.</span><span class="stat__label">Video reklāma</span></div>
           </div>
         </div>
       </div>
@@ -208,29 +191,76 @@
   <div class="marquee-wrap">
     <div class="marquee">
       <span>Mājas lapas</span><span class="sep">✦</span>
+      <span>Video reklāmas</span><span class="sep">✦</span>
+      <span>Reels un TikTok</span><span class="sep">✦</span>
       <span>E-komercija</span><span class="sep">✦</span>
+      <span>Montāža</span><span class="sep">✦</span>
       <span>SEO optimizācija</span><span class="sep">✦</span>
       <span>Mobilais dizains</span><span class="sep">✦</span>
-      <span>Ātruma optimizācija</span><span class="sep">✦</span>
-      <span>Google Analytics</span><span class="sep">✦</span>
-      <span>Satura atjaunināšana</span><span class="sep">✦</span>
-      <span>Tehniskais atbalsts</span><span class="sep">✦</span>
+      <span>Automatizācija</span><span class="sep">✦</span>
       <span>Mājas lapas</span><span class="sep">✦</span>
+      <span>Video reklāmas</span><span class="sep">✦</span>
+      <span>Reels un TikTok</span><span class="sep">✦</span>
       <span>E-komercija</span><span class="sep">✦</span>
+      <span>Montāža</span><span class="sep">✦</span>
       <span>SEO optimizācija</span><span class="sep">✦</span>
       <span>Mobilais dizains</span><span class="sep">✦</span>
-      <span>Ātruma optimizācija</span><span class="sep">✦</span>
-      <span>Google Analytics</span><span class="sep">✦</span>
-      <span>Satura atjaunināšana</span><span class="sep">✦</span>
-      <span>Tehniskais atbalsts</span><span class="sep">✦</span>
+      <span>Automatizācija</span><span class="sep">✦</span>
     </div>
   </div>
+
+  <!-- OFFERS (film loops) -->
+  <section class="section offers" id="offers">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Trīs lietas, ko darām labi</div>
+        <h2 class="section-title">Lapa, kas strādā.<br/>Video, ko noskatās.</h2>
+        <p class="section-sub">Var ņemt vienu, var visu kopā. Jebkurā gadījumā sākam ar sarunu par jūsu uzņēmumu, nevis ar cenrādi.</p>
+      </div>
+      <div class="offers__grid">
+        <article class="offer-film">
+          <div class="offer-film__media">
+            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-site.jpg" data-src="assets/video/offer-site.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="offer-film__body">
+            <span class="offer-film__num">01</span>
+            <h3>Mājas lapas</h3>
+            <p>No skices līdz lapai telefonā. Ātra, mobilā, ar hostingu un atbalstu latviešu valodā.</p>
+            <a href="#packages" class="offer-film__price">No €50 + €39/mēn →</a>
+          </div>
+        </article>
+        <article class="offer-film">
+          <div class="offer-film__media">
+            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-ad.jpg" data-src="assets/video/offer-ad.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="offer-film__body">
+            <span class="offer-film__num">02</span>
+            <h3>Video reklāmas</h3>
+            <p>Īsas reklāmas Reels, TikTok un Facebook. Izdomājam ideju, uzņemam vai ģenerējam, samontējam.</p>
+            <a href="/video" class="offer-film__price">Skatīt piemērus →</a>
+          </div>
+        </article>
+        <article class="offer-film">
+          <div class="offer-film__media">
+            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-edit.jpg" data-src="assets/video/offer-edit.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="offer-film__body">
+            <span class="offer-film__num">03</span>
+            <h3>Montāža un īsie video</h3>
+            <p>Jūsu filmētais materiāls kļūst par vertikāliem klipiem ar subtitriem, ritmu un mūziku.</p>
+            <a href="#contact" class="offer-film__price">Pajautāt cenu →</a>
+          </div>
+        </article>
+      </div>
+      <p class="offers__extra">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
+    </div>
+  </section>
 
   <!-- SERVICES -->
   <section class="section services" id="services">
     <div class="container">
       <div class="section-header">
-        <div class="section-badge">Ko mēs darām</div>
+        <div class="section-badge">Mājas lapas sīkāk</div>
         <h2 class="section-title">Viss vienā vietā —<br/>no izstrādes līdz uzturēšanai</h2>
         <p class="section-sub">Vienreizēja izstrādes maksa — tad viens fiksēts ikmēneša abonements. Skaidri, godīgi, bez slēptām izmaksām.</p>
       </div>
@@ -522,7 +552,7 @@
         <p>Jūsu biznesa digitālā identitāte sākas šeit.</p>
       </div>
       <div class="footer__links">
-        <a href="#services">Pakalpojumi</a>
+        <a href="#offers">Pakalpojumi</a>
         <a href="#packages">Cenas</a>
         <a href="#work">Darbi</a>
         <a href="/kapec">Kāpēc mājaslapa?</a>
@@ -557,8 +587,8 @@
 
   <script src="js/theme.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/particles.js"></script>
   <script src="js/hero.js"></script>
+  <script src="js/offers.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/portfolio.js"></script>
   <script src="js/contact.js"></script>

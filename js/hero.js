@@ -1,76 +1,32 @@
-// HERO — spotlight, typewriter, glitch, stats counter
+// HERO — background film (lazy, light on mobile)
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function initHeroFilm() {
+  const v = document.getElementById('heroVideo');
+  if (!v) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const conn = navigator.connection || {};
+  const saveData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+  if (reduce || saveData) return; // poster image only
 
-// Spotlight
-const heroEl = document.querySelector('.hero');
-const spotlight = document.querySelector('.hero__spotlight');
-if (heroEl && spotlight) {
-  heroEl.addEventListener('mousemove', e => {
-    const rect = heroEl.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    heroEl.style.setProperty('--mx', x + '%');
-    heroEl.style.setProperty('--my', y + '%');
-  });
-}
-
-// Typewriter
-(function initTypewriter() {
-  const el = document.querySelector('.hero__typewriter');
-  if (!el) return;
-  const words = ['Profesionāla','Moderna','Ātra','Efektīva'];
-  if (prefersReducedMotion) { el.textContent = words[0]; return; }
-  let wi = 0, ci = 0, deleting = false;
-  function type() {
-    const word = words[wi];
-    if (!deleting) {
-      el.textContent = word.slice(0, ++ci);
-      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
-      setTimeout(type, 68);
-    } else {
-      el.textContent = word.slice(0, --ci);
-      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(type, 300); return; }
-      setTimeout(type, 38);
-    }
+  function load() {
+    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([k, type]) => {
+      const src = v.dataset['src' + k[0].toUpperCase() + k.slice(1)];
+      if (!src) return;
+      const s = document.createElement('source');
+      s.src = src; s.type = type; v.appendChild(s);
+    });
+    v.load();
+    v.addEventListener('canplay', () => { v.classList.add('is-ready'); }, { once: true });
+    const p = v.play(); if (p && p.catch) p.catch(() => {});
   }
-  type();
-})();
+  // let the page paint first, then pull the video
+  if (document.readyState === 'complete') setTimeout(load, 300);
+  else window.addEventListener('load', () => setTimeout(load, 300), { once: true });
 
-// Hero preview — rotate real portfolio screenshots + matching URL
-(function initHeroRotator() {
-  const shots = [...document.querySelectorAll('.hero-shot')];
-  const urlEl = document.getElementById('heroUrl');
-  if (shots.length < 2 || prefersReducedMotion) return;
-  let i = 0;
-  setInterval(() => {
-    shots[i].classList.remove('is-active');
-    i = (i + 1) % shots.length;
-    shots[i].classList.add('is-active');
-    if (urlEl) urlEl.textContent = shots[i].dataset.url;
-  }, 3400);
+  // pause when hero is off-screen
+  new IntersectionObserver(([e]) => {
+    if (!v.currentSrc) return;
+    if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    else v.pause();
+  }, { threshold: 0.05 }).observe(v);
 })();
-
-// Stats counter
-function animateCounter(el, target, suffix = '') {
-  if (prefersReducedMotion) { el.textContent = parseFloat(target) + suffix; return; }
-  const duration = 1400, start = performance.now();
-  const update = time => {
-    const p = Math.min((time - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(eased * parseFloat(target)) + suffix;
-    if (p < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-}
-const sio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const nums = e.target.querySelectorAll('.stat__num');
-      [{val:15,s:'+'},{val:48,s:'h'},{val:100,s:'%'}].forEach(({val,s},i) => { if (nums[i]) animateCounter(nums[i], val, s); });
-      sio.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-const heroStats = document.querySelector('.hero__stats');
-if (heroStats) sio.observe(heroStats);
