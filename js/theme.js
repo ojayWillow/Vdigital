@@ -11,8 +11,8 @@ function applyTheme(theme) {
   const nav = document.getElementById('nav');
   if (nav) {
     nav.style.background = window.scrollY > 40
-      ? (theme === 'dark' ? 'rgba(8,9,13,0.97)' : 'rgba(255,255,255,0.98)')
-      : (theme === 'dark' ? 'rgba(8,9,13,0.8)'  : 'rgba(255,255,255,0.85)');
+      ? (theme === 'dark' ? 'rgba(11,10,8,0.97)' : 'rgba(255,255,255,0.98)')
+      : (theme === 'dark' ? 'rgba(11,10,8,0.8)'  : 'rgba(255,255,255,0.85)');
   }
 }
 
