@@ -1,0 +1,67 @@
+/* =============================================
+   VDIGITAL IELA — one night street, one shop window per service.
+   Desktop: section pins and the street slides sideways as you scroll.
+   Phones / reduced motion: plain vertical list.
+   ============================================= */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.street { background: #0b0a08; color: #f3ede3; padding: 110px 0 80px; position: relative; }
+.street .section-title { color: #f3ede3; max-width: 900px; }
+.street .section-title em { font-style: italic; color: #f0c987; }
+.street__intro { margin-bottom: 56px; }
+
+.street__pin { position: relative; overflow-x: clip; }
+.street__track {
+  display: flex; gap: 6vw; align-items: center;
+  padding: 0 max(24px, calc((100vw - 1200px) / 2));
+  will-change: transform;
+}
+.shop { flex: 0 0 auto; width: min(72vw, calc((100vh - 340px) * 16 / 9)); }
+.shop__window {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(240,201,135,0.12), 0 40px 120px -30px rgba(217,164,65,0.25);
+}
+.shop__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shop__plate { display: grid; grid-template-columns: 210px 1fr; gap: 6px 32px; padding-top: 22px; align-items: baseline; }
+.shop__no { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: #f0c987; grid-row: span 3; padding-top: 10px; }
+.shop h3 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.8rem, 2.6vw, 2.5rem); line-height: 1.05; color: #f3ede3; }
+.shop p { color: rgba(243,237,227,0.7); font-size: 0.98rem; line-height: 1.6; max-width: 560px; }
+.shop__link { color: #f0c987; font-weight: 600; width: fit-content; }
+.shop__link:hover { text-decoration: underline; }
+
+/* Nr. 4 — the visitor's own sign */
+.shop__sign {
+  position: absolute; left: var(--sign-x, 30%); top: var(--sign-y, 10%);
+  width: var(--sign-w, 40%); height: var(--sign-h, 12%);
+  display: flex; align-items: center; justify-content: center; pointer-events: none;
+  transform: perspective(900px) rotateY(var(--sign-ry, 0deg));
+}
+.shop__sign span {
+  font-family: var(--font-serif); font-size: clamp(1rem, 2.4vw, 2.2rem); line-height: 1;
+  color: #2a1d0e; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 92%;
+  text-shadow: 0 1px 0 rgba(255,240,210,0.35);
+  mix-blend-mode: multiply; opacity: 0.92;
+  transition: opacity 0.4s ease;
+}
+.shop__sign.is-swapping span { opacity: 0; }
+.shop__form { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.shop__form input {
+  flex: 1 1 220px; background: rgba(243,237,227,0.06); border: 1px solid rgba(243,237,227,0.18);
+  color: #f3ede3; border-radius: 999px; padding: 12px 18px; font: inherit; font-size: 0.95rem;
+}
+.shop__form input:focus { outline: none; border-color: #d9a441; }
+
+.street__extra { margin-top: 64px; color: rgba(243,237,227,0.6); font-size: 0.95rem; }
+.street__extra a { color: #f0c987; font-weight: 600; }
+
+/* Pinned horizontal walk — only when JS says so (desktop, motion allowed) */
+.street.is-walk .street__track { position: sticky; top: 68px; height: calc(100vh - 68px); }
+
+@media (max-width: 900px) {
+  .street { padding: 72px 0 56px; }
+  .street__track { flex-direction: column; gap: 56px; padding: 0 16px; }
+  .shop { width: 100%; }
+  .shop__plate { grid-template-columns: 1fr; gap: 8px; }
+  .shop__no { grid-row: auto; padding-top: 0; }
+}

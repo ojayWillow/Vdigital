@@ -105,7 +105,7 @@
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/services.css" />
-  <link rel="stylesheet" href="css/offers.css" />
+  <link rel="stylesheet" href="css/street.css" />
   <link rel="stylesheet" href="css/packages.css" />
   <link rel="stylesheet" href="css/portfolio.css" />
   <link rel="stylesheet" href="css/trust.css" />
@@ -188,73 +188,71 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee">
-      <span>Mājas lapas</span><span class="sep">✦</span>
-      <span>Video reklāmas</span><span class="sep">✦</span>
-      <span>Reels un TikTok</span><span class="sep">✦</span>
-      <span>E-komercija</span><span class="sep">✦</span>
-      <span>Montāža</span><span class="sep">✦</span>
-      <span>SEO optimizācija</span><span class="sep">✦</span>
-      <span>Mobilais dizains</span><span class="sep">✦</span>
-      <span>Automatizācija</span><span class="sep">✦</span>
-      <span>Mājas lapas</span><span class="sep">✦</span>
-      <span>Video reklāmas</span><span class="sep">✦</span>
-      <span>Reels un TikTok</span><span class="sep">✦</span>
-      <span>E-komercija</span><span class="sep">✦</span>
-      <span>Montāža</span><span class="sep">✦</span>
-      <span>SEO optimizācija</span><span class="sep">✦</span>
-      <span>Mobilais dizains</span><span class="sep">✦</span>
-      <span>Automatizācija</span><span class="sep">✦</span>
+  <!-- VDIGITAL IELA — one street, one shop window per service -->
+  <section class="street" id="offers" aria-label="Ko mēs darām">
+    <div class="street__intro container">
+      <div class="section-badge">Vdigital iela</div>
+      <h2 class="section-title">Pastaigājiet pa mūsu ielu.<br/><em>Katrs skatlogs ir viens pakalpojums.</em></h2>
     </div>
-  </div>
+    <div class="street__pin">
+      <div class="street__track" id="streetTrack">
 
-  <!-- OFFERS (film loops) -->
-  <section class="section offers" id="offers">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Trīs lietas, ko darām labi</div>
-        <h2 class="section-title">Lapa, kas strādā.<br/>Video, ko noskatās.</h2>
-        <p class="section-sub">Var ņemt vienu, var visu kopā. Jebkurā gadījumā sākam ar sarunu par jūsu uzņēmumu, nevis ar cenrādi.</p>
+        <article class="shop">
+          <div class="shop__window">
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/hero-shopwindow.jpg" data-src="assets/video/hero-shopwindow.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="shop__plate">
+            <span class="shop__no">Nr. 1 · Maiznīca</span>
+            <h3>Mājas lapa, kurā jūs atrod.</h3>
+            <p>Ātra lapa telefonā, ar jūsu bildēm un tekstu. Hostings, atbalsts un izmaiņas jau iekļautas.</p>
+            <a href="#packages" class="shop__link">No €50 + €39/mēn. →</a>
+          </div>
+        </article>
+
+        <article class="shop">
+          <div class="shop__window">
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="shop__plate">
+            <span class="shop__no">Nr. 2 · Frizētava</span>
+            <h3>Reklāma, ko noskatās līdz galam.</h3>
+            <p>Izdomājam, ko par jums pastāstīt, un uztaisām īsu video Reels, TikTok un Facebook. Filmējam vai ģenerējam, samontējam, saliekam subtitrus.</p>
+            <a href="/video" class="shop__link">Skatīt piemērus →</a>
+          </div>
+        </article>
+
+        <article class="shop">
+          <div class="shop__window">
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" aria-hidden="true"></video>
+          </div>
+          <div class="shop__plate">
+            <span class="shop__no">Nr. 3 · Riepu serviss</span>
+            <h3>Jūsu video, sakārtots.</h3>
+            <p>Atsūtiet telefonā filmēto. Mēs to pārvēršam vertikālos klipos ar ritmu, subtitriem un mūziku.</p>
+            <a href="#contact" class="shop__link">Pajautāt cenu →</a>
+          </div>
+        </article>
+
+        <article class="shop shop--yours">
+          <div class="shop__window">
+            <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-4.jpg" data-src="assets/video/street-4.mp4" aria-hidden="true"></video>
+            <div class="shop__sign" id="shopSign" aria-live="polite"><span id="shopSignText">Jūsu uzņēmums</span></div>
+          </div>
+          <div class="shop__plate">
+            <span class="shop__no">Nr. 4 · Brīvs</span>
+            <h3>Šis skatlogs ir jūsu.</h3>
+            <p>Ierakstiet sava uzņēmuma nosaukumu un paskatieties, kā tas izskatās uz mūsu ielas.</p>
+            <form class="shop__form" id="shopForm" autocomplete="off">
+              <label class="visually-hidden" for="shopName">Uzņēmuma nosaukums</label>
+              <input id="shopName" type="text" maxlength="28" placeholder="Piem., Kafejnīca Liepa" />
+              <button type="submit" class="btn btn--primary">Sākam →</button>
+            </form>
+          </div>
+        </article>
+
       </div>
-      <div class="offers__grid">
-        <article class="offer-film">
-          <div class="offer-film__media">
-            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-site.jpg" data-src="assets/video/offer-site.mp4" aria-hidden="true"></video>
-          </div>
-          <div class="offer-film__body">
-            <span class="offer-film__num">01</span>
-            <h3>Mājas lapas</h3>
-            <p>No skices līdz lapai telefonā. Ātra, mobilā, ar hostingu un atbalstu latviešu valodā.</p>
-            <a href="#packages" class="offer-film__price">No €50 + €39/mēn →</a>
-          </div>
-        </article>
-        <article class="offer-film">
-          <div class="offer-film__media">
-            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-ad.jpg" data-src="assets/video/offer-ad.mp4" aria-hidden="true"></video>
-          </div>
-          <div class="offer-film__body">
-            <span class="offer-film__num">02</span>
-            <h3>Video reklāmas</h3>
-            <p>Īsas reklāmas Reels, TikTok un Facebook. Izdomājam ideju, uzņemam vai ģenerējam, samontējam.</p>
-            <a href="/video" class="offer-film__price">Skatīt piemērus →</a>
-          </div>
-        </article>
-        <article class="offer-film">
-          <div class="offer-film__media">
-            <video class="offer-film__video" muted playsinline loop preload="none" poster="assets/video/offer-edit.jpg" data-src="assets/video/offer-edit.mp4" aria-hidden="true"></video>
-          </div>
-          <div class="offer-film__body">
-            <span class="offer-film__num">03</span>
-            <h3>Montāža un īsie video</h3>
-            <p>Jūsu filmētais materiāls kļūst par vertikāliem klipiem ar subtitriem, ritmu un mūziku.</p>
-            <a href="#contact" class="offer-film__price">Pajautāt cenu →</a>
-          </div>
-        </article>
-      </div>
-      <p class="offers__extra">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
     </div>
+    <p class="street__extra container">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
   </section>
 
   <!-- SERVICES -->
@@ -589,7 +587,7 @@
   <script src="js/theme.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/hero.js"></script>
-  <script src="js/offers.js"></script>
+  <script src="js/street.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/portfolio.js"></script>
   <script src="js/contact.js"></script>
