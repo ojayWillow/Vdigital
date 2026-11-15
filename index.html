@@ -191,14 +191,21 @@
       <h2 class="section-title">Pastaigājiet pa mūsu ielu.<br/><em>Katrs skatlogs ir viens pakalpojums.</em></h2>
     </div>
     <div class="street__pin">
+     <div class="street__stage">
+      <div class="street__rain" aria-hidden="true"><i></i></div>
       <div class="street__track" id="streetTrack">
+
+        <div class="street__corner" aria-hidden="true">
+          <div class="plate"><span class="plate__name">Vdigital iela</span><span class="plate__sub">1 – 4 · Rīga</span></div>
+          <p class="street__hint">Ritiniet, lai ietu pa ielu <span>→</span></p>
+        </div>
 
         <article class="shop">
           <div class="shop__window">
             <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" aria-hidden="true"></video>
           </div>
           <div class="shop__plate">
-            <span class="shop__no">Nr. 1 · Maiznīca</span>
+            <span class="shop__no"><b class="house">1</b>Maiznīca</span>
             <h3>Mājas lapa, kurā jūs atrod.</h3>
             <p>Ātra lapa telefonā, ar jūsu bildēm un tekstu. Hostings, atbalsts un izmaiņas jau iekļautas.</p>
             <a href="#packages" class="shop__link">No €50 + €39/mēn. →</a>
@@ -210,7 +217,7 @@
             <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" aria-hidden="true"></video>
           </div>
           <div class="shop__plate">
-            <span class="shop__no">Nr. 2 · Frizētava</span>
+            <span class="shop__no"><b class="house">2</b>Frizētava</span>
             <h3>Reklāma, ko noskatās līdz galam.</h3>
             <p>Izdomājam, ko par jums pastāstīt, un uztaisām īsu video Reels, TikTok un Facebook. Filmējam vai ģenerējam, samontējam, saliekam subtitrus.</p>
             <a href="/video" class="shop__link">Skatīt piemērus →</a>
@@ -222,7 +229,7 @@
             <video class="shop__video" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" aria-hidden="true"></video>
           </div>
           <div class="shop__plate">
-            <span class="shop__no">Nr. 3 · Riepu serviss</span>
+            <span class="shop__no"><b class="house">3</b>Riepu serviss</span>
             <h3>Jūsu video, sakārtots.</h3>
             <p>Atsūtiet telefonā filmēto. Mēs to pārvēršam vertikālos klipos ar ritmu, subtitriem un mūziku.</p>
             <a href="#contact" class="shop__link">Pajautāt cenu →</a>
@@ -237,7 +244,7 @@
             </div>
           </div>
           <div class="shop__plate">
-            <span class="shop__no">Nr. 4 · Brīvs</span>
+            <span class="shop__no"><b class="house">4</b>Brīvs</span>
             <h3>Šis skatlogs ir jūsu.</h3>
             <p>Ierakstiet sava uzņēmuma nosaukumu un paskatieties, kā tas izskatās uz mūsu ielas.</p>
             <form class="shop__form" id="shopForm" autocomplete="off">
@@ -249,6 +256,14 @@
         </article>
 
       </div>
+      <nav class="street__map" aria-label="Ielas karte">
+        <span class="street__line"><i></i></span>
+        <button type="button" data-stop="0"><b>1</b><span>Maiznīca</span></button>
+        <button type="button" data-stop="1"><b>2</b><span>Frizētava</span></button>
+        <button type="button" data-stop="2"><b>3</b><span>Riepu serviss</span></button>
+        <button type="button" data-stop="3"><b>4</b><span>Brīvs</span></button>
+      </nav>
+     </div>
     </div>
     <p class="street__extra container">Vajag kaut ko automatizēt, piemēram, rēķinus, tabulas vai atskaites? Rakstām arī Python skriptus. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
   </section>
