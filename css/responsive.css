@@ -36,8 +36,9 @@
   .hero__badge { font-size: 0.68rem; padding: 5px 12px; }
   .hero__headline { font-size: clamp(1.75rem, 8.5vw, 2.6rem); }
   .hero__sub { font-size: 0.92rem; max-width: 100%; }
-  .hero__actions { flex-direction: column; gap: 10px; }
-  .hero__actions .btn { width: 100%; justify-content: center; font-size: 0.95rem; }
+  .hero__actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+  .btn--lg { padding: 11px 18px; font-size: 0.85rem; }
+  .hero__actions .btn--ghost { padding-left: 6px; padding-right: 6px; border-color: transparent; background: none; }
   .hero__stats { flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); padding-top: 16px; }
   .hero__stats .stat { flex: 1 1 calc(33% - 1px); text-align: center; padding: 8px 4px; }
   .hero__stats .stat__num { font-size: 1.35rem; }
@@ -84,8 +85,7 @@
 
   .vid-hero { padding: 104px 0 48px; }
   .vid-hero p { font-size: 0.98rem; }
-  .vid-hero__actions { flex-direction: column; }
-  .vid-hero__actions .btn { width: 100%; }
+  .vid-hero__actions { gap: 10px; }
   .vid-do { grid-template-columns: 1fr; margin-top: 32px; }
   .reels { grid-template-columns: repeat(3, 72%); overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 8px; }
   .reels--pair { grid-template-columns: repeat(2, 72%); margin-top: 32px; }
@@ -102,7 +102,6 @@
   .price-num { font-size: 1.7rem; }
   .preview-card-wrap { max-width: 100%; }
   .cta-banner__inner h2 { font-size: clamp(1.4rem, 8vw, 1.8rem); }
-  .btn--lg { padding: 13px 24px; font-size: 0.95rem; }
 }
 
 /* ── Reduced motion — respect the user's OS preference ── */

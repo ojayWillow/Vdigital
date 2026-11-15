@@ -168,7 +168,6 @@
   .finale .shop__scene { transform: scale(1.7); transform-origin: 55% 32%; }
   .finale__shade { background: linear-gradient(to bottom, #0b0a08 0%, rgba(11,10,8,0) 18%, rgba(11,10,8,0) 80%, #0b0a08 100%); }
   .finale__copy { position: static; padding: 28px 16px 84px; }
-  .finale .btn { width: 100%; justify-content: center; }
   #cookie-banner { left: 10px; right: 76px; max-width: none; }
   .whatsapp-float { right: 14px; bottom: 14px; }
 }
