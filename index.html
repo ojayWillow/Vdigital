@@ -147,11 +147,12 @@
     <div class="hero__film" aria-hidden="true">
       <div class="hero__frame">
         <video class="hero__video" id="heroVideo" muted autoplay playsinline loop preload="auto" poster="assets/video/hero-flat.jpg"></video>
-        <!-- start the reel while the page is still parsing: 1080p on anything wider than 1280 device pixels, 720p otherwise -->
+        <!-- start the reel while the page is still parsing: 2K above 1920 device pixels, 1080p above 1280, 720p otherwise -->
         <script>(function (v) {
           var c = navigator.connection || {};
           if (matchMedia('(prefers-reduced-motion: reduce)').matches || c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
-          var base = 'assets/video/hero-flat' + (innerWidth * (devicePixelRatio || 1) > 1280 ? '-hd' : '');
+          var px = innerWidth * (devicePixelRatio || 1);
+          var base = 'assets/video/hero-flat' + (px > 1920 ? '-2k' : px > 1280 ? '-hd' : '');
           [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (f) { var s = document.createElement('source'); s.src = base + '.' + f[0]; s.type = f[1]; v.appendChild(s); });
           v.load();
         })(document.getElementById('heroVideo'));</script>
@@ -196,7 +197,7 @@
     <div class="showreel__deck">
       <div class="showreel__screen" id="reelScreen">
         <video class="showreel__clip is-on" muted playsinline loop preload="none" poster="assets/video/street-2.jpg" data-src="assets/video/street-2.mp4" data-src-hd="assets/video/street-2-hd.mp4" data-dur="4.958" data-out="4.05" aria-hidden="true"></video>
-        <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" data-src-hd="assets/video/street-3-hd.mp4" data-dur="4.583" data-out="4.56" aria-hidden="true"></video>
+        <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/street-3.jpg" data-src="assets/video/street-3.mp4" data-src-hd="assets/video/street-3-hd.mp4" data-dur="4.042" data-out="4.00" aria-hidden="true"></video>
         <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/ad-bottle.jpg" data-src="assets/video/ad-bottle.mp4" data-dur="4.208" data-out="4.20" aria-hidden="true"></video>
         <video class="showreel__clip" muted playsinline loop preload="none" poster="assets/video/street-1.jpg" data-src="assets/video/street-1.mp4" data-src-hd="assets/video/street-1-hd.mp4" data-dur="4.958" data-out="4.05" aria-hidden="true"></video>
         <div class="showreel__shade" aria-hidden="true"></div>
