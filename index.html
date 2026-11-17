@@ -147,13 +147,14 @@
     <div class="hero__film" aria-hidden="true">
       <div class="hero__frame">
         <video class="hero__video" id="heroVideo" muted autoplay playsinline loop preload="auto" poster="assets/video/hero-flat.jpg"></video>
-        <!-- start the reel while the page is still parsing: 2K above 1920 device pixels, 1080p above 1280, 720p otherwise -->
+        <!-- start the reel while the page is still parsing: 2K above 1920 device pixels, 1080p above 1280, 720p otherwise.
+             H.264 MP4 first: Safari says it plays WebM but can't decode these VP9 4:4:4 files, so it stalled on the poster -->
         <script>(function (v) {
           var c = navigator.connection || {};
           if (matchMedia('(prefers-reduced-motion: reduce)').matches || c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
           var px = innerWidth * (devicePixelRatio || 1);
           var base = 'assets/video/hero-flat' + (px > 1920 ? '-2k' : px > 1280 ? '-hd' : '');
-          [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (f) { var s = document.createElement('source'); s.src = base + '.' + f[0]; s.type = f[1]; v.appendChild(s); });
+          [['mp4', 'video/mp4'], ['webm', 'video/webm']].forEach(function (f) { var s = document.createElement('source'); s.src = base + '.' + f[0]; s.type = f[1]; v.appendChild(s); });
           v.load();
         })(document.getElementById('heroVideo'));</script>
       </div>

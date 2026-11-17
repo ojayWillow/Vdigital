@@ -8,5 +8,8 @@
   if (v.readyState >= 2) show(); else v.addEventListener('loadeddata', show, { once: true });
   const play = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
   play();
+  // iPhone Low Power Mode blocks autoplay: start the reel on the first touch instead of leaving the poster up
+  const kick = () => { if (v.paused) play(); };
+  ['touchstart', 'scroll'].forEach(ev => window.addEventListener(ev, kick, { once: true, passive: true }));
   new IntersectionObserver(([e]) => { if (e.isIntersecting) play(); else v.pause(); }, { threshold: 0.05 }).observe(v);
 })();
