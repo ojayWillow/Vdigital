@@ -1,26 +1,27 @@
 /* =============================================
    BRAND — editorial type layer (rebrand 2026-11)
-   Serif for big statements, sans for reading, mono for labels.
+   Onest for headlines, Instrument Sans for reading, mono for labels.
    ============================================= */
 :root {
   --font-body: 'Instrument Sans', system-ui, sans-serif;
   --font-display: 'Instrument Sans', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-head: 'Onest', 'Instrument Sans', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
-/* Big statements → serif, regular weight (the font has one weight; never fake-bold it) */
+/* Headlines → Onest semibold, upright only (the font has no italic; never fake-slant it) */
 .hero__headline, .section-title, .cta-banner__inner h2, .vid-hero h1,
 .stat__num, .price-num, .vprice__num, .offer-film h3 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
-.hero__headline { font-size: clamp(3.1rem, 6.4vw, 6.4rem); line-height: 0.98; }
-.hero__highlight { font-style: italic; }
-.section-title { font-size: clamp(2.3rem, 4.6vw, 3.6rem); line-height: 1.05; }
-.offer-film h3 { font-size: 1.9rem; line-height: 1.05; }
-.stat__num { font-size: 2.1rem; }
+.hero__headline { font-size: clamp(2.25rem, 4.2vw, 4rem); line-height: 1.1; }
+.hero__highlight, .hero__headline em, .section-title em, .ed-title em, .promise em { font-style: normal; }
+.section-title { font-size: clamp(1.8rem, 3.4vw, 2.75rem); line-height: 1.12; }
+.offer-film h3 { font-size: 1.5rem; line-height: 1.15; }
+.stat__num { font-size: 1.5rem; letter-spacing: -0.02em; }
+@media (max-width: 768px) { .hero__stats .stat__num { font-size: 1.15rem; } }
 
 /* Labels → mono, quiet, no pills */
 .section-badge, .hero__badge, .offer-film__num, .work-card__tag, .package-card__tier, .marquee span {
