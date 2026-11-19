@@ -1,0 +1,86 @@
+/* =============================================
+   WORK — one swipeable strip of our videos under the hero.
+   Every slide shares one height; 9:16 and 16:9 frames keep their shape.
+   The strip starts on the container's left edge and bleeds off the right.
+   ============================================= */
+.ed-work { --slide-h: clamp(380px, 40vw, 560px); --gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); overflow: hidden; }
+
+.work__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 56px; }
+.work__nav { display: flex; align-items: center; gap: 12px; flex: none; }
+.work__count { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--text-muted); margin-right: 12px; }
+.work__count b { color: var(--accent); font-weight: 500; }
+.work__arrow {
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: none; color: var(--text); border: 1px solid var(--line-strong);
+  transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.work__arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-2); }
+.work__arrow:disabled { opacity: 0.3; cursor: default; }
+
+.work__track {
+  display: flex; gap: 28px; align-items: flex-start;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 0 var(--gutter) 8px; scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+.work__track::-webkit-scrollbar { display: none; }
+.work__track:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+.slide { flex: none; margin: 0; scroll-snap-align: start; display: grid; gap: 16px; }
+.slide__frame {
+  position: relative; height: var(--slide-h); overflow: hidden; border-radius: 4px; background: #000; cursor: pointer;
+  box-shadow: 0 0 0 1px var(--line), 0 50px 100px -50px rgba(0,0,0,0.9);
+  transition: box-shadow 0.4s ease, opacity 0.5s var(--ease);
+}
+.slide--v .slide__frame { aspect-ratio: 9 / 16; }
+.slide--h .slide__frame { aspect-ratio: 16 / 9; }
+/* slides that are not in focus sit back a little */
+.js .work__track .slide:not(.is-on) .slide__frame { opacity: 0.55; }
+.slide:hover .slide__frame { opacity: 1 !important; box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
+
+.slide__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.slide__sound {
+  position: absolute; right: 14px; bottom: 14px;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.28); background: rgba(11,10,8,0.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: border-color 0.2s ease, color 0.2s ease;
+}
+.slide__sound:hover, .slide__sound[aria-pressed="true"] { border-color: #f0c987; color: #f0c987; }
+
+.slide figcaption { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; max-width: 100%; }
+.slide__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent); }
+.slide figcaption b { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: 1.15rem; letter-spacing: -0.01em; }
+
+/* last card: see everything */
+.slide--more {
+  height: var(--slide-h); aspect-ratio: 9 / 16; display: flex; align-items: flex-end;
+  border: 1px solid var(--line-strong); border-radius: 4px; padding: 28px; color: var(--text);
+  background: radial-gradient(120% 80% at 100% 0%, rgba(217,164,65,0.16), transparent 60%);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.slide__more { display: grid; gap: 6px; }
+.slide__more .ed-label { margin-bottom: 8px; }
+.slide__more b { font-family: var(--font-head); font-weight: 600; font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.05; letter-spacing: -0.02em; }
+.slide__more-arrow { margin-top: 18px; font-size: 1.8rem; color: var(--accent-2); transition: transform 0.3s var(--ease); }
+.slide--more:hover { border-color: var(--accent); background: radial-gradient(120% 80% at 100% 0%, rgba(217,164,65,0.26), transparent 60%); }
+.slide--more:hover .slide__more-arrow { transform: translateX(8px); }
+
+@media (max-width: 900px) {
+  .ed-work { --slide-h: 420px; --gutter: 24px; }
+  .work__head { margin-bottom: 36px; }
+}
+@media (max-width: 640px) {
+  .ed-work { --gutter: 16px; }
+  .work__head { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .work__track { gap: 16px; }
+  /* phones: each slide is one screen wide, frames keep their own shape */
+  .slide { width: calc(100vw - 48px); }
+  .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: 100%; }
+  .slide--v .slide__frame { width: 78%; }
+  .slide--more { width: calc(100vw - 48px); height: auto; aspect-ratio: 4 / 5; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work__track { scroll-behavior: auto; }
+  .slide__frame, .slide__more-arrow { transition: none; }
+}
