@@ -1,4 +1,4 @@
-// EDITORIAL — reveals, the MMK work film, service links → form, finale film
+// EDITORIAL — reveals, service links → form, finale film
 (function () {
   document.documentElement.classList.add('js');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -18,17 +18,6 @@
       io.unobserve(target);
     }), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(el => io.observe(el));
-  }
-
-  // 3) Work: the MMK film loads and plays only while it is on screen
-  const cv = document.querySelector('.case__video');
-  if (cv && !reduce && !saveData && hasIO) {
-    new IntersectionObserver(entries => entries.forEach(({ isIntersecting }) => {
-      if (isIntersecting) {
-        if (!cv.getAttribute('src')) cv.src = cv.dataset.src;
-        const p = cv.play(); if (p && p.catch) p.catch(() => {});
-      } else if (cv.getAttribute('src')) cv.pause();
-    }), { rootMargin: '200px 0px', threshold: 0.2 }).observe(cv);
   }
 
   // 4) Price rows pre-select the package in the contact form

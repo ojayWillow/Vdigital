@@ -109,7 +109,7 @@
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/brand.css" />
   <link rel="stylesheet" href="css/editorial.css" />
-  <link rel="stylesheet" href="css/spot.css" />
+  <link rel="stylesheet" href="css/work.css" />
 
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
 </head>
@@ -186,6 +186,75 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- WORK — one swipeable strip of our videos: client work first, then labelled samples, then "see all" -->
+  <section class="ed ed-work" id="work" aria-label="Darbi">
+    <div class="container">
+      <header class="work__head">
+        <div>
+          <span class="ed-label">Darbi</span>
+          <h2 class="ed-title">Mūsu darbi.<br/><em>Ieslēdziet skaņu.</em></h2>
+        </div>
+        <div class="work__nav">
+          <span class="work__count" aria-live="polite"><b id="workNow">01</b> / <span id="workAll">06</span></span>
+          <button type="button" class="work__arrow" id="workPrev" aria-label="Iepriekšējais darbs"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="work__arrow" id="workNext" aria-label="Nākamais darbs"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </header>
+    </div>
+    <div class="work__track" id="workTrack" tabindex="0" aria-label="Darbu slaidrāde, ritiniet uz sāniem">
+        <figure class="slide slide--v">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/casanorte.jpg" data-src="assets/video/casanorte.mp4" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
+              <span class="slide__tag">Klienta darbs</span>
+              <button type="button" class="slide__sound" aria-pressed="false">Ieslēgt skaņu</button>
+            </div>
+            <figcaption><span class="slide__no">01</span><b>CASANORTE</b><span class="slide__meta">Video reklāma · 18 s</span></figcaption>
+          </figure>
+        <figure class="slide slide--h">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/car-swap.jpg" data-src="assets/video/car-swap.mp4" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
+              <span class="slide__tag">Klienta darbs</span>
+            </div>
+            <figcaption><span class="slide__no">02</span><b>MMK riepu centrs</b><span class="slide__meta">Auto nomaiņa kadrā</span></figcaption>
+          </figure>
+        <figure class="slide slide--h">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/ad-bottle.jpg" data-src="assets/video/ad-bottle.mp4" aria-label="Stikla pudele lēni griežas studijas gaismā"></video>
+              <span class="slide__tag">Paraugs</span>
+            </div>
+            <figcaption><span class="slide__no">03</span><b>Produkts gaismā</b><span class="slide__meta">Produkta video</span></figcaption>
+          </figure>
+        <figure class="slide slide--v">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/chimney-system.jpg" data-src="assets/video/chimney-system.mp4" aria-label="Skursteņa čaulas sistēma izjauktā skatā ar detaļu nosaukumiem"></video>
+              <span class="slide__tag">Paraugs</span>
+            </div>
+            <figcaption><span class="slide__no">04</span><b>JAWAR · sistēma</b><span class="slide__meta">Produkta video no foto</span></figcaption>
+          </figure>
+        <figure class="slide slide--h">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/ad-suv.jpg" data-src="assets/video/ad-suv.mp4" aria-label="Apvidus auto naktī iebrauc kadrā pa slapju ielu"></video>
+              <span class="slide__tag">Paraugs</span>
+            </div>
+            <figcaption><span class="slide__no">05</span><b>Auto naktī</b><span class="slide__meta">Auto reklāma</span></figcaption>
+          </figure>
+        <figure class="slide slide--v">
+            <div class="slide__frame">
+              <video class="slide__video" muted loop playsinline preload="none" poster="assets/video/chimney-specs.jpg" data-src="assets/video/chimney-specs.mp4" aria-label="Produkta fakti kustīgos uzrakstos pie skursteņa T-gabala"></video>
+              <span class="slide__tag">Paraugs</span>
+            </div>
+            <figcaption><span class="slide__no">06</span><b>JAWAR · fakti</b><span class="slide__meta">Kustīgi uzraksti</span></figcaption>
+          </figure>
+        <a class="slide slide--more" href="/video#reels">
+            <span class="slide__more">
+              <span class="ed-label">Visi darbi</span>
+              <b>Skatīt visus<br/>video</b>
+              <span class="slide__more-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
     </div>
   </section>
 
@@ -289,48 +358,6 @@
         </li>
       </ol>
       <a class="ed-more" href="#contact" data-reveal>Nezināt, ar ko sākt? Parunāsim, tas ir bez maksas <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <!-- WORK — real client pieces: CASANORTE, then the MMK car swap -->
-  <section class="ed ed-work" id="work">
-    <div class="container">
-      <header class="ed-head ed-head--split" data-reveal>
-        <div>
-          <span class="ed-label">Darbi</span>
-          <h2 class="ed-title">Īsti darbi.<br/><em>Īstiem zīmoliem.</em></h2>
-        </div>
-        <p class="ed-head__aside">Pasūtīti video klientiem. Ieslēdziet skaņu.</p>
-      </header>
-
-      <!-- CASANORTE — the finished ad, sound on request -->
-      <article class="spot" id="casanorte" data-reveal>
-        <div class="spot__stage">
-          <div class="spot__frame" id="spotFrame">
-            <video class="spot__video is-on" muted loop playsinline preload="none" poster="assets/video/casanorte.jpg" data-src="assets/video/casanorte.mp4" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
-            <span class="spot__state" aria-hidden="true">9:16 · 18 s</span>
-            <button type="button" class="spot__sound" aria-pressed="false">Ieslēgt skaņu</button>
-          </div>
-        </div>
-        <div class="spot__copy">
-          <div class="spot__top"><span class="case__no">01</span><span class="case__tag">Video reklāma · 18 s · Instagram, TikTok</span></div>
-          <h3 class="spot__brand">CASANORTE</h3>
-          <a class="case__link" href="#contact">Gribu tādu savam zīmolam <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-
-      <p class="case__lede" data-reveal>Tas pats kadrs, cits auto. Filmēts pie MMK riepu centra. Nomainījām tikai auto, viss pārējais paliek, kā filmēts.</p>
-      <figure class="case" data-reveal>
-        <div class="case__frame">
-          <video class="case__video" muted loop playsinline preload="none" poster="assets/video/car-swap.jpg" data-src="assets/video/car-swap.mp4" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
-        </div>
-        <figcaption class="case__meta">
-          <span class="case__no">02</span>
-          <h3>MMK riepu centrs</h3>
-          <span class="case__tag">Video · Auto nomaiņa kadrā</span>
-          <a class="case__link" href="/video">Visi video <span aria-hidden="true">→</span></a>
-        </figcaption>
-      </figure>
     </div>
   </section>
 
@@ -439,7 +466,7 @@
   <script src="js/hero.js"></script>
   <script src="js/street.js"></script>
   <script src="js/editorial.js"></script>
-  <script src="js/spot.js"></script>
+  <script src="js/work.js"></script>
   <script src="js/contact.js"></script>
 
   <script>
