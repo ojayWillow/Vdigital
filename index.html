@@ -109,6 +109,7 @@
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/brand.css" />
   <link rel="stylesheet" href="css/editorial.css" />
+  <link rel="stylesheet" href="css/spot.css" />
 
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
 </head>
@@ -291,22 +292,40 @@
     </div>
   </section>
 
-  <!-- WORK — one real piece: the MMK shot, same frame, a different car -->
+  <!-- WORK — real client pieces: CASANORTE, then the MMK car swap -->
   <section class="ed ed-work" id="work">
     <div class="container">
       <header class="ed-head ed-head--split" data-reveal>
         <div>
           <span class="ed-label">Darbi</span>
-          <h2 class="ed-title">Tas pats kadrs.<br/><em>Cits auto.</em></h2>
+          <h2 class="ed-title">Īsti darbi.<br/><em>Īstiem zīmoliem.</em></h2>
         </div>
-        <p class="ed-head__aside">Filmēts pie MMK riepu centra. Nomainījām tikai auto, viss pārējais paliek, kā filmēts.</p>
+        <p class="ed-head__aside">Pasūtīti video klientiem. Ieslēdziet skaņu.</p>
       </header>
+
+      <!-- CASANORTE — the finished ad, sound on request -->
+      <article class="spot" id="casanorte" data-reveal>
+        <div class="spot__stage">
+          <div class="spot__frame" id="spotFrame">
+            <video class="spot__video is-on" muted loop playsinline preload="none" poster="assets/video/casanorte.jpg" data-src="assets/video/casanorte.mp4" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
+            <span class="spot__state" aria-hidden="true">9:16 · 18 s</span>
+            <button type="button" class="spot__sound" aria-pressed="false">Ieslēgt skaņu</button>
+          </div>
+        </div>
+        <div class="spot__copy">
+          <div class="spot__top"><span class="case__no">01</span><span class="case__tag">Video reklāma · 18 s · Instagram, TikTok</span></div>
+          <h3 class="spot__brand">CASANORTE</h3>
+          <a class="case__link" href="#contact">Gribu tādu savam zīmolam <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <p class="case__lede" data-reveal>Tas pats kadrs, cits auto. Filmēts pie MMK riepu centra. Nomainījām tikai auto, viss pārējais paliek, kā filmēts.</p>
       <figure class="case" data-reveal>
         <div class="case__frame">
           <video class="case__video" muted loop playsinline preload="none" poster="assets/video/car-swap.jpg" data-src="assets/video/car-swap.mp4" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
         </div>
         <figcaption class="case__meta">
-          <span class="case__no">01</span>
+          <span class="case__no">02</span>
           <h3>MMK riepu centrs</h3>
           <span class="case__tag">Video · Auto nomaiņa kadrā</span>
           <a class="case__link" href="/video">Visi video <span aria-hidden="true">→</span></a>
@@ -420,6 +439,7 @@
   <script src="js/hero.js"></script>
   <script src="js/street.js"></script>
   <script src="js/editorial.js"></script>
+  <script src="js/spot.js"></script>
   <script src="js/contact.js"></script>
 
   <script>
