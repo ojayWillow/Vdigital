@@ -7,7 +7,7 @@
 
 .showreel { background: #0b0a08; color: #f3ede3; padding: 110px 0 80px; position: relative; }
 .showreel .section-title { color: #f3ede3; max-width: 900px; }
-.showreel .section-title em { font-style: italic; color: #f0c987; }
+.showreel .section-title em { font-style: normal; color: #f0c987; }
 .showreel__head { margin-bottom: 52px; }
 
 .showreel__deck {
@@ -71,7 +71,7 @@
 .showreel__cap.is-on > :nth-child(4) { transition-delay: 0.54s; }
 .showreel__label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #f0c987; }
 .showreel__cap h3 {
-  font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.1rem, 3.8vw, 3.6rem); line-height: 1.02; letter-spacing: -0.01em;
+  font-family: var(--font-head); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.5rem); line-height: 1.12; letter-spacing: -0.025em;
   color: #f3ede3; text-shadow: 0 2px 30px rgba(0,0,0,0.35);
 }
 .showreel__cap p { color: rgba(243,237,227,0.8); font-size: 1rem; line-height: 1.6; max-width: 470px; }
@@ -145,7 +145,7 @@
   .showreel__count { left: 22px; } .showreel__tc { right: 22px; }
   .showreel__caps { grid-area: caps; align-self: start; padding: 26px 16px 0; max-width: none; }
   .showreel__cap { gap: 10px; }
-  .showreel__cap h3 { font-size: 2rem; text-shadow: none; }
+  .showreel__cap h3 { font-size: 1.5rem; text-shadow: none; }
   .showreel__cap p { font-size: 0.95rem; }
   .showreel__line { grid-template-columns: 1fr; row-gap: 6px; padding: 0 16px; margin-top: 12px; }
   .showreel__ruler span { font-size: 0.54rem; }
@@ -154,6 +154,11 @@
   .showreel__slot { height: 40px; }
   .showreel__note { justify-self: start; padding: 0 16px; margin-top: 22px; }
   .showreel__extra { margin-top: 44px; }
+}
+@media (max-width: 640px) {
+  .showreel { padding: 56px 0 48px; }
+  .showreel__head { margin-bottom: 24px; }
+  .showreel__extra { margin-top: 32px; }
 }
 @media (max-width: 520px) {
   .showreel__clips button span { font-size: 0; }
