@@ -1,7 +1,6 @@
 /* =============================================
    SPOT — the CASANORTE case in the Work section:
-   a vertical ad in a phone-sized frame with sound on request,
-   and a brief → what we did → format list.
+   a vertical ad in a phone-sized frame with sound on request, its name and a tag.
    ============================================= */
 .spot {
   display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 72px; align-items: center;
@@ -39,15 +38,11 @@
 
 /* copy */
 .spot__top { display: flex; gap: 20px; align-items: baseline; margin-bottom: 18px; }
+.spot__copy .case__link { display: inline-block; margin-top: 32px; }
 .spot__brand {
   font-family: var(--font-head); font-weight: 600; color: var(--text);
   font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; letter-spacing: 0.04em;
 }
-.spot__lede { margin-top: 18px; max-width: 34ch; color: var(--text); font-size: 1.15rem; line-height: 1.5; }
-.spot__facts { margin: 36px 0 28px; border-top: 1px solid var(--line); }
-.spot__facts div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-.spot__facts dt { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-2); padding-top: 3px; }
-.spot__facts dd { color: var(--text-muted); font-size: 0.98rem; line-height: 1.55; }
 
 /* the MMK piece that follows gets a one-line intro instead of the old section head */
 .case__lede { max-width: 640px; margin-bottom: 28px; color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
@@ -58,5 +53,4 @@
 }
 @media (max-width: 640px) {
   .spot__stage { max-width: 300px; }
-  .spot__facts div { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
 }
