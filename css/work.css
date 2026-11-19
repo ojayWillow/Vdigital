@@ -39,12 +39,6 @@
 .slide:hover .slide__frame { opacity: 1 !important; box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
 
 .slide__video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.slide__tag {
-  position: absolute; top: 14px; left: 14px;
-  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: #f0c987; padding: 5px 10px; border-radius: 3px; background: rgba(11,10,8,0.62);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-}
 .slide__sound {
   position: absolute; right: 14px; bottom: 14px;
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -57,7 +51,6 @@
 .slide figcaption { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; max-width: 100%; }
 .slide__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent); }
 .slide figcaption b { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: 1.15rem; letter-spacing: -0.01em; }
-.slide__meta { flex-basis: 100%; padding-left: 30px; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 
 /* last card: see everything */
 .slide--more {
