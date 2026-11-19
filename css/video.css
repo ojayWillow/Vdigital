@@ -49,6 +49,8 @@
 .reels--wide .reel__frame { aspect-ratio: 16 / 9; }
 @media (max-width: 768px) { .reels.reels--wide { grid-template-columns: 1fr; overflow: visible; gap: 32px; } }
 .reel[hidden] { display: none; }
+.reel--tall { max-width: 360px; margin: 0 auto 64px; }
+.reel--tall figcaption a { color: var(--accent-2); white-space: nowrap; }
 .reel__frame {
   position: relative; aspect-ratio: 9 / 16; max-width: 100%;
   border-radius: var(--radius); overflow: hidden;

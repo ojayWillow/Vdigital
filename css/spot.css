@@ -1,0 +1,84 @@
+/* =============================================
+   SPOT — the CASANORTE case in the Work section:
+   a vertical ad in a phone-sized frame, a switch between the finished cut
+   and the raw shots it was made from, and a brief → what we did → format list.
+   ============================================= */
+.spot {
+  display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 72px; align-items: center;
+  padding-bottom: 96px; margin-bottom: 72px; border-bottom: 1px solid var(--line);
+}
+
+/* stage: frame + switch, with a warm glow behind the frame */
+.spot__stage { position: relative; display: grid; gap: 18px; justify-items: center; }
+.spot__stage::before {
+  content: ''; position: absolute; inset: 8% -18% 14%; z-index: 0; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(217,164,65,0.22), transparent 72%); filter: blur(30px);
+}
+.spot__frame {
+  position: relative; z-index: 1; width: 100%; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 6px; background: #000;
+  box-shadow: 0 0 0 1px var(--line), 0 60px 120px -50px rgba(0,0,0,0.9); cursor: pointer;
+}
+.spot__video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0; transition: opacity 0.5s var(--ease);
+}
+.spot__video.is-on { opacity: 1; }
+
+.spot__state {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #f0c987; padding: 5px 10px; border-radius: 3px; background: rgba(11,10,8,0.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.spot__state::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: #d9a441; vertical-align: 1px; }
+.spot__sound {
+  position: absolute; right: 14px; bottom: 14px; z-index: 2;
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.28); background: rgba(11,10,8,0.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: border-color 0.2s ease, color 0.2s ease;
+}
+.spot__sound:hover, .spot__sound[aria-pressed="true"] { border-color: #f0c987; color: #f0c987; }
+.spot__sound[hidden] { display: none; }
+
+/* finished / raw switch */
+.spot__switch {
+  position: relative; z-index: 1; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+}
+.spot__switch button {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 16px; border: 0; border-radius: 999px; background: none; color: var(--text-muted); cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.spot__switch button:hover { color: var(--text); }
+.spot__switch button.is-on { background: var(--accent); color: var(--on-accent); }
+
+/* copy */
+.spot__top { display: flex; gap: 20px; align-items: baseline; margin-bottom: 18px; }
+.spot__brand {
+  font-family: var(--font-head); font-weight: 600; color: var(--text);
+  font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; letter-spacing: 0.04em;
+}
+.spot__lede { margin-top: 18px; max-width: 34ch; color: var(--text); font-size: 1.15rem; line-height: 1.5; }
+.spot__facts { margin: 36px 0 28px; border-top: 1px solid var(--line); }
+.spot__facts div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.spot__facts dt { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-2); padding-top: 3px; }
+.spot__facts dd { color: var(--text-muted); font-size: 0.98rem; line-height: 1.55; }
+.spot__hint { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 28px; }
+.spot__hint b { color: var(--text-muted); font-weight: 600; }
+
+/* the MMK piece that follows gets a one-line intro instead of the old section head */
+.case__lede { max-width: 640px; margin-bottom: 28px; color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .spot { grid-template-columns: 1fr; gap: 40px; padding-bottom: 64px; margin-bottom: 56px; }
+  .spot__stage { max-width: 360px; width: 100%; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .spot__stage { max-width: 300px; }
+  .spot__facts div { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spot__video { transition: none; }
+}
