@@ -14,7 +14,8 @@
   .work__grid { grid-template-columns: 1fr 1fr; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .vprices { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-  .steps { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  .steps { grid-template-columns: 1fr; }
+  .step, .step + .step { padding: 24px 0; border-left: 0; border-bottom: 1px solid var(--line); }
 }
 
 /* ── Mobile ── */
@@ -83,10 +84,8 @@
   .whatsapp-float { bottom: 16px; right: 14px; width: 50px; height: 50px; }
   .whatsapp-float__tooltip { display: none; }
 
-  .vid-hero { padding: 104px 0 48px; }
-  .vid-hero p { font-size: 0.98rem; }
-  .vid-hero__actions { gap: 10px; }
-  .step { padding: 22px; }
+  .vid-hero { padding: 112px 0 40px; }
+  .vid-hero__sub { font-size: 0.98rem; }
   .vprice { padding: 26px 22px; }
 }
 
