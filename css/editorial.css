@@ -89,7 +89,10 @@
 .finale .ed-label { color: #f0c987; }
 .finale .ed-title { color: #f3ede3; }
 .finale .ed-title em { color: #f0c987; }
-.finale .btn { margin-top: 32px; }
+.finale__lead { margin-top: 18px; max-width: 40ch; color: rgba(243,237,227,0.78); font-size: 1.05rem; line-height: 1.55; }
+.finale__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 30px; }
+.finale .finale__form { color: #f3ede3; border-color: rgba(243,237,227,0.32); }
+.finale .finale__form:hover { color: #f0c987; border-color: #f0c987; }
 
 /* ── 6. CONTACT: quiet form, underlined fields ── */
 .contact { background: var(--bg); padding: 150px 0; }
