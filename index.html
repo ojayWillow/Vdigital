@@ -110,6 +110,7 @@
   <link rel="stylesheet" href="css/brand.css" />
   <link rel="stylesheet" href="css/editorial.css" />
   <link rel="stylesheet" href="css/work.css" />
+  <link rel="stylesheet" href="css/offer.css" />
 
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
 </head>
@@ -251,7 +252,6 @@
       <p class="showreel__note">Demonstrācijas video</p>
     </div>
 
-    <p class="showreel__extra container">Rēķini, tabulas vai atskaites aizņem pārāk daudz laika? Uztaisām programmu, kas to izdara jūsu vietā. <a href="#contact">Pastāstiet, kas jums aizņem laiku →</a></p>
   </section>
 
   <!-- WORK — one swipeable strip of our videos: client work first, then labelled samples, then "see all" -->
@@ -323,53 +323,38 @@
     </div>
   </section>
 
-  <!-- WEBSITES — editorial index -->
-  <section class="ed ed-index" id="services">
+  <!-- OFFER — everything we do in one block: three columns, then the three promises as one strip -->
+  <section class="ed ed-offer" id="services" aria-label="Ko piedāvājam">
     <div class="container">
       <header class="ed-head" data-reveal>
-        <span class="ed-label">Mājas lapas</span>
-        <h2 class="ed-title">Mājas lapa, kas strādā.<br/><em>Par pārējo rūpējamies mēs.</em></h2>
+        <span class="ed-label">Ko piedāvājam</span>
+        <h2 class="ed-title">Viss vienā vietā.<br/><em>Jūs strādājat, mēs pārējo.</em></h2>
       </header>
-      <ol class="ix" id="ix">
-        <li class="ix__row" data-reveal>
-          <span class="ix__no">01</span>
-          <h3 class="ix__name">Dizains un izveide</h3>
-          <p class="ix__desc">Dizains tieši jūsu uzņēmumam. Lapa labi izskatās telefonā un ātri atveras.</p>
+      <ol class="offer">
+        <li class="offer__item" data-reveal>
+          <span class="offer__no">01</span>
+          <h3>Video reklāmas</h3>
+          <p>Instagram, TikTok un YouTube. Gatavs 3 dienās.</p>
+          <a href="/video" class="offer__link">Skatīt video <span aria-hidden="true">→</span></a>
         </li>
-        <li class="ix__row" data-reveal>
-          <span class="ix__no">02</span>
-          <h3 class="ix__name">Uzturēšana</h3>
-          <p class="ix__desc">Mainām tekstus un bildes, kad jums vajag. Par drošību un serveri rūpējamies mēs.</p>
+        <li class="offer__item" data-reveal>
+          <span class="offer__no">02</span>
+          <h3>Mājas lapas</h3>
+          <p>Ātra, labi izskatās telefonā, atrodama Google. E-veikals, ja vajag.</p>
+          <a href="#contact" class="offer__link">Pieteikt lapu <span aria-hidden="true">→</span></a>
         </li>
-        <li class="ix__row" data-reveal>
-          <span class="ix__no">03</span>
-          <h3 class="ix__name">Redzamība Google</h3>
-          <p class="ix__desc">Sakārtojam lapu tā, lai klienti jūs atrod Google.</p>
-        </li>
-        <li class="ix__row" data-reveal>
-          <span class="ix__no">04</span>
-          <h3 class="ix__name">E-veikals</h3>
-          <p class="ix__desc">Preces, droša apmaksa un visi pasūtījumi vienā vietā.</p>
-        </li>
-        <li class="ix__row" data-reveal>
-          <span class="ix__no">05</span>
-          <h3 class="ix__name">Logo un stils</h3>
-          <p class="ix__desc">Logo, krāsas un burti. Vienāds izskats lapā, sociālajos tīklos un video.</p>
+        <li class="offer__item" data-reveal>
+          <span class="offer__no">03</span>
+          <h3>Uzturēšana un rīki</h3>
+          <p>Izmaiņas, drošība, logo un stils. Programmas, kas atvieglo rēķinus un atskaites.</p>
+          <a href="#contact" class="offer__link">Pastāstīt, kas vajag <span aria-hidden="true">→</span></a>
         </li>
       </ol>
-      <a class="ed-more" href="#contact" data-reveal>Nezināt, ar ko sākt? Parunāsim, tas ir bez maksas <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <!-- PROMISES — three lines, no boxes -->
-  <section class="ed ed-promise" id="trust">
-    <div class="container">
-      <span class="ed-label" data-reveal>Ko solām</span>
-      <ol class="promise">
-        <li data-reveal><span class="promise__no">01</span><p>Pirmais dizains <em>48 stundās.</em></p></li>
-        <li data-reveal><span class="promise__no">02</span><p>Viens kontakts. <em>Lapa, video un palīdzība vienā vietā.</em></p></li>
-        <li data-reveal><span class="promise__no">03</span><p>Rakstāt latviski, WhatsApp. <em>Atbild cilvēks.</em></p></li>
-      </ol>
+      <ul class="offer__promise" data-reveal>
+        <li><b>48 h</b><span>pirmais dizains</span></li>
+        <li><b>1 kontakts</b><span>lapa, video, palīdzība</span></li>
+        <li><b>WhatsApp</b><span>atbild cilvēks, latviski</span></li>
+      </ul>
     </div>
   </section>
 
