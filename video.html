@@ -84,59 +84,64 @@
     </div>
   </section>
 
-  <!-- REELS -->
+  <!-- REELS — rows of equal height: 9:16 and 16:9 side by side, clients first, then samples -->
   <section class="section vid-reels" id="reels">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge">Darbi</div>
-        <h2 class="section-title">Darbu paraugi</h2>
-        <p class="section-sub">Klientu darbi un paraugi tam, ko varam izveidot arī jūsu uzņēmumam.</p>
+      <header class="reels__head">
+        <span class="reels__label">Darbi</span>
+        <h2 class="reels__title">Ko esam uztaisījuši.<br/><em>Un ko uztaisīsim jums.</em></h2>
+      </header>
+
+      <div class="reels__group"><b>01</b><span>Klientu darbi</span></div>
+      <div class="reels__row">
+        <figure class="reel reel--v">
+          <div class="reel__frame">
+            <video class="reel__video" src="assets/video/casanorte.mp4" poster="assets/video/casanorte.jpg" muted loop playsinline preload="metadata" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
+            <span class="reel__tag">Klienta darbs</span>
+            <button type="button" class="reel__sound" aria-pressed="false" aria-label="Ieslēgt skaņu">🔇</button>
+          </div>
+          <figcaption><span class="reel__no">01</span><b>CASANORTE</b><span class="reel__meta">Video reklāma · 18 s</span></figcaption>
+        </figure>
+        <figure class="reel reel--h">
+          <div class="reel__frame">
+            <video class="reel__video" src="assets/video/car-swap.mp4" poster="assets/video/car-swap.jpg" muted loop playsinline preload="metadata" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
+            <span class="reel__tag">Pirms / pēc</span>
+          </div>
+          <figcaption><span class="reel__no">02</span><b>MMK riepu centrs</b><span class="reel__meta">Auto nomaiņa kadrā</span></figcaption>
+        </figure>
       </div>
-      <figure class="reel reel--tall">
-        <div class="reel__frame">
-          <video class="reel__video" src="assets/video/casanorte.mp4" poster="assets/video/casanorte.jpg" muted loop playsinline preload="metadata" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
-          <span class="reel__tag">Klienta darbs</span>
-          <button type="button" class="reel__sound" aria-pressed="false" aria-label="Ieslēgt skaņu">🔇</button>
-        </div>
-        <figcaption><b>CASANORTE</b><span>Video reklāma · 18 s · Instagram, TikTok</span></figcaption>
-      </figure>
-      <figure class="reel reel--wide">
-        <div class="reel__frame">
-          <video class="reel__video" src="assets/video/car-swap.mp4" poster="assets/video/car-swap.jpg" muted loop playsinline preload="metadata" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
-          <span class="reel__tag">Pirms / pēc</span>
-        </div>
-        <figcaption><b>Tas pats kadrs, cita automašīna</b><span>Filmēts pie MMK riepu centra. Nomainījām tikai auto, viss pārējais paliek, kā filmēts. Tāpat varam ar jūsu produktu.</span></figcaption>
-      </figure>
-      <div class="reels reels--pair reels--wide">
-        <figure class="reel">
+
+      <div class="reels__group"><b>02</b><span>Paraugi</span><em>Nav pasūtīti darbi</em></div>
+      <div class="reels__row">
+        <figure class="reel reel--h">
           <div class="reel__frame">
             <video class="reel__video" src="assets/video/ad-bottle.mp4" poster="assets/video/ad-bottle.jpg" muted loop playsinline preload="metadata" aria-label="Stikla pudele lēni griežas studijas gaismā"></video>
             <span class="reel__tag">Paraugs</span>
           </div>
-          <figcaption><b>Produkts, kas griežas gaismā</b><span>Kā studijā: gaisma, atspīdumi, lēns apgrieziens. Tāpat varam ar jūsu produktu. Paraugs, nav pasūtīts darbs.</span></figcaption>
+          <figcaption><span class="reel__no">03</span><b>Produkts gaismā</b><span class="reel__meta">Produkta video</span></figcaption>
         </figure>
-        <figure class="reel">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/ad-suv.mp4" poster="assets/video/ad-suv.jpg" muted loop playsinline preload="metadata" aria-label="Apvidus auto naktī iebrauc kadrā pa slapju ielu"></video>
-            <span class="reel__tag">Paraugs</span>
-          </div>
-          <figcaption><b>Auto, kas iebrauc kadrā</b><span>Nakts, slapjš asfalts, lukturi miglā. Īsa reklāma salonam vai jaunam modelim. Paraugs, nav pasūtīts darbs.</span></figcaption>
-        </figure>
-      </div>
-      <div class="reels reels--pair">
-        <figure class="reel">
+        <figure class="reel reel--v">
           <div class="reel__frame">
             <video class="reel__video" src="assets/video/chimney-system.mp4" poster="assets/video/chimney-system.jpg" muted loop playsinline preload="metadata" aria-label="Skursteņa čaulas sistēma izjauktā skatā ar detaļu nosaukumiem"></video>
             <span class="reel__tag">Spec reklāma</span>
           </div>
-          <figcaption><b>Visa sistēma vienā kadrā</b><span>Detaļas atvērtas viena no otras, katrai savs nosaukums. Paraugs no JAWAR produktu foto, nav pasūtīts darbs.</span></figcaption>
+          <figcaption><span class="reel__no">04</span><b>JAWAR · sistēma</b><span class="reel__meta">Produkta video no foto</span></figcaption>
         </figure>
-        <figure class="reel">
+      </div>
+      <div class="reels__row">
+        <figure class="reel reel--v">
           <div class="reel__frame">
             <video class="reel__video" src="assets/video/chimney-specs.mp4" poster="assets/video/chimney-specs.jpg" muted loop playsinline preload="metadata" aria-label="Produkta fakti kustīgos uzrakstos pie skursteņa T-gabala"></video>
             <span class="reel__tag">Spec reklāma</span>
           </div>
-          <figcaption><b>Fakti, kas paliek atmiņā</b><span>Galvenie produkta fakti kustīgos uzrakstos. Paraugs no JAWAR produktu foto, nav pasūtīts darbs.</span></figcaption>
+          <figcaption><span class="reel__no">05</span><b>JAWAR · fakti</b><span class="reel__meta">Kustīgi uzraksti</span></figcaption>
+        </figure>
+        <figure class="reel reel--h">
+          <div class="reel__frame">
+            <video class="reel__video" src="assets/video/ad-suv.mp4" poster="assets/video/ad-suv.jpg" muted loop playsinline preload="metadata" aria-label="Apvidus auto naktī iebrauc kadrā pa slapju ielu"></video>
+            <span class="reel__tag">Paraugs</span>
+          </div>
+          <figcaption><span class="reel__no">06</span><b>Auto naktī</b><span class="reel__meta">Auto reklāma</span></figcaption>
         </figure>
       </div>
     </div>
