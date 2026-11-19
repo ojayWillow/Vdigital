@@ -27,7 +27,7 @@
     Array.from(sel.options).forEach(o => { if (o.text === a.dataset.service) sel.value = o.value; });
   }));
 
-  // 5) Finale: the empty shop again, loaded only when it comes near
+  // 5) Finale: the lens looking back, loaded only when it comes near
   const fv = document.querySelector('.finale .shop__video');
   if (fv && !reduce && !saveData && hasIO) {
     new IntersectionObserver(entries => entries.forEach(({ isIntersecting }) => {
