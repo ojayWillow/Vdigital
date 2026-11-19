@@ -20,22 +20,39 @@
 }
 .vid-hero p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; max-width: 620px; margin: 0 auto 32px; }
 .vid-hero__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+/* Four ways we make a video: photo cards from our own clips, text over a dark fade */
 .vid-do {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
-  max-width: 720px; margin: 40px auto 0; list-style: none; text-align: left;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
+  margin: 64px 0 0; list-style: none; text-align: left;
 }
 .vid-do__item {
-  display: flex; gap: 14px; align-items: flex-start; min-width: 0;
-  padding: 16px 18px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
+  position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 4px; min-width: 0;
+  display: flex; flex-direction: column; justify-content: space-between; padding: 20px;
+  background: #000 center / cover no-repeat;
+  box-shadow: 0 0 0 1px rgba(237,231,220,0.14), 0 40px 80px -50px rgba(0,0,0,0.9);
+  transition: box-shadow 0.4s ease;
 }
-.vid-do__icon {
-  flex: 0 0 40px; width: 40px; height: 40px; border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  background: var(--accent-glow); color: var(--accent-2);
+.vid-do__item::before {
+  content: ''; position: absolute; inset: 0; background: inherit; transform: scale(1.02);
+  transition: transform 1.2s cubic-bezier(0.2,0.7,0.2,1);
 }
-.vid-do__icon svg { width: 22px; height: 22px; }
-.vid-do__item b { display: block; font-family: var(--font-display); color: var(--text); font-size: 1rem; margin-bottom: 2px; }
-.vid-do__item div > span { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+.vid-do__item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(11,10,8,0.5) 0%, rgba(11,10,8,0) 28%, rgba(11,10,8,0.88) 62%, rgba(11,10,8,0.97) 100%);
+}
+.vid-do__item > * { position: relative; z-index: 1; }
+.vid-do__item:hover { box-shadow: 0 0 0 1px rgba(217,164,65,0.6), 0 40px 80px -40px rgba(0,0,0,0.9); }
+.vid-do__item:hover::before { transform: scale(1.08); }
+.vid-do__item--onsite { background-image: url(../assets/video/car-swap.jpg); background-position: 30% center; }
+.vid-do__item--photo  { background-image: url(../assets/video/ad-bottle.jpg); }
+.vid-do__item--swap   { background-image: url(../assets/video/car-swap.jpg); background-position: 85% center; }
+.vid-do__item--text   { background-image: url(../assets/video/chimney-specs.jpg); background-position: center 20%; }
+.vid-do__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: #f0c987; }
+.vid-do__item b { display: block; font-family: var(--font-head); font-weight: 600; color: #fff; font-size: 1.2rem; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 6px; }
+.vid-do__item div > span { color: rgba(243,237,227,0.75); font-size: 0.88rem; line-height: 1.45; }
+
+@media (max-width: 900px) { .vid-do { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .vid-do { grid-template-columns: 1fr; gap: 12px; margin-top: 40px; } .vid-do__item { aspect-ratio: 16 / 9; } }
 
 /* Reels — editorial gallery: rows of equal height, 9:16 next to 16:9.
    flex-grow = aspect ratio, so both frames in a row end up the same height. */

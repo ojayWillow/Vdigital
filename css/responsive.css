@@ -86,7 +86,6 @@
   .vid-hero { padding: 104px 0 48px; }
   .vid-hero p { font-size: 0.98rem; }
   .vid-hero__actions { gap: 10px; }
-  .vid-do { grid-template-columns: 1fr; margin-top: 32px; }
   .step { padding: 22px; }
   .vprice { padding: 26px 22px; }
 }
