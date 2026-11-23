@@ -16,16 +16,16 @@
     const shape = AR[r.shape] ? r.shape : 'h';
     return `<figure class="reel reel--${shape}" style="flex:${AR[shape].toFixed(4)} 1 0">
       <div class="reel__frame">
-        <video class="reel__video" muted loop playsinline preload="none" poster="assets/video/${esc(r.file)}.jpg" data-src="assets/video/${esc(r.file)}.mp4" aria-label="${esc(r.alt || r.name)}"></video>
+        <video class="reel__video" muted loop playsinline preload="none" poster="assets/video/${esc(r.file)}.jpg" data-src="assets/video/${esc(r.file)}.mp4" aria-label="${esc(r.alt || r.name || '')}"></video>
         ${r.sound ? '<button type="button" class="reel__sound" aria-pressed="false" aria-label="Ieslēgt skaņu">🔇</button>' : ''}
       </div>
-      <figcaption><span class="reel__no reel__no--d">${pad(no[0])}</span><span class="reel__no reel__no--m">${pad(no[1])}</span><b>${esc(r.name)}</b>${r.tag ? `<span class="reel__tag">${esc(r.tag)}</span>` : ''}</figcaption>
+      <figcaption><span class="reel__no reel__no--d">${pad(no[0])}</span><span class="reel__no reel__no--m">${pad(no[1])}</span>${r.name ? `<b>${esc(r.name)}</b>` : ''}${r.tag ? `<span class="reel__tag">${esc(r.tag)}</span>` : ''}</figcaption>
     </figure>`;
   };
 
   document.querySelectorAll('[data-shelf]').forEach(shelf => {
     const section = shelf.closest('section');
-    const list = (DATA[shelf.dataset.shelf] || []).filter(r => r && r.file && r.name);
+    const list = (DATA[shelf.dataset.shelf] || []).filter(r => r && r.file);
     if (!list.length) { if (section) section.hidden = true; return; }
 
     // Phone order: two columns, a vertical clip fills the free cell beside an earlier vertical one.
