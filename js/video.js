@@ -41,7 +41,11 @@
     const rows = []; let row = [], sum = 0;
     list.forEach((r, i) => {
       const ar = AR[r.shape] || AR.h;
-      if (row.length && sum + ar > ROW + 0.01) { rows.push(row); row = []; sum = 0; }
+      if (row.length && sum + ar > ROW + 0.01) {
+        // A row that is not full would stretch its clips: an empty spacer keeps them at the usual height.
+        if (ROW - sum >= AR.v - 0.01) row.push(`<span class="reels__gap" aria-hidden="true" style="flex:${(ROW - sum).toFixed(4)} 1 0"></span>`);
+        rows.push(row); row = []; sum = 0;
+      }
       row.push(tile(r, [i + 1, phoneNo[i]])); sum += ar;
     });
 

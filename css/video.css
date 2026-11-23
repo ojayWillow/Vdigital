@@ -124,7 +124,7 @@
   .shelf__sub { font-size: 0.95rem; }
   .shelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 12px; grid-auto-flow: dense; }
   .reels__row { display: contents; }
-  .reel__no--d { display: none; }
+  .reel__no--d, .reels__gap { display: none; }
   .reel { gap: 10px; }
   .reel--h { grid-column: span 2; }
   .reel--v { grid-column: span 1; }
