@@ -86,6 +86,7 @@
     linear-gradient(to right, rgba(11,10,8,0.5) 0%, rgba(11,10,8,0) 45%);
 }
 .finale__copy { position: absolute; left: 0; right: 0; bottom: 9%; }
+/* viewfinder REC badge, top right of the studio shot */
 .finale .ed-label { color: #f0c987; }
 .finale .ed-title { color: #f3ede3; }
 .finale .ed-title em { color: #f0c987; }
@@ -157,7 +158,7 @@
   .promise li { padding: 22px 0; }
   .contact { padding: 64px 0 72px; }
   .finale__window { width: 100%; }
-  .finale .shop__scene { transform: scale(1.7); transform-origin: 55% 32%; }
+  .finale .shop__scene { transform: scale(1.7); transform-origin: 68% 50%; }
   .finale__shade { background: linear-gradient(to bottom, #0b0a08 0%, rgba(11,10,8,0) 18%, rgba(11,10,8,0) 80%, #0b0a08 100%); }
   .finale__copy { position: static; padding: 24px 16px 64px; }
   #cookie-banner { left: 10px; right: 76px; max-width: none; }
