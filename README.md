@@ -15,14 +15,16 @@ Professional website agency for Latvian businesses. Standalone static site with 
 ├── preview-restoran.html   # Industry mock-up — restaurant / café
 ├── preview-salons.html     # Industry mock-up — beauty salon / barbershop
 ├── preview-fitness.html    # Industry mock-up — fitness / sports club
-├── favicon.png             # 180×180, optimised
-├── logo.png                # 512×512, optimised — OG / social + schema logo
-├── og-image.svg
+├── favicon.svg             # Logo icon (V + gold caret)
+├── favicon.png             # 180×180 — apple-touch + fallback icon
+├── logo.png                # 512×512 — schema logo
+├── og-image.png            # 1200×630 share image
 ├── robots.txt
 ├── sitemap.xml
 ├── vercel.json             # Vercel routing config
 │
 ├── assets/
+│   ├── brand/              # Logo SVGs: vdigital-word.svg (header mask), logo-dark.svg, logo-light.svg
 │   └── portfolio/          # Static WebP screenshots of live portfolio sites
 │
 ├── css/

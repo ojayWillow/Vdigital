@@ -9,8 +9,18 @@
   transition: background var(--transition), border-color var(--transition);
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
-.nav__logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-.nav__logo span { color: var(--accent); }
+/* Logo: outlined "Vdigital" wordmark (mask, follows text colour) + gold caret */
+.nav__logo { display: inline-flex; align-items: flex-start; font-size: 26px; line-height: 1; color: var(--text); flex-shrink: 0; }
+.nav__logo::before {
+  content: ''; width: 3.238em; height: 0.981em; margin-top: 0.07em; background: currentColor;
+  -webkit-mask: url(../assets/brand/vdigital-word.svg) center / contain no-repeat;
+          mask: url(../assets/brand/vdigital-word.svg) center / contain no-repeat;
+}
+.nav__logo::after {
+  content: ''; width: 0.085em; height: 0.98em; margin-left: 0.095em; background: var(--accent);
+  animation: logo-caret 0.9s steps(1) 0.4s 3;
+}
+@keyframes logo-caret { 50% { opacity: 0; } }
 .nav__links { display: flex; gap: 32px; }
 .nav__links a { position: relative; color: var(--text-muted); font-size: 0.92rem; font-weight: 500; transition: color var(--transition); }
 .nav__links a:hover { color: var(--text); }
