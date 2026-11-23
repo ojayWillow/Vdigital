@@ -44,5 +44,5 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
       else v.pause();
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.reel__video').forEach(v => io.observe(v));
+  document.querySelectorAll('.reel__video, .vid-do__video').forEach(v => io.observe(v));
 }
