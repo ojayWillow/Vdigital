@@ -16,9 +16,19 @@
 .vid-hero__more { color: var(--text); border-color: var(--line-strong); }
 .vid-hero__more:hover { color: var(--accent-2); border-color: var(--accent-2); }
 
-/* Reels: rows of equal height, 9:16 next to 16:9.
-   flex-grow = aspect ratio, so both frames in a row end up the same height. */
+/* Shelves: Reklāmas and Montāža. A hairline header with the name and the count, then the rows. */
 .vid-reels { background: var(--bg); padding: 24px 0 120px; }
+.vid-edits { padding-top: 0; }
+.shelf__head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  padding-bottom: 22px; margin-bottom: 44px; border-bottom: 1px solid var(--line);
+}
+.shelf__title { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: clamp(1.8rem, 3.4vw, 2.75rem); line-height: 1.1; letter-spacing: -0.03em; }
+.shelf__sub { margin-top: 10px; color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
+.shelf__count { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-bottom: 4px; }
+
+/* Reels: rows of equal height, 9:16 next to 16:9.
+   flex-grow = aspect ratio (set inline by js/video.js), so every frame in a row ends up the same height. */
 .reels__row { display: flex; gap: 28px; align-items: flex-start; }
 .reels__row + .reels__row { margin-top: 56px; }
 
@@ -44,19 +54,92 @@
   display: flex; align-items: center; justify-content: center; transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .reel__sound:hover, .reel__sound[aria-pressed="true"] { border-color: #f0c987; transform: scale(1.06); }
-.reel figcaption { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.reel figcaption { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
 .reel__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent); }
 .reel figcaption b { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: 1.15rem; letter-spacing: -0.01em; }
-.reel--v 
+/* Small honest label next to the name: "Paraugs" = an example, not a client order */
+.reel__tag {
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  color: var(--text-muted); border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px 9px;
+}
 [data-theme="light"] .reel__frame { box-shadow: 0 0 0 1px rgba(29,26,20,0.12), 0 40px 80px -50px rgba(0,0,0,0.45); }
 
+/* The free space at the end of a shelf: a dashed "your video" frame that leads to the contact form */
+.reel--slot { text-decoration: none; color: var(--text-muted); }
+.reel--slot .reel__frame {
+  aspect-ratio: var(--ar); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: transparent; box-shadow: none; border: 1px dashed var(--line-strong);
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+.reel--slot b { font-size: 1.5rem; font-weight: 400; line-height: 1; color: var(--accent-2); }
+.reel--slot:hover .reel__frame, .reel--slot:focus-visible .reel__frame { border-color: #d9a441; background: rgba(217,164,65,0.06); color: var(--text); box-shadow: none; }
+@media (min-width: 769px) { .reels__row--phone, .reel--slot-phone, .reel__no--m { display: none; } }
+
+/* Pirms / Pēc: two versions of one shot stacked in one frame, the top one cut off at the line (--x) */
+.pp { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 64px; align-items: center; margin-bottom: 72px; }
+.pp__frame {
+  --x: 50%;
+  position: relative; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 4px; background: #000;
+  box-shadow: 0 0 0 1px rgba(237,231,220,0.14), 0 50px 100px -50px rgba(0,0,0,0.9);
+  cursor: ew-resize; touch-action: pan-y; -webkit-user-select: none; user-select: none;
+}
+.pp__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.pp__video--before { -webkit-clip-path: inset(0 calc(100% - var(--x)) 0 0); clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+.pp__line { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: #f0c987; pointer-events: none; }
+.pp__line i {
+  position: absolute; top: 50%; left: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%;
+  background: rgba(11,10,8,0.72); border: 1px solid #f0c987;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.pp__line i::before, .pp__line i::after {
+  content: ''; position: absolute; top: 50%; width: 7px; height: 7px; margin-top: -4px;
+  border-top: 1.5px solid #f0c987; border-left: 1.5px solid #f0c987;
+}
+.pp__line i::before { left: 11px; transform: rotate(-45deg); }
+.pp__line i::after { right: 11px; transform: rotate(135deg); }
+.pp__chip {
+  position: absolute; top: 14px; padding: 5px 10px; border-radius: 999px; pointer-events: none;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; background: rgba(11,10,8,0.62); border: 1px solid rgba(255,255,255,0.24);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.pp__chip--before { left: 14px; }
+.pp__chip--after { right: 14px; }
+/* The range input is only for the keyboard; a pointer drags the frame itself */
+.pp__range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; pointer-events: none; }
+.pp__frame:focus-within { box-shadow: 0 0 0 2px #f0c987, 0 50px 100px -50px rgba(0,0,0,0.9); }
+.pp__title { margin-top: 18px; font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: clamp(1.5rem, 2.8vw, 2.4rem); line-height: 1.12; letter-spacing: -0.03em; }
+.pp__title em { font-style: normal; color: var(--accent-2); }
+[data-theme="light"] .pp__title em { color: var(--accent); }
+.pp__text p { margin-top: 18px; max-width: 40ch; color: var(--text-muted); font-size: 1.02rem; line-height: 1.55; }
+.pp__text .pp__hint { margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+[data-theme="light"] .pp__frame { box-shadow: 0 0 0 1px rgba(29,26,20,0.12), 0 40px 80px -50px rgba(0,0,0,0.45); }
+
+/* Phone: each shelf is a two-column grid. Wide clips take the full width, vertical clips sit two in a row. */
 @media (max-width: 768px) {
-  .vid-reels { padding: 72px 0; }
-  .reels__row { flex-direction: column; gap: 44px; }
-  .reels__row + .reels__row { margin-top: 44px; }
-  .reel--h { width: 100%; }
-  .reel--v { width: 78%; max-width: 340px; align-self: center; }
-  }
+  .vid-reels { padding: 56px 0 72px; }
+  .vid-edits { padding-top: 0; }
+  .shelf__head { margin-bottom: 28px; padding-bottom: 16px; }
+  .shelf__sub { font-size: 0.95rem; }
+  .shelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 12px; grid-auto-flow: dense; }
+  .reels__row { display: contents; }
+  .reel__no--d, .reels__gap { display: none; }
+  .reel { gap: 10px; }
+  .reel--h { grid-column: span 2; }
+  .reel--v { grid-column: span 1; }
+  .reel figcaption { gap: 6px 10px; }
+  .reel figcaption b { font-size: 1rem; }
+  .reel__sound { right: 10px; bottom: 10px; width: 38px; height: 38px; }
+  .reel--slot { grid-column: span 2; }
+  .reel--slot .reel__frame { aspect-ratio: 16 / 5; }
+  .reel--slot.reel--slot-v { grid-column: span 1; }
+  .reel--slot.reel--slot-v .reel__frame { aspect-ratio: 9 / 16; }
+  .pp { grid-template-columns: 1fr; gap: 26px; margin-bottom: 48px; }
+  .pp__text { order: -1; }
+  .pp__frame { width: 78%; max-width: 320px; margin: 0 auto; }
+  .pp__title { margin-top: 12px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .reel__video { transition: none; }
   .reel:hover .reel__video { transform: none; }
