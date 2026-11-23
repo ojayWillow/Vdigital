@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video reklāmas uzņēmumiem | Vdigital</title>
-  <meta name="description" content="Video reklāmas Instagram, TikTok un YouTube Latvijas uzņēmumiem. Filmējam uz vietas vai veidojam no jūsu foto." />
+  <title>Video reklāmas un montāža uzņēmumiem | Vdigital</title>
+  <meta name="description" content="Video reklāmas un video montāža Instagram, TikTok un YouTube Latvijas uzņēmumiem. Filmējam uz vietas vai veidojam no jūsu foto." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://vdigital.lv/video" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="/favicon.png" type="image/png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vdigital.lv/video" />
-  <meta property="og:title" content="Video reklāmas uzņēmumiem | Vdigital" />
-  <meta property="og:description" content="Video reklāmas Instagram, TikTok un YouTube. Filmējam uz vietas vai veidojam no jūsu foto." />
+  <meta property="og:title" content="Video reklāmas un montāža uzņēmumiem | Vdigital" />
+  <meta property="og:description" content="Video reklāmas un video montāža Instagram, TikTok un YouTube. Filmējam uz vietas vai veidojam no jūsu foto." />
   <meta property="og:image" content="https://vdigital.lv/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -71,58 +71,50 @@
     </div>
   </section>
 
-  <!-- REELS — every clip, rows of equal height: 9:16 next to 16:9. Number and name only. -->
-  <section class="vid-reels" id="reels" aria-label="Darbi">
+  <!-- SHELVES — every clip, in two shelves. The lists live in js/reels-data.js: one line per video.
+       Rows are built by js/video.js: 9:16 next to 16:9, every frame in a row the same height. -->
+  <section class="vid-reels" id="reels" aria-label="Reklāmas">
     <div class="container">
-      <div class="reels__row">
-        <figure class="reel reel--v">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/casanorte.mp4" poster="assets/video/casanorte.jpg" muted loop playsinline preload="metadata" aria-label="CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā"></video>
-            <button type="button" class="reel__sound" aria-pressed="false" aria-label="Ieslēgt skaņu">🔇</button>
-          </div>
-          <figcaption><span class="reel__no">01</span><b>CASANORTE</b></figcaption>
-        </figure>
-        <figure class="reel reel--v">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/auto13.mp4" poster="assets/video/auto13.jpg" muted loop playsinline preload="metadata" aria-label="AUTO 13 reklāma: pircēji pie savām lietotajām automašīnām"></video>
-          </div>
-          <figcaption><span class="reel__no">02</span><b>AUTO 13</b></figcaption>
-        </figure>
-        <figure class="reel reel--h">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/car-swap.mp4" poster="assets/video/car-swap.jpg" muted loop playsinline preload="metadata" aria-label="Tas pats kadrs pie MMK riepu centra, cita automašīna"></video>
-          </div>
-          <figcaption><span class="reel__no">03</span><b>MMK riepu centrs</b></figcaption>
-        </figure>
+      <header class="shelf__head">
+        <div>
+          <h2 class="shelf__title">Reklāmas</h2>
+          <p class="shelf__sub">Video reklāmas uzņēmumiem un produktiem.</p>
+        </div>
+        <span class="shelf__count" data-count></span>
+      </header>
+      <div class="shelf" data-shelf="ads" data-slot="Jūsu reklāma"></div>
+    </div>
+  </section>
+
+  <section class="vid-reels vid-edits" id="montaza" aria-label="Montāža">
+    <div class="container">
+      <header class="shelf__head">
+        <div>
+          <h2 class="shelf__title">Montāža</h2>
+          <p class="shelf__sub">Jūsu nofilmētais materiāls, mūsu montāža.</p>
+        </div>
+        <span class="shelf__count" data-count></span>
+      </header>
+
+      <!-- PIRMS / PĒC — the same phone shot twice, frame for frame: as filmed, and after the edit. Drag the line. -->
+      <div class="pp">
+        <div class="pp__frame">
+          <video class="pp__video pp__video--after" muted playsinline preload="none" poster="assets/video/pp-after.jpg" data-src="assets/video/pp-after.mp4" aria-hidden="true"></video>
+          <video class="pp__video pp__video--before" muted playsinline preload="none" poster="assets/video/pp-before.jpg" data-src="assets/video/pp-before.mp4" aria-hidden="true"></video>
+          <span class="pp__chip pp__chip--before">Pirms</span>
+          <span class="pp__chip pp__chip--after">Pēc</span>
+          <span class="pp__line" aria-hidden="true"><i></i></span>
+          <input class="pp__range" type="range" min="0" max="100" value="50" step="any" aria-label="Salīdzināt kadru pirms un pēc montāžas" />
+        </div>
+        <div class="pp__text">
+          <span class="ed-label">Pirms / Pēc</span>
+          <h3 class="pp__title">Tas pats kadrs.<br/><em>Pirms un pēc montāžas.</em></h3>
+          <p>Kreisajā pusē ir video, kā tas nofilmēts ar telefonu. Labajā pusē ir tas pats video pēc montāžas.</p>
+          <p class="pp__hint">Pavelciet līniju, lai salīdzinātu.</p>
+        </div>
       </div>
-      <div class="reels__row">
-        <figure class="reel reel--h">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/ad-bottle.mp4" poster="assets/video/ad-bottle.jpg" muted loop playsinline preload="metadata" aria-label="Stikla pudele lēni griežas studijas gaismā"></video>
-          </div>
-          <figcaption><span class="reel__no">04</span><b>Produkts gaismā</b></figcaption>
-        </figure>
-        <figure class="reel reel--v">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/chimney-system.mp4" poster="assets/video/chimney-system.jpg" muted loop playsinline preload="metadata" aria-label="Skursteņa čaulas sistēma izjauktā skatā ar detaļu nosaukumiem"></video>
-          </div>
-          <figcaption><span class="reel__no">05</span><b>JAWAR · sistēma</b></figcaption>
-        </figure>
-      </div>
-      <div class="reels__row">
-        <figure class="reel reel--v">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/chimney-specs.mp4" poster="assets/video/chimney-specs.jpg" muted loop playsinline preload="metadata" aria-label="Produkta fakti kustīgos uzrakstos pie skursteņa T-gabala"></video>
-          </div>
-          <figcaption><span class="reel__no">06</span><b>JAWAR · fakti</b></figcaption>
-        </figure>
-        <figure class="reel reel--h">
-          <div class="reel__frame">
-            <video class="reel__video" src="assets/video/ad-suv.mp4" poster="assets/video/ad-suv.jpg" muted loop playsinline preload="metadata" aria-label="Apvidus auto naktī iebrauc kadrā pa slapju ielu"></video>
-          </div>
-          <figcaption><span class="reel__no">07</span><b>Auto naktī</b></figcaption>
-        </figure>
-      </div>
+
+      <div class="shelf" data-shelf="edits" data-slot="Jūsu video"></div>
     </div>
   </section>
 
@@ -235,6 +227,7 @@
   <script src="js/theme.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/contact.js"></script>
+  <script src="js/reels-data.js"></script>
   <script src="js/video.js"></script>
 </body>
 </html>
