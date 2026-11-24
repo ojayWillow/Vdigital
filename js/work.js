@@ -53,14 +53,24 @@
     const vi = videoSlides.indexOf(slides[i]);
     now.textContent = pad(vi < 0 ? videoSlides.length : vi + 1);
     prev.disabled = i === 0;
-    next.disabled = i === slides.length - 1 || atEnd();
+    next.disabled = i >= slides.indexOf(videoSlides[videoSlides.length - 1]) && atEnd() || i === slides.length - 1;
     // keep the neighbour ready so the next swipe is instant
     if (inView) { play(video(slides[i])); load(video(slides[i + 1] || slides[i])); }
   };
 
+  // A card that is already fully in view turns on in place; otherwise the strip scrolls it to the edge.
+  // While that scroll runs, the chosen card stays on (the scroll handler must not pick its neighbour).
+  let pending = -1, settle = 0;
+  const fits = s => { const r = s.getBoundingClientRect(), t = track.getBoundingClientRect(); return r.left >= t.left - 2 && r.right <= t.right + 2; };
   const go = i => {
     i = Math.max(0, Math.min(slides.length - 1, i));
-    track.scrollTo({ left: track.scrollLeft + slides[i].getBoundingClientRect().left - edge(), behavior: reduce ? 'auto' : 'smooth' });
+    const target = Math.max(0, Math.min(track.scrollWidth - track.clientWidth, track.scrollLeft + slides[i].getBoundingClientRect().left - edge()));
+    if (Math.abs(target - track.scrollLeft) < 4 || fits(slides[i]) && slides[i].querySelector('.slide__video')) {
+      pending = -1; activate(i); return;
+    }
+    pending = i;
+    clearTimeout(settle); settle = setTimeout(() => { pending = -1; }, 900);
+    track.scrollTo({ left: target, behavior: reduce ? 'auto' : 'smooth' });
   };
   prev.addEventListener('click', () => go(current - 1));
   next.addEventListener('click', () => go(current + 1));
@@ -72,8 +82,13 @@
   let raf = 0;
   track.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => { const i = nearest(); if (i !== current) activate(i); else next.disabled = atEnd(); });
+    raf = requestAnimationFrame(() => {
+      if (pending >= 0) { if (pending !== current) activate(pending); return; }
+      const i = nearest(); if (i !== current) activate(i); else next.disabled = current >= slides.indexOf(videoSlides[videoSlides.length - 1]) && atEnd();
+    });
   }, { passive: true });
+  // a swipe or wheel by hand ends any pending click
+  ['pointerdown', 'wheel', 'touchstart'].forEach(ev => track.addEventListener(ev, () => { pending = -1; }, { passive: true }));
 
   // tap a frame: bring that slide in, or play/pause it if it is already on
   slides.forEach((s, i) => {
