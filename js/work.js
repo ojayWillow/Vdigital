@@ -1,5 +1,5 @@
 // WORK — the slideshow under the hero.
-// The slide nearest the strip's left edge is "on": it loads, plays muted and drives the 01 / 06 counter.
+// The slide nearest the strip's middle is "on": it loads, plays muted and drives the 01 / 06 counter.
 // Videos load only when the section is near the screen. Reduced motion / save-data: nothing autoplays, tap plays.
 (function () {
   const track = document.getElementById('workTrack');
@@ -32,19 +32,19 @@
     v.muted = true; b.setAttribute('aria-pressed', 'false'); b.textContent = 'Ieslēgt skaņu';
   };
 
-  // which slide sits closest to the strip's left padding edge
-  const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-  const edge = () => track.getBoundingClientRect().left + parseFloat(getComputedStyle(track).paddingLeft);
+  // the "on" slide is the one whose middle sits closest to the strip's middle
+  const middle = () => { const r = track.getBoundingClientRect(); return r.left + r.width / 2; };
+  const centre = s => { const r = s.getBoundingClientRect(); return r.left + r.width / 2; };
   const nearest = () => {
-    const e = edge();
+    const m = middle();
     let best = 0, dist = Infinity;
-    slides.forEach((s, i) => { const d = Math.abs(s.getBoundingClientRect().left - e); if (d < dist) { dist = d; best = i; } });
-    // at the very end the last clips can't reach the edge: the last clip counts as on, so it plays
-    if (atEnd()) best = slides.indexOf(videoSlides[videoSlides.length - 1]);
+    slides.forEach((s, i) => { const d = Math.abs(centre(s) - m); if (d < dist) { dist = d; best = i; } });
     return best;
   };
 
+  let activatedAt = 0;
   const activate = i => {
+    if (i !== current) activatedAt = performance.now();
     current = i;
     slides.forEach((s, n) => {
       s.classList.toggle('is-on', n === i);
@@ -53,24 +53,22 @@
     const vi = videoSlides.indexOf(slides[i]);
     now.textContent = pad(vi < 0 ? videoSlides.length : vi + 1);
     prev.disabled = i === 0;
-    next.disabled = i >= slides.indexOf(videoSlides[videoSlides.length - 1]) && atEnd() || i === slides.length - 1;
+    next.disabled = i === slides.length - 1;
     // keep the neighbour ready so the next swipe is instant
     if (inView) { play(video(slides[i])); load(video(slides[i + 1] || slides[i])); }
   };
 
-  // A card that is already fully in view turns on in place; otherwise the strip scrolls it to the edge.
-  // While that scroll runs, the chosen card stays on (the scroll handler must not pick its neighbour).
+  // Clicking a card, an arrow or a key glides that card to the middle and plays it.
+  // While the glide runs, the chosen card stays on (the scroll handler must not pick a neighbour).
   let pending = -1, settle = 0;
-  const fits = s => { const r = s.getBoundingClientRect(), t = track.getBoundingClientRect(); return r.left >= t.left - 2 && r.right <= t.right + 2; };
   const go = i => {
     i = Math.max(0, Math.min(slides.length - 1, i));
-    const target = Math.max(0, Math.min(track.scrollWidth - track.clientWidth, track.scrollLeft + slides[i].getBoundingClientRect().left - edge()));
-    if (Math.abs(target - track.scrollLeft) < 4 || fits(slides[i]) && slides[i].querySelector('.slide__video')) {
-      pending = -1; activate(i); return;
-    }
+    const delta = centre(slides[i]) - middle();
+    activate(i);
+    if (Math.abs(delta) < 4) { pending = -1; return; }
     pending = i;
     clearTimeout(settle); settle = setTimeout(() => { pending = -1; }, 900);
-    track.scrollTo({ left: target, behavior: reduce ? 'auto' : 'smooth' });
+    track.scrollBy({ left: delta, behavior: reduce ? 'auto' : 'smooth' });
   };
   prev.addEventListener('click', () => go(current - 1));
   next.addEventListener('click', () => go(current + 1));
@@ -84,7 +82,7 @@
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
       if (pending >= 0) { if (pending !== current) activate(pending); return; }
-      const i = nearest(); if (i !== current) activate(i); else next.disabled = current >= slides.indexOf(videoSlides[videoSlides.length - 1]) && atEnd();
+      const i = nearest(); if (i !== current) activate(i);
     });
   }, { passive: true });
   // a swipe or wheel by hand ends any pending click
@@ -97,7 +95,8 @@
     frame.addEventListener('click', () => {
       if (i !== current) { go(i); return; }
       const v = video(s);
-      if (v.paused) play(v); else v.pause();
+      // a tap on a card that has only just slid into the middle starts it, never stops it
+      if (v.paused || performance.now() - activatedAt < 600) play(v); else v.pause();
     });
     const b = s.querySelector('.slide__sound');
     if (b) b.addEventListener('click', e => {

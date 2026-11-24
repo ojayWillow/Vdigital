@@ -4,7 +4,7 @@
    in .work__wide: two frames to a row, one on a phone.
    The strip starts on the container's left edge and bleeds off the right.
    ============================================= */
-.ed-work { --slide-h: clamp(380px, 40vw, 560px); --gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); overflow: hidden; }
+.ed-work { --slide-h: clamp(380px, 40vw, 560px); --card-w: calc(var(--slide-h) * 9 / 16); --gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); overflow: hidden; }
 
 .work__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 56px; }
 .work__nav { display: flex; align-items: center; gap: 12px; flex: none; }
@@ -21,13 +21,14 @@
 .work__track {
   display: flex; gap: 28px; align-items: flex-start;
   overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-  padding: 0 var(--gutter) 8px; scroll-padding-inline: var(--gutter);
+  /* side padding of half a screen: every card, first and last too, can sit in the middle */
+  padding: 0 calc(50% - var(--card-w) / 2) 8px;
   scrollbar-width: none;
 }
 .work__track::-webkit-scrollbar { display: none; }
 .work__track:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
 
-.slide { flex: none; margin: 0; scroll-snap-align: start; display: grid; gap: 16px; }
+.slide { flex: none; width: var(--card-w); margin: 0; scroll-snap-align: center; display: grid; gap: 16px; }
 .slide__frame {
   position: relative; height: var(--slide-h); overflow: hidden; border-radius: 4px; background: #000; cursor: pointer;
   box-shadow: 0 0 0 1px var(--line), 0 50px 100px -50px rgba(0,0,0,0.9);
@@ -36,7 +37,10 @@
 .slide--v .slide__frame { aspect-ratio: 9 / 16; }
 .slide--h .slide__frame { aspect-ratio: 16 / 9; }
 /* slides that are not in focus sit back a little */
-.js .work__track .slide:not(.is-on) .slide__frame { opacity: 0.55; }
+.js .work__track .slide .slide__frame { transition: box-shadow 0.4s ease, opacity 0.5s var(--ease), transform 0.6s var(--ease); }
+.js .work__track .slide:not(.is-on) .slide__frame { opacity: 0.45; transform: scale(0.94); }
+.js .work__track .slide:not(.is-on) figcaption { opacity: 0.5; }
+.slide figcaption { transition: opacity 0.5s var(--ease); }
 .slide:hover .slide__frame { opacity: 1 !important; box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
 
 .slide__video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -89,15 +93,15 @@
   .ed-work { --gutter: 16px; }
   .work__head { flex-direction: column; align-items: flex-start; gap: 20px; }
   .work__track { gap: 16px; }
-  /* phones: each slide is one screen wide, every frame is the same 9:16 card */
-  .slide { width: calc(100vw - 48px); }
-  .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: min(100%, calc(62svh * 9 / 16)); }
+  /* phones: one 9:16 card in the middle, a sliver of its neighbours at the sides */
+  .ed-work { --card-w: min(calc(100vw - 72px), calc(62svh * 9 / 16)); }
+  .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: 100%; }
   .work__wide { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
   .wide { gap: 10px; }
   .wide figcaption b { font-size: 1rem; }
-  .slide--more { width: calc(100vw - 48px); height: auto; aspect-ratio: 4 / 5; }
+  .slide--more { width: var(--card-w); height: auto; aspect-ratio: 9 / 16; }
 }
 @media (prefers-reduced-motion: reduce) {
   .work__track { scroll-behavior: auto; }
-  .slide__frame, .slide__more-arrow { transition: none; }
+  .slide__frame, .slide__more-arrow, .js .work__track .slide .slide__frame { transition: none; }
 }
