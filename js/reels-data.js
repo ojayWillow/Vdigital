@@ -6,7 +6,8 @@
 //   tag    optional small label. Use 'Paraugs' for an example made without a client order.
 //   sound  true only when the file carries audio we are allowed to publish
 //   alt    one sentence that says what is in the clip (for screen readers)
-// Every clip shows in the same 9:16 card (a wide clip sits whole inside it); a desktop row holds four.
+//   lite   leave out: phones play <file>-m.mp4 (720p). Set lite: false when the main file is already small.
+// The page shows the 9:16 clips first, then the 16:9 ones, each group in list order.
 window.VD_REELS = {
   // Shelf 1: Reklāmas
   ads: [
@@ -29,7 +30,7 @@ window.VD_REELS = {
     // Taken off the page 2026-11-23 (the files are still in assets/video). Remove the // to show them again.
     // { file: 'restart',     name: 'RESTART',      shape: 'v', tag: 'Pašu projekts', alt: 'Rīta rutīna īsā video: ūdens, kafija, piezīmes, skrējiens' },
     // { file: 'mmk-drift',   name: 'MMK · drifts', shape: 'h', alt: 'Zils sporta auto driftē naktī pie MMK riepu centra' },
-    { file: 'les-twins',   name: 'Deju batls',   shape: 'v', tag: 'Pilnekrāna 9:16', alt: 'Dejotājs deju batlā skatītāju lokā, kadrs seko dejotājam' },
+    { file: 'les-twins',   name: 'Deju batls',   shape: 'v', lite: false, tag: 'Pilnekrāna 9:16', alt: 'Dejotājs deju batlā skatītāju lokā, kadrs seko dejotājam' },
     { file: 'show-dancer', name: 'Deju šovs',    shape: 'v', tag: 'Paraugs', alt: 'Dejotāja mirdzošā tērpā uz skatuves sarkanā gaismā' },
   ],
 };

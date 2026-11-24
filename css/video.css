@@ -27,28 +27,23 @@
 .shelf__sub { margin-top: 10px; color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
 .shelf__count { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-bottom: 4px; }
 
-/* Reels: rows of equal height, 9:16 next to 16:9.
-   flex-grow = aspect ratio (set inline by js/video.js), so every frame in a row ends up the same height. */
-.reels__row { display: flex; gap: 28px; align-items: flex-start; }
-.reels__row + .reels__row { margin-top: 56px; }
+/* Reels: split by shape. 9:16 cards in a grid of five, then 16:9 frames two to a row.
+   Every clip keeps its own shape; frames in one grid are all the same size. */
+.reels__grid { display: grid; gap: 48px 24px; }
+.reels__grid--v { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.reels__grid--h { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.reels__grid + .reels__grid { margin-top: 64px; }
 
-.reel { margin: 0; min-width: 0; display: grid; gap: 16px; }
+.reel { margin: 0; min-width: 0; display: grid; gap: 16px; align-content: start; }
 .reel[hidden] { display: none; }
-.reel--v { flex: 0.5625 1 0; }
-.reel--h { flex: 0.5625 1 0; }
 .reel__frame {
   position: relative; overflow: hidden; border-radius: 4px; background: #000;
   box-shadow: 0 0 0 1px rgba(237,231,220,0.14), 0 50px 100px -50px rgba(0,0,0,0.9);
   transition: box-shadow 0.4s ease;
 }
 .reel--v .reel__frame { aspect-ratio: 9 / 16; }
-.reel--h .reel__frame { aspect-ratio: 9 / 16; }
-/* a 16:9 clip sits whole in the middle of the same 9:16 card, on a blurred copy of its poster (--fill, set by js/video.js) */
-.reel--h .reel__frame::before {
-  content: ''; position: absolute; inset: -40px; background: #000 var(--fill, none) center / cover no-repeat;
-  filter: blur(26px) brightness(0.42) saturate(1.1); transform: scale(1.15);
-}
-.reel--h .reel__video { position: relative; z-index: 1; object-fit: contain; }
+.reel--h .reel__frame { aspect-ratio: 16 / 9; }
+.reel__video { position: relative; z-index: 1; object-fit: contain; }
 .reel__video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: transform 1.2s cubic-bezier(0.2,0.7,0.2,1); }
 .reel:hover .reel__frame { box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
 .reel:hover .reel__video { transform: scale(1.03); }
@@ -73,14 +68,14 @@
 /* The free space at the end of a shelf: a dashed "your video" frame that leads to the contact form */
 .reel--slot { text-decoration: none; color: var(--text-muted); }
 .reel--slot .reel__frame {
-  aspect-ratio: var(--ar); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  aspect-ratio: 9 / 16; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
   background: transparent; box-shadow: none; border: 1px dashed var(--line-strong);
   font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
   transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 .reel--slot b { font-size: 1.5rem; font-weight: 400; line-height: 1; color: var(--accent-2); }
 .reel--slot:hover .reel__frame, .reel--slot:focus-visible .reel__frame { border-color: #d9a441; background: rgba(217,164,65,0.06); color: var(--text); box-shadow: none; }
-@media (min-width: 769px) { .reels__row--phone, .reel--slot-phone, .reel__no--m { display: none; } }
+@media (max-width: 1100px) { .reels__grid--v { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 /* Pirms / Pēc: two versions of one shot stacked in one frame, the top one cut off at the line (--x) */
 .pp { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 56px; align-items: center; margin-bottom: 72px; }
@@ -122,25 +117,20 @@
 .pp__text .pp__hint { margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
 [data-theme="light"] .pp__frame { box-shadow: 0 0 0 1px rgba(29,26,20,0.12), 0 40px 80px -50px rgba(0,0,0,0.45); }
 
-/* Phone: each shelf is a two-column grid. Wide clips take the full width, vertical clips sit two in a row. */
+/* Phone: 9:16 cards two in a row, 16:9 frames full width. */
 @media (max-width: 768px) {
   .vid-reels { padding: 56px 0 72px; }
   .vid-edits { padding-top: 0; }
   .shelf__head { margin-bottom: 28px; padding-bottom: 16px; }
   .shelf__sub { font-size: 0.95rem; }
-  .shelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 12px; grid-auto-flow: dense; }
-  .reels__row { display: contents; }
-  .reel__no--d, .reels__gap { display: none; }
+  .reels__grid { gap: 30px 12px; }
+  .reels__grid--v { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reels__grid--h { grid-template-columns: 1fr; }
+  .reels__grid + .reels__grid { margin-top: 40px; }
   .reel { gap: 10px; }
-  .reel--h { grid-column: span 1; }
-  .reel--v { grid-column: span 1; }
   .reel figcaption { gap: 6px 10px; }
   .reel figcaption b { font-size: 1rem; }
   .reel__sound { right: 10px; bottom: 10px; width: 38px; height: 38px; }
-  .reel--slot { grid-column: span 2; }
-  .reel--slot .reel__frame { aspect-ratio: 16 / 5; }
-  .reel--slot.reel--slot-v { grid-column: span 1; }
-  .reel--slot.reel--slot-v .reel__frame { aspect-ratio: 9 / 16; }
   .pp { grid-template-columns: 1fr; gap: 26px; margin-bottom: 48px; }
   .pp__text { order: -1; }
   .pp__title { margin-top: 12px; }
