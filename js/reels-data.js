@@ -6,7 +6,7 @@
 //   tag    optional small label. Use 'Paraugs' for an example made without a client order.
 //   sound  true only when the file carries audio we are allowed to publish
 //   alt    one sentence that says what is in the clip (for screen readers)
-// Order: a desktop row holds one wide + one vertical clip, or four vertical ones. Keep the list in such groups.
+// Every clip shows in the same 9:16 card (a wide clip sits whole inside it); a desktop row holds four.
 window.VD_REELS = {
   // Shelf 1: Reklāmas
   ads: [

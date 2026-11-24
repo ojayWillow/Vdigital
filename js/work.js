@@ -21,6 +21,12 @@
   all.textContent = pad(videoSlides.length);
 
   const video = s => s.querySelector('.slide__video');
+
+  // 16:9 clips sit inside the same 9:16 card as the rest: their poster, blurred, fills the card behind them (css/work.css)
+  slides.forEach(s => {
+    const v = video(s);
+    if (v && s.classList.contains('slide--h') && v.poster) s.querySelector('.slide__frame').style.setProperty('--fill', `url('/${v.getAttribute('poster').replace(/^\//, '')}')`);
+  });
   const load = v => { if (v && !v.getAttribute('src')) v.src = v.dataset.src; };
   const play = v => { if (!v) return; load(v); const p = v.play(); if (p && p.catch) p.catch(() => {}); };
   const mute = s => {

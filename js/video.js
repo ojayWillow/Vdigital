@@ -4,7 +4,9 @@
 (() => {
   const DATA = window.VD_REELS || {};
   const AR = { v: 9 / 16, h: 16 / 9 };
-  const ROW = AR.v + AR.h; // one 9:16 and one 16:9 fill a row; every frame ends up the same height
+  const ROW = 4 * AR.v + 0.05; // four cards fill a desktop row
+  // Every clip gets the same 9:16 card (a 16:9 clip sits whole inside it), so layout treats all as 9:16.
+  const CARD = AR.v;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const pad = n => String(n).padStart(2, '0');
@@ -14,8 +16,9 @@
   // no = [desktop number, phone number]: on a phone vertical clips pair up, so the visual order differs.
   const tile = (r, no) => {
     const shape = AR[r.shape] ? r.shape : 'h';
-    return `<figure class="reel reel--${shape}" style="flex:${AR[shape].toFixed(4)} 1 0">
-      <div class="reel__frame">
+    const fill = shape === 'h' ? ` style="--fill:url('/assets/video/${esc(r.file)}.jpg')"` : '';
+    return `<figure class="reel reel--${shape}" style="flex:${CARD.toFixed(4)} 1 0">
+      <div class="reel__frame"${fill}>
         <video class="reel__video" muted loop playsinline preload="none" poster="assets/video/${esc(r.file)}.jpg" data-src="assets/video/${esc(r.file)}.mp4" aria-label="${esc(r.alt || r.name || '')}"></video>
         ${r.sound ? '<button type="button" class="reel__sound" aria-pressed="false" aria-label="Ieslēgt skaņu">🔇</button>' : ''}
       </div>
@@ -30,8 +33,7 @@
 
     // Phone order: two columns, a vertical clip fills the free cell beside an earlier vertical one.
     let next = 0, hole = -1;
-    const cell = list.map(r => {
-      if (r.shape !== 'v') return next++ * 2;
+    const cell = list.map(() => {
       if (hole >= 0) { const c = hole * 2 + 1; hole = -1; return c; }
       hole = next++; return hole * 2;
     });
@@ -40,7 +42,7 @@
     // Pack rows left to right until a row is full.
     const rows = []; let row = [], sum = 0;
     list.forEach((r, i) => {
-      const ar = AR[r.shape] || AR.h;
+      const ar = CARD;
       if (row.length && sum + ar > ROW + 0.01) {
         // A row that is not full would stretch its clips: an empty spacer keeps them at the usual height.
         if (ROW - sum >= AR.v - 0.01) row.push(`<span class="reels__gap" aria-hidden="true" style="flex:${(ROW - sum).toFixed(4)} 1 0"></span>`);
@@ -53,12 +55,16 @@
     // On a phone the shelf is a two-column grid: an odd count of vertical clips leaves one cell free, the slot takes it.
     const left = ROW - sum;
     const fits = left >= AR.v - 0.01;
-    const oddV = list.filter(r => r.shape === 'v').length % 2 === 1;
-    const ar = (fits ? left : AR.v).toFixed(4);
+    const oddV = list.length % 2 === 1;
+    const ar = CARD.toFixed(4); // the slot is one card, like every clip
     const slot = `<a class="reel reel--slot${fits ? '' : ' reel--slot-phone'}${oddV ? ' reel--slot-v' : ''}" href="#contact" style="flex:${ar} 1 0; --ar:${ar}">
       <span class="reel__frame"><b aria-hidden="true">+</b><span>${esc(shelf.dataset.slot || 'Jūsu video')}</span></span>
     </a>`;
-    if (fits) row.push(slot);
+    if (fits) {
+      row.push(slot);
+      const rest = left - CARD;
+      if (rest >= CARD - 0.01) row.push(`<span class="reels__gap" aria-hidden="true" style="flex:${rest.toFixed(4)} 1 0"></span>`);
+    }
     rows.push(row);
     shelf.innerHTML = rows.map(r => `<div class="reels__row">${r.join('')}</div>`).join('')
       + (fits ? '' : `<div class="reels__row reels__row--phone">${slot}</div>`);
