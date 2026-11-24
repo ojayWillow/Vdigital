@@ -18,7 +18,8 @@ Professional website agency for Latvian businesses. Standalone static site with 
 ├── favicon.svg             # Logo icon (V + gold caret)
 ├── favicon.png             # 180×180 — apple-touch + fallback icon
 ├── logo.png                # 512×512 — schema logo
-├── og-image.png            # 1200×630 share image
+├── og-image-2.png          # 1200×630 share image (CASANORTE frames + logo)
+├── og-image.png            # old logo share image, kept as backup
 ├── robots.txt
 ├── sitemap.xml
 ├── vercel.json             # Vercel routing config
