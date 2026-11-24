@@ -83,7 +83,7 @@
   });
 
   // Fetch a clip shortly before it scrolls in; play it muted while on screen, pause when it leaves.
-  const videos = document.querySelectorAll('.reel__video');
+  const videos = document.querySelectorAll('.reel__video, .vid-do__video');
   if ('IntersectionObserver' in window) {
     const near = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { load(e.target); near.unobserve(e.target); } });
