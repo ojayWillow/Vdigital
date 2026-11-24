@@ -183,6 +183,8 @@
 @media (max-width: 640px) {
   .hero__film { bottom: auto; height: 54svh; --fx: 55%; --fy: 50%; }
   .hero__shade { background: linear-gradient(0deg, #0b0a08 0%, rgba(11,10,8,0.55) 30%, rgba(11,10,8,0) 60%), linear-gradient(180deg, rgba(11,10,8,0.6) 0%, rgba(11,10,8,0) 22%); }
-  /* shorter film: headline, button and the three stats fit the first phone screen */
+  /* shorter film: headline and buttons sit on it; the hero ends after the buttons
+     (no full-screen min-height, which left an empty band once the stats row was removed) */
+  .hero.hero--film { min-height: auto; }
   .hero--film .hero__inner { min-height: auto; padding-top: 34svh; padding-bottom: 28px; }
 }
