@@ -12,6 +12,8 @@ window.VD_REELS = {
   ads: [
     { file: 'casanorte',      name: 'CASANORTE',          shape: 'v', sound: true, alt: 'CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā' },
     { file: 'car-swap',       name: 'MMK riepu centrs',   shape: 'h', alt: 'Tas pats kadrs pie MMK riepu centra, cita automašīna' },
+    { file: 'kapas',          name: 'Sporta kapas',       shape: 'v', alt: 'Sporta kapas ar vārdiem un rakstiem tumšā studijā, makro kadri ar ūdens lāsēm' },
+    { file: 'endzistyle',     name: 'Endzistyle',         shape: 'h', alt: 'Endzistyle mājas lapas video: Kuldīgā šūti bērnu un sieviešu apģērbi lauku ainavās' },
     { file: 'auto13',         shape: 'v', tag: 'Paraugs', alt: 'Lietotu auto reklāma: pircēji stāsta pie savām automašīnām' },
     { file: 'hartvik',        shape: 'v', tag: 'Paraugs', alt: 'Konditorejas reklāma: sieviete ar ogu torti mājās un pie konditorejas vitrīnas' },
     { file: 'bbh',            shape: 'v', tag: 'Paraugs', alt: 'Viesnīcas un SPA reklāma: sieviete baltā halātā apguļas zvilnī pie baseina' },
