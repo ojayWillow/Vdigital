@@ -22,12 +22,9 @@
 
   const video = s => s.querySelector('.slide__video');
 
-  // 16:9 clips sit inside the same 9:16 card as the rest: their poster, blurred, fills the card behind them (css/work.css)
-  slides.forEach(s => {
-    const v = video(s);
-    if (v && s.classList.contains('slide--h') && v.poster) s.querySelector('.slide__frame').style.setProperty('--fill', `url('/${v.getAttribute('poster').replace(/^\//, '')}')`);
-  });
-  const load = v => { if (v && !v.getAttribute('src')) v.src = v.dataset.src; };
+  // Phones and tablets get the light 720p file (data-src-m): 2K clips stutter there while swiping.
+  const small = window.matchMedia('(max-width: 900px)').matches;
+  const load = v => { if (v && !v.getAttribute('src')) v.src = (small && v.dataset.srcM) || v.dataset.src; };
   const play = v => { if (!v) return; load(v); const p = v.play(); if (p && p.catch) p.catch(() => {}); };
   const mute = s => {
     const b = s.querySelector('.slide__sound'); const v = video(s);
@@ -113,4 +110,14 @@
   }
 
   activate(0);
+
+  // WIDE — the 16:9 clips under the strip: each one loads shortly before it scrolls in,
+  // plays muted while at least half of it is on screen and pauses when it leaves. A tap plays or pauses it.
+  const wides = Array.from(document.querySelectorAll('.wide__video'));
+  wides.forEach(v => v.closest('.wide__frame').addEventListener('click', () => { if (v.paused) play(v); else v.pause(); }));
+  if (!quiet && 'IntersectionObserver' in window) {
+    const near = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { load(e.target); near.unobserve(e.target); } }), { rootMargin: '300px 0px' });
+    const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) play(e.target); else e.target.pause(); }), { threshold: 0.5 });
+    wides.forEach(v => { near.observe(v); seen.observe(v); });
+  }
 })();

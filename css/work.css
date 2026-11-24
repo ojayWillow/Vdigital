@@ -1,7 +1,7 @@
 /* =============================================
    WORK — one swipeable strip of our videos under the hero.
-   Every slide is the same 9:16 card. A 16:9 clip sits whole in the middle of its card,
-   on a blurred, darkened copy of its own poster (set as --fill by js/work.js).
+   The strip holds the 9:16 clips, every card the same size. The 16:9 work sits below it
+   in .work__wide: two frames to a row, one on a phone.
    The strip starts on the container's left edge and bleeds off the right.
    ============================================= */
 .ed-work { --slide-h: clamp(380px, 40vw, 560px); --gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); overflow: hidden; }
@@ -34,12 +34,7 @@
   transition: box-shadow 0.4s ease, opacity 0.5s var(--ease);
 }
 .slide--v .slide__frame { aspect-ratio: 9 / 16; }
-.slide--h .slide__frame { aspect-ratio: 9 / 16; }
-.slide--h .slide__frame::before {
-  content: ''; position: absolute; inset: -40px; background: #000 var(--fill, none) center / cover no-repeat;
-  filter: blur(26px) brightness(0.42) saturate(1.1); transform: scale(1.15);
-}
-.slide--h .slide__video { position: relative; z-index: 1; object-fit: contain; }
+.slide--h .slide__frame { aspect-ratio: 16 / 9; }
 /* slides that are not in focus sit back a little */
 .js .work__track .slide:not(.is-on) .slide__frame { opacity: 0.55; }
 .slide:hover .slide__frame { opacity: 1 !important; box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
@@ -58,6 +53,19 @@
 .slide__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent); }
 .slide figcaption b { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: 1.15rem; letter-spacing: -0.01em; }
 
+/* the 16:9 work under the strip */
+.work__wide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 28px; margin-top: 72px; }
+.wide { margin: 0; display: grid; gap: 16px; min-width: 0; }
+.wide__frame {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: #000; cursor: pointer;
+  box-shadow: 0 0 0 1px var(--line), 0 50px 100px -50px rgba(0,0,0,0.9); transition: box-shadow 0.4s ease;
+}
+.wide:hover .wide__frame { box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
+.wide__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wide figcaption { display: flex; align-items: baseline; gap: 12px; }
+.wide__no { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent); }
+.wide figcaption b { font-family: var(--font-head); font-weight: 600; color: var(--text); font-size: 1.15rem; letter-spacing: -0.01em; }
+
 /* last card: see everything */
 .slide--more {
   height: var(--slide-h); aspect-ratio: 9 / 16; display: flex; align-items: flex-end;
@@ -75,6 +83,7 @@
 @media (max-width: 900px) {
   .ed-work { --slide-h: 420px; --gutter: 24px; }
   .work__head { margin-bottom: 36px; }
+  .work__wide { gap: 36px 16px; margin-top: 56px; }
 }
 @media (max-width: 640px) {
   .ed-work { --gutter: 16px; }
@@ -83,6 +92,9 @@
   /* phones: each slide is one screen wide, every frame is the same 9:16 card */
   .slide { width: calc(100vw - 48px); }
   .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: min(100%, calc(62svh * 9 / 16)); }
+  .work__wide { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
+  .wide { gap: 10px; }
+  .wide figcaption b { font-size: 1rem; }
   .slide--more { width: calc(100vw - 48px); height: auto; aspect-ratio: 4 / 5; }
 }
 @media (prefers-reduced-motion: reduce) {
