@@ -6,12 +6,14 @@
 //   tag    optional small label. Use 'Paraugs' for an example made without a client order.
 //   sound  true only when the file carries audio we are allowed to publish
 //   alt    one sentence that says what is in the clip (for screen readers)
-// Order: a desktop row holds one wide + one vertical clip, or four vertical ones. Keep the list in such groups.
+// Every clip shows in the same 9:16 card (a wide clip sits whole inside it); a desktop row holds four.
 window.VD_REELS = {
   // Shelf 1: Reklāmas
   ads: [
     { file: 'casanorte',      name: 'CASANORTE',          shape: 'v', sound: true, alt: 'CASANORTE reklāma: ar rokām darināti zābaki uz skatuves un vitrīnā' },
     { file: 'car-swap',       name: 'MMK riepu centrs',   shape: 'h', alt: 'Tas pats kadrs pie MMK riepu centra, cita automašīna' },
+    { file: 'kapas',          name: 'Sporta kapas',       shape: 'v', alt: 'Sporta kapas ar vārdiem un rakstiem tumšā studijā, makro kadri ar ūdens lāsēm' },
+    { file: 'endzistyle',     name: 'Endzistyle',         shape: 'h', alt: 'Endzistyle mājas lapas video: Kuldīgā šūti bērnu un sieviešu apģērbi lauku ainavās' },
     { file: 'auto13',         shape: 'v', tag: 'Paraugs', alt: 'Lietotu auto reklāma: pircēji stāsta pie savām automašīnām' },
     { file: 'hartvik',        shape: 'v', tag: 'Paraugs', alt: 'Konditorejas reklāma: sieviete ar ogu torti mājās un pie konditorejas vitrīnas' },
     { file: 'bbh',            shape: 'v', tag: 'Paraugs', alt: 'Viesnīcas un SPA reklāma: sieviete baltā halātā apguļas zvilnī pie baseina' },

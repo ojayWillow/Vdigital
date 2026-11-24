@@ -35,14 +35,20 @@
 .reel { margin: 0; min-width: 0; display: grid; gap: 16px; }
 .reel[hidden] { display: none; }
 .reel--v { flex: 0.5625 1 0; }
-.reel--h { flex: 1.7778 1 0; }
+.reel--h { flex: 0.5625 1 0; }
 .reel__frame {
   position: relative; overflow: hidden; border-radius: 4px; background: #000;
   box-shadow: 0 0 0 1px rgba(237,231,220,0.14), 0 50px 100px -50px rgba(0,0,0,0.9);
   transition: box-shadow 0.4s ease;
 }
 .reel--v .reel__frame { aspect-ratio: 9 / 16; }
-.reel--h .reel__frame { aspect-ratio: 16 / 9; }
+.reel--h .reel__frame { aspect-ratio: 9 / 16; }
+/* a 16:9 clip sits whole in the middle of the same 9:16 card, on a blurred copy of its poster (--fill, set by js/video.js) */
+.reel--h .reel__frame::before {
+  content: ''; position: absolute; inset: -40px; background: #000 var(--fill, none) center / cover no-repeat;
+  filter: blur(26px) brightness(0.42) saturate(1.1); transform: scale(1.15);
+}
+.reel--h .reel__video { position: relative; z-index: 1; object-fit: contain; }
 .reel__video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: transform 1.2s cubic-bezier(0.2,0.7,0.2,1); }
 .reel:hover .reel__frame { box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
 .reel:hover .reel__video { transform: scale(1.03); }
@@ -126,7 +132,7 @@
   .reels__row { display: contents; }
   .reel__no--d, .reels__gap { display: none; }
   .reel { gap: 10px; }
-  .reel--h { grid-column: span 2; }
+  .reel--h { grid-column: span 1; }
   .reel--v { grid-column: span 1; }
   .reel figcaption { gap: 6px 10px; }
   .reel figcaption b { font-size: 1rem; }

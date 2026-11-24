@@ -1,6 +1,7 @@
 /* =============================================
    WORK — one swipeable strip of our videos under the hero.
-   Every slide shares one height; 9:16 and 16:9 frames keep their shape.
+   Every slide is the same 9:16 card. A 16:9 clip sits whole in the middle of its card,
+   on a blurred, darkened copy of its own poster (set as --fill by js/work.js).
    The strip starts on the container's left edge and bleeds off the right.
    ============================================= */
 .ed-work { --slide-h: clamp(380px, 40vw, 560px); --gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); overflow: hidden; }
@@ -33,7 +34,12 @@
   transition: box-shadow 0.4s ease, opacity 0.5s var(--ease);
 }
 .slide--v .slide__frame { aspect-ratio: 9 / 16; }
-.slide--h .slide__frame { aspect-ratio: 16 / 9; }
+.slide--h .slide__frame { aspect-ratio: 9 / 16; }
+.slide--h .slide__frame::before {
+  content: ''; position: absolute; inset: -40px; background: #000 var(--fill, none) center / cover no-repeat;
+  filter: blur(26px) brightness(0.42) saturate(1.1); transform: scale(1.15);
+}
+.slide--h .slide__video { position: relative; z-index: 1; object-fit: contain; }
 /* slides that are not in focus sit back a little */
 .js .work__track .slide:not(.is-on) .slide__frame { opacity: 0.55; }
 .slide:hover .slide__frame { opacity: 1 !important; box-shadow: 0 0 0 1px rgba(217,164,65,0.55), 0 50px 100px -40px rgba(0,0,0,0.9); }
@@ -74,10 +80,9 @@
   .ed-work { --gutter: 16px; }
   .work__head { flex-direction: column; align-items: flex-start; gap: 20px; }
   .work__track { gap: 16px; }
-  /* phones: each slide is one screen wide, frames keep their own shape */
+  /* phones: each slide is one screen wide, every frame is the same 9:16 card */
   .slide { width: calc(100vw - 48px); }
-  .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: 100%; }
-  .slide--v .slide__frame { width: 78%; }
+  .slide__frame, .slide--v .slide__frame, .slide--h .slide__frame { height: auto; width: min(100%, calc(62svh * 9 / 16)); }
   .slide--more { width: calc(100vw - 48px); height: auto; aspect-ratio: 4 / 5; }
 }
 @media (prefers-reduced-motion: reduce) {
