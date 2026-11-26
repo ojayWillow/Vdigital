@@ -98,7 +98,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Onest:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Onest:wght@600&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/utilities.css" />
@@ -111,6 +111,7 @@
   <link rel="stylesheet" href="css/brand.css" />
   <link rel="stylesheet" href="css/editorial.css" />
   <link rel="stylesheet" href="css/work.css" />
+  <link rel="stylesheet" href="css/web.css" />
 
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('vd-theme') || 'dark');</script>
 </head>
@@ -123,6 +124,7 @@
       <nav class="nav__links">
         <a href="#offers">Pakalpojumi</a>
         <a href="#work">Darbi</a>
+        <a href="#web">Mājas lapas</a>
         <a href="/video">Video</a>
         <a href="#contact">Kontakts</a>
       </nav>
@@ -139,6 +141,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#offers" class="mobile-menu__link">Pakalpojumi</a>
     <a href="#work" class="mobile-menu__link">Darbi</a>
+    <a href="#web" class="mobile-menu__link">Mājas lapas</a>
     <a href="/video" class="mobile-menu__link">Video</a>
     <a href="#contact" class="mobile-menu__link">Kontakts</a>
     <a href="#contact" class="btn btn--primary">Pieteikt sarunu</a>
@@ -333,6 +336,143 @@
     </div>
   </section>
 
+  <!-- WEB — websites: three starting points (landing / shop / custom), how it goes in four steps, why trust us.
+       The browser plays the chosen type through the steps on a demo page for a made-up brand (MIGLA).
+       Logic in js/web.js, styles in css/web.css -->
+  <section class="ed web" id="web" aria-label="Mājas lapas">
+    <div class="container">
+      <header class="ed-head ed-head--split">
+        <div>
+          <span class="ed-label">Mājas lapas</span>
+          <h2 class="ed-title">Mājas lapa<br/><em>jūsu uzņēmumam.</em></h2>
+        </div>
+        <p class="ed-head__aside">Sākam ar vienu no trim. Dizainu redzat, pirms sākam būvēt.</p>
+      </header>
+
+      <!-- 1. where we start -->
+      <div class="web__types" role="radiogroup" aria-label="Kāda lapa jums vajadzīga">
+        <button type="button" class="web__type is-on" role="radio" aria-checked="true" data-type="landing">
+          <span class="mini mini--landing" aria-hidden="true"><span class="mini__bar"></span><span class="mini__page"><span class="mini__copy"><i></i><i></i><i></i><em></em></span><span class="mini__pic"><img src="assets/web/migla-01.jpg" alt="" loading="lazy" /></span></span></span>
+          <span class="web__type-no">01</span>
+          <b class="web__type-name">Landing lapa</b>
+          <span class="web__type-desc">Viena lapa, viens piedāvājums, viena poga.</span>
+          <span class="web__type-for">Jaunam produktam, pakalpojumam vai kampaņai.</span>
+        </button>
+        <button type="button" class="web__type" role="radio" aria-checked="false" data-type="shop">
+          <span class="mini mini--shop" aria-hidden="true"><span class="mini__bar"><b>1</b></span><span class="mini__page"><span class="mini__grid"><span><img src="assets/web/migla-01.jpg" alt="" loading="lazy" /><em></em></span><span><img src="assets/web/migla-02.jpg" alt="" loading="lazy" /><em></em></span><span><img src="assets/web/migla-03.jpg" alt="" loading="lazy" /><em></em></span></span><span class="mini__dot"></span></span></span>
+          <span class="web__type-no">02</span>
+          <b class="web__type-name">E-veikals</b>
+          <span class="web__type-desc">Preces, grozs un apmaksa jūsu lapā.</span>
+          <span class="web__type-for">Ja pārdodat preces internetā.</span>
+        </button>
+        <button type="button" class="web__type" role="radio" aria-checked="false" data-type="custom">
+          <span class="mini mini--custom" aria-hidden="true"><span class="mini__bar"></span><span class="mini__page"><span class="mini__scroll"><span class="mini__hero"><img src="assets/web/migla-wide.jpg" alt="" loading="lazy" /></span><span class="mini__row"><i></i><i></i><i></i></span><span class="mini__lines"><i></i><i></i></span><span class="mini__row mini__row--2"><i></i><i></i></span><span class="mini__lines"><i></i><i></i></span></span></span></span>
+          <span class="web__type-no">03</span>
+          <b class="web__type-name">Individuāla lapa</b>
+          <span class="web__type-desc">Vairākas sadaļas, pieraksts, valodas. Tā, kā vajag jums.</span>
+          <span class="web__type-for">Uzņēmumam ar vairākiem pakalpojumiem.</span>
+        </button>
+      </div>
+
+      <!-- 2. how it goes -->
+      <div class="web__how">
+        <div class="web__steps">
+          <span class="ed-label">Kā tas notiek</span>
+          <ol class="web__list">
+            <li><button type="button" class="web__step is-on" data-i="0"><span class="web__step-no">01</span><b>Saruna</b><span>Pastāstiet par uzņēmumu. Pārējo pajautāsim mēs.</span><i class="web__prog"></i></button></li>
+            <li><button type="button" class="web__step" data-i="1"><span class="web__step-no">02</span><b>Skice</b><span>Uzzīmējam lapu. Jūs to redzat un sakāt, ko mainīt.</span><i class="web__prog"></i></button></li>
+            <li><button type="button" class="web__step" data-i="2"><span class="web__step-no">03</span><b>Izstrāde</b><span>Būvējam ar jūsu tekstiem, bildēm un video.</span><i class="web__prog"></i></button></li>
+            <li><button type="button" class="web__step" data-i="3"><span class="web__step-no">04</span><b>Palaišana</b><span>Lapa ir tiešsaistē, un jūs saņemat pieteikumus.</span><i class="web__prog"></i></button></li>
+          </ol>
+        </div>
+
+        <div class="web__browser">
+          <div class="web__bar" aria-hidden="true">
+            <span class="web__dots"><i></i><i></i><i></i></span>
+            <span class="web__url"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>migla.lv</span>
+            <span class="web__status" id="webStatus">Saruna</span>
+          </div>
+          <div class="web__view">
+            <div class="mock" id="webMock" data-type="landing" data-style="motion" data-step="0" aria-hidden="true">
+
+              <!-- 1. one page -->
+              <div class="lay lay--landing">
+                <div class="m-nav" data-wf="Izvēlne"><span class="m-logo t">MIGLA</span><span class="m-btn m-btn--sm">Pasūtīt paraugu</span></div>
+                <div class="m-hero" data-wf="Galvenais kadrs">
+                  <div class="m-hero__copy">
+                    <span class="m-kick t">Jauna smarža · No. 07</span>
+                    <span class="m-h1 t">Priede<br/>un dūmi.</span>
+                    <span class="m-p t">Smarža vakaram pie ugunskura. Darināta Rīgā.</span>
+                    <span class="m-btn js-target">Pasūtīt paraugu</span>
+                  </div>
+                  <div class="m-img m-hero__media"><img src="assets/web/migla-wide.jpg" alt="" loading="lazy" /><video class="m-vid" muted loop playsinline preload="none" data-src="assets/video/ad-bottle-m.mp4"></video></div>
+                </div>
+                <div class="m-facts" data-wf="Fakti"><span class="t">50 ml</span><span class="t">Koksne · Dūmi · Sveķi</span><span class="t">Paraugs 2 ml</span></div>
+              </div>
+
+              <!-- 3. custom: a company site with sections -->
+              <div class="lay lay--custom">
+                <div class="m-nav" data-wf="Izvēlne"><span class="m-logo t">MIGLA</span><span class="m-links"><span class="t">Smaržas</span><span class="t">Darbnīca</span><span class="t">Par mums</span><span class="t">Kontakti</span></span></div>
+                <div class="m-hero m-hero--site" data-wf="Galvenais kadrs">
+                  <div class="m-hero__copy">
+                    <span class="m-h1 m-h1--sm t">Smaržas,<br/>kas top Rīgā.</span>
+                    <span class="m-p t">Mazas partijas. Dabīgas eļļas.</span>
+                    <span class="m-btn js-target">Apmeklēt darbnīcu</span>
+                  </div>
+                  <div class="m-img m-hero__media"><img src="assets/web/migla-wide.jpg" alt="" loading="lazy" /><video class="m-vid" muted loop playsinline preload="none" data-src="assets/video/ad-bottle-m.mp4"></video></div>
+                </div>
+                <div class="m-cards" data-wf="Sadaļas">
+                  <div class="m-card"><div class="m-img"><img src="assets/web/migla-01.jpg" alt="" loading="lazy" /></div><span class="m-card__t t">Smaržas</span><span class="m-card__s t">Skatīt visas →</span></div>
+                  <div class="m-card"><div class="m-img"><img src="assets/web/migla-cap.jpg" alt="" loading="lazy" /></div><span class="m-card__t t">Darbnīca</span><span class="m-card__s t">Kā tās top →</span></div>
+                  <div class="m-card"><div class="m-img"><img src="assets/web/migla-glass.jpg" alt="" loading="lazy" /></div><span class="m-card__t t">Dāvanas</span><span class="m-card__s t">Komplekti →</span></div>
+                </div>
+              </div>
+
+              <!-- 2. shop -->
+              <div class="lay lay--shop">
+                <div class="m-nav" data-wf="Izvēlne"><span class="m-logo t">MIGLA</span><span class="m-links"><span class="t">Visas</span><span class="t">Svaigās</span><span class="t">Koksnes</span></span><span class="m-cart t">Grozs (<b>0</b>)</span></div>
+                <div class="m-shophead" data-wf="Virsraksts"><span class="m-h2 t">Smaržas</span><span class="m-chips"><span class="t">Visas</span><span class="t">50 ml</span><span class="t">Paraugi</span></span></div>
+                <div class="m-grid" data-wf="Preces">
+                  <div class="m-prod"><div class="m-img"><img src="assets/web/migla-01.jpg" alt="" loading="lazy" /></div><span class="m-prod__no t">No. 01</span><span class="m-prod__name t">Priede un dūmi</span><span class="m-prod__row"><span class="m-prod__meta t">50 ml</span><span class="m-btn m-btn--sm js-target">Grozā</span></span></div>
+                  <div class="m-prod"><div class="m-img"><img src="assets/web/migla-02.jpg" alt="" loading="lazy" /></div><span class="m-prod__no t">No. 02</span><span class="m-prod__name t">Bērzs un medus</span><span class="m-prod__row"><span class="m-prod__meta t">50 ml</span><span class="m-btn m-btn--sm">Grozā</span></span></div>
+                  <div class="m-prod"><div class="m-img"><img src="assets/web/migla-03.jpg" alt="" loading="lazy" /></div><span class="m-prod__no t">No. 03</span><span class="m-prod__name t">Jūra un sāls</span><span class="m-prod__row"><span class="m-prod__meta t">50 ml</span><span class="m-btn m-btn--sm">Grozā</span></span></div>
+                </div>
+                <span class="m-toast">Pievienots grozam</span>
+              </div>
+
+
+              <!-- step 01: the first chat -->
+              <div class="m-chat">
+                <span class="m-msg m-msg--in">Sveiki! Gribam lapu jaunai smaržai.</span>
+                <span class="m-msg m-msg--out">Labdien! Pastāstiet, kam tā domāta?</span>
+                <span class="m-msg m-msg--in">Vīriešiem, vakaram. Ir bildes un video.</span>
+                <span class="m-msg m-msg--out">Lieliski. Uzzīmēsim skici.</span>
+              </div>
+              <!-- step 02: approved -->
+              <span class="m-ok">✓ Skice apstiprināta</span>
+
+              <svg class="m-cursor" viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8-6 1.6L10 19z" fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. why trust us -->
+      <ul class="web__trust">
+        <li><span>01</span><p>Dizainu redzat, <em>pirms sākam būvēt.</em></p></li>
+        <li><span>02</span><p>Lapa un domēns <em>pieder jums.</em></p></li>
+        <li><span>03</span><p>Viens cilvēks no sākuma līdz beigām. <em>Arī WhatsApp.</em></p></li>
+        <li><span>04</span><p>Video lapai veidojam paši, <em>ne no fotobankām.</em></p></li>
+      </ul>
+
+      <div class="web__cta">
+        <a href="#contact" class="btn btn--primary btn--lg" id="webCta">Pieteikt sarunu</a>
+        <a href="https://wa.me/37125953807" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">Rakstīt WhatsApp</a>
+        <span class="web__note">Piemērā izdomāts zīmols</span>
+      </div>
+    </div>
+  </section>
+
   <!-- FINALE — the call to action: lens, laptop, phone = filming, websites, social -->
   <section class="finale" id="yours" aria-label="Pieteikt sarunu">
     <div class="finale__window">
@@ -398,6 +538,7 @@
       <div class="footer__links">
         <a href="#offers">Pakalpojumi</a>
         <a href="#work">Darbi</a>
+        <a href="#web">Mājas lapas</a>
         <a href="#contact">Kontakts</a>
       </div>
     </div>
@@ -431,6 +572,7 @@
   <script src="js/street.js"></script>
   <script src="js/editorial.js"></script>
   <script src="js/work.js"></script>
+  <script src="js/web.js"></script>
   <script src="js/contact.js"></script>
 
   <script>
