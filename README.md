@@ -43,7 +43,7 @@ Professional website agency for Latvian businesses. Standalone static site with 
 │   ├── utilities.css       # Shared utilities, buttons, badges, scroll-to-top, animations
 │   ├── responsive.css      # All media queries
 │   ├── preview.css         # Styles for the industry mock-up pages
-│   ├── web.css             # "Mājas lapas" configurator: base, look, feature switches + demo page (own @container phone layout)
+│   ├── web.css             # "Mājas lapas": 3 starting points, 4 steps played on a demo page, trust points (own @container phone layout)
 │   └── kapec-mais-lapa.css # Page-specific styles for the article page
 │
 └── js/
@@ -53,7 +53,7 @@ Professional website agency for Latvian businesses. Standalone static site with 
     ├── hero.js             # Spotlight, typewriter, stats counter
     ├── animations.js       # Scroll fade-in, services tilt, packages spotlight, magnetic hover
     ├── portfolio.js        # Portfolio category filter
-    ├── web.js              # "Mājas lapas" configurator: switches show features in the demo page, fills the contact form
+    ├── web.js              # "Mājas lapas": plays the chosen type through chat → sketch → build → live, fills the contact form
     └── contact.js          # Contact form submission handling
 ```
 
