@@ -62,7 +62,8 @@ nav.main>div:hover .mega{opacity:1;visibility:visible;transform:none}
 .hero .copy{position:absolute;z-index:2;left:0;right:0;bottom:9vh;color:#fff}
 .hero h1{font-size:clamp(44px,6.4vw,96px);line-height:.98;font-weight:400;max-width:12ch}
 .hero h1 i{color:#E8CF9F}
-.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.hero .row{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:30px}
+.hero h1{margin-left:auto}
 .btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 28px;font:400 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;border:1px solid currentColor;transition:.25s}
 .btn.fill{background:#fff;color:var(--ink);border-color:#fff}
@@ -138,7 +139,7 @@ section{padding:110px 0}
 
 /* story */
 .story{position:relative;height:78vh;min-height:520px;overflow:hidden;color:#fff;display:flex;align-items:center}
-.story img{position:absolute;inset:0}
+.story video{position:absolute;inset:0}
 .story::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,12,9,.78) 0%,rgba(15,12,9,.25) 60%,rgba(15,12,9,0) 100%)}
 .story .wrap{position:relative;z-index:2;width:100%}
 .story h2{font-size:clamp(40px,4.6vw,70px);line-height:1;max-width:11ch;margin:18px 0 22px}
@@ -182,8 +183,13 @@ footer .bottom{display:flex;justify-content:space-between;border-top:1px solid r
   .burger{display:block}
   .bar{height:64px}
   .logo .mark{font-size:25px}
-  .hero{height:88vh}
-  .hero .copy{bottom:6vh}
+  .hero{height:auto;min-height:0;padding-top:64px!important}
+  .hero video{position:relative;height:auto;aspect-ratio:16/9}
+  .hero::after{display:none}
+  .hero .copy{position:relative;bottom:auto;padding:34px 0 40px}
+  .hero .row{align-items:flex-start;text-align:left}
+  .hero h1{margin-left:0;font-size:46px}
+  header:not(.solid){background:var(--dark)}
   .btn{height:46px;padding:0 20px}
   .sound{top:80px;right:20px}
   .trust .wrap{gap:14px 26px;justify-content:flex-start}
@@ -322,7 +328,7 @@ footer .bottom{display:flex;justify-content:space-between;border-top:1px solid r
 
 <!-- ===== EDITORIAL: softshell women ===== -->
 <div class="split">
-  <div class="media"><img src="/paraugi/endzistyle/img/cat-sievietem.jpg" alt="" style="object-position:50% 30%"></div>
+  <div class="media"><img src="/paraugi/endzistyle/img/split-coat.jpg" alt="" style="position:absolute;inset:0;object-position:50% 20%"></div>
   <div class="txt">
     <div class="eyebrow" style="color:#E8CF9F">Sezonas izvēle</div>
     <h2>Softshell mēteļi <i>sievietēm.</i></h2>
@@ -355,13 +361,13 @@ footer .bottom{display:flex;justify-content:space-between;border-top:1px solid r
   </div>
   <div class="ph">
     <div><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_3394-4f7fccfa.jpg" alt=""></div>
-    <div><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_3534-289139a2.jpg" alt=""></div>
+    <div><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_3393-06146180.jpg" alt=""></div>
   </div>
 </div></section>
 
 <!-- ===== STORY ===== -->
 <div class="story">
-  <img src="/paraugi/endzistyle/img/story-sewing.jpg" alt="">
+  <video autoplay muted loop playsinline poster="/paraugi/endzistyle/img/story-sewing.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><source src="/paraugi/endzistyle/story.mp4" type="video/mp4"></video>
   <div class="wrap">
     <div class="eyebrow" style="color:#E8CF9F">Mūsu darbnīca</div>
     <h2>Katra vīle Kuldīgā.</h2>
