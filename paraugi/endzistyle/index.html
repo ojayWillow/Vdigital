@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endzistyle — jaunās sākumlapas paraugs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5F0E8; --paper:#FBF8F3; --ink:#1F1B17; --muted:#6F665C; --line:#E4DCD0;
+  --gold:#B08D57; --gold-d:#8E6F3E; --dark:#16130F;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:300 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+.eyebrow{font:500 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold-d)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.01em}
+.caps{font-family:var(--serif);text-transform:uppercase;letter-spacing:.18em;font-weight:500}
+
+/* ---------- header ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,color .35s,border-color .35s;color:#fff;border-bottom:1px solid rgba(255,255,255,.18)}
+header.solid,header:hover{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:1}
+.logo .mark{font:500 30px/1 var(--serif);letter-spacing:.04em}
+.logo .mark i{font-style:italic;color:var(--gold)}
+.logo small{font:400 9.5px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;margin-top:6px;opacity:.8}
+.tools{display:flex;justify-content:flex-end;gap:22px;align-items:center;font-size:13px}
+.tools .lang{letter-spacing:.12em;font-size:11.5px;opacity:.85}
+.tools .lang b{font-weight:500;border-bottom:1px solid currentColor}
+.ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.3;cursor:pointer}
+.cart{position:relative}
+.cart span{position:absolute;top:-6px;right:-9px;background:var(--gold);color:#fff;font-size:10px;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font-weight:500}
+.burger{display:none}
+.left{display:flex;gap:20px;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+nav.main{display:flex;justify-content:center;gap:38px;height:46px;align-items:center;border-top:1px solid rgba(255,255,255,.12)}
+header.solid nav.main,header:hover nav.main{border-color:var(--line)}
+nav.main>div{height:100%;display:flex;align-items:center}
+nav.main>div>a{font:400 12.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .2s}
+nav.main>div:hover>a{border-color:var(--gold)}
+nav.main .sale{color:var(--gold)}
+.mega{position:absolute;left:0;right:0;top:122px;background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s;box-shadow:0 30px 40px -30px rgba(0,0,0,.25)}
+nav.main>div:hover .mega{opacity:1;visibility:visible;transform:none}
+.mega .wrap{display:grid;grid-template-columns:1fr 1fr 1.1fr 1.1fr;gap:40px;padding-top:36px;padding-bottom:40px}
+.mega h4{font:500 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold-d);margin-bottom:18px}
+.mega ul{list-style:none;display:grid;gap:11px;font-size:15px}
+.mega ul a:hover{color:var(--gold-d)}
+.mega .pic{position:relative;aspect-ratio:4/3;overflow:hidden}
+.mega .pic span{position:absolute;left:16px;bottom:14px;color:#fff;font:500 15px/1 var(--serif);letter-spacing:.18em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;min-height:620px;background:var(--dark);overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 55%,rgba(0,0,0,.5) 100%)}
+.hero .copy{position:absolute;z-index:2;left:0;right:0;bottom:9vh;color:#fff}
+.hero h1{font-size:clamp(44px,6.4vw,96px);line-height:.98;font-weight:400;max-width:12ch}
+.hero h1 i{color:#E8CF9F}
+.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 28px;font:400 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;border:1px solid currentColor;transition:.25s}
+.btn.fill{background:#fff;color:var(--ink);border-color:#fff}
+.btn.fill:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.dark:hover{background:var(--gold);border-color:var(--gold)}
+.sound{position:absolute;z-index:3;right:40px;top:142px;color:#fff;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75;cursor:pointer;display:flex;gap:8px;align-items:center}
+
+/* ---------- trust ---------- */
+.trust{border-bottom:1px solid var(--line);background:var(--cream)}
+.trust .wrap{display:flex;justify-content:center;gap:64px;padding-top:20px;padding-bottom:20px;flex-wrap:wrap}
+.trust div{display:flex;align-items:center;gap:12px;font:500 13px/1 var(--serif);letter-spacing:.22em;text-transform:uppercase}
+.trust div::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+
+/* ---------- sections ---------- */
+section{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:20px}
+.head h2{font-size:clamp(34px,3.6vw,54px);line-height:1.02;margin-top:14px}
+.link{font:400 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:6px;white-space:nowrap}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cat{position:relative;overflow:hidden;aspect-ratio:4/5;background:#ddd}
+.cat img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cat:hover img{transform:scale(1.05)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55))}
+.cat .t{position:absolute;z-index:2;left:28px;right:28px;bottom:26px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end}
+.cat h3{font-size:26px;letter-spacing:.2em;text-transform:uppercase;line-height:1.1}
+.cat h3::after{content:"";display:block;width:44px;height:1px;background:#E8CF9F;margin-top:12px;transition:width .4s}
+.cat:hover h3::after{width:90px}
+.cat p{font-size:13px;opacity:.85;margin-top:8px;letter-spacing:.04em}
+.cat .arr{width:40px;height:40px;border:1px solid rgba(255,255,255,.6);border-radius:50%;display:grid;place-items:center;flex:none;transition:.25s}
+.cat:hover .arr{background:#fff;color:var(--ink)}
+
+/* products */
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 18px}
+.p .img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--cream)}
+.p .img img{transition:transform .9s}
+.p:hover .img img{transform:scale(1.04)}
+.p .fav{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(251,248,243,.9);display:grid;place-items:center;cursor:pointer}
+.p .fav.on svg{fill:var(--gold);stroke:var(--gold)}
+.p .tag{position:absolute;left:12px;top:12px;background:var(--paper);font:500 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:7px 10px}
+.p .add{position:absolute;left:12px;right:12px;bottom:12px;height:44px;background:var(--ink);color:#fff;border:0;font:400 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;opacity:0;transform:translateY(8px);transition:.25s}
+.p:hover .add{opacity:1;transform:none}
+.p .add.done{background:var(--gold)}
+.p h4{font:500 19px/1.25 var(--serif);margin-top:16px}
+.p .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:6px}
+.p .meta b{color:var(--ink);font-weight:400;font-size:14px}
+
+/* editorial split */
+.split{display:grid;grid-template-columns:1.15fr 1fr;min-height:720px;background:var(--dark);color:#fff}
+.split .media{position:relative;overflow:hidden}
+.split .txt{display:flex;flex-direction:column;justify-content:center;padding:80px 9%}
+.split h2{font-size:clamp(38px,4vw,62px);line-height:1;margin:18px 0 24px}
+.split h2 i{color:#E8CF9F}
+.split p{color:rgba(255,255,255,.72);max-width:42ch;margin-bottom:34px}
+.split .btn{align-self:flex-start;color:#fff}
+.split .btn:hover{background:#fff;color:var(--ink)}
+
+/* raksti */
+.raksti{background:var(--cream)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.chip{display:flex;align-items:center;gap:14px;padding:12px 22px 12px 12px;border:1px solid var(--line);background:var(--paper);transition:.2s}
+.chip:hover{border-color:var(--gold)}
+.chip svg{width:38px;height:38px;stroke:var(--gold-d);fill:none;stroke-width:1.6}
+.chip span{font:500 18px/1 var(--serif);letter-spacing:.08em}
+.chip small{display:block;font:400 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.raksti .grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;align-items:center}
+.raksti .ph{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.raksti .ph div{aspect-ratio:4/5;overflow:hidden}
+.raksti .ph div:nth-child(2){margin-top:60px}
+
+/* story */
+.story{position:relative;height:78vh;min-height:520px;overflow:hidden;color:#fff;display:flex;align-items:center}
+.story img{position:absolute;inset:0}
+.story::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,12,9,.78) 0%,rgba(15,12,9,.25) 60%,rgba(15,12,9,0) 100%)}
+.story .wrap{position:relative;z-index:2;width:100%}
+.story h2{font-size:clamp(40px,4.6vw,70px);line-height:1;max-width:11ch;margin:18px 0 22px}
+.story p{max-width:40ch;color:rgba(255,255,255,.8)}
+
+/* visit */
+.visit .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:50px;border-top:1px solid var(--line);padding-top:56px}
+.visit h3{font-size:30px;margin-bottom:16px}
+.visit p,.visit li{color:var(--muted);font-size:15px}
+.visit ul{list-style:none;display:grid;gap:6px}
+.visit li b{color:var(--ink);font-weight:400;display:inline-block;min-width:170px}
+.social{display:flex;gap:12px;margin-top:20px}
+.social a{border:1px solid var(--line);padding:11px 18px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:.2s}
+.social a:hover{border-color:var(--gold);color:var(--gold-d)}
+
+footer{background:var(--dark);color:rgba(255,255,255,.7);padding:80px 0 34px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:40px}
+footer h5{font:500 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:#E8CF9F;margin-bottom:18px}
+footer ul{list-style:none;display:grid;gap:9px}
+footer a:hover{color:#fff}
+footer .logo{align-items:flex-start;color:#fff}
+footer .bottom{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.12);margin-top:60px;padding-top:24px;font-size:12px;letter-spacing:.06em}
+
+/* mockup label */
+.mocklabel{position:fixed;left:16px;bottom:16px;z-index:60;background:rgba(22,19,15,.88);color:#fff;font:400 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:10px 14px;backdrop-filter:blur(6px)}
+.mocklabel b{color:#E8CF9F;font-weight:500}
+
+/* drawer (mobile) */
+.drawer{position:fixed;inset:0;z-index:70;background:var(--paper);transform:translateX(-100%);transition:transform .35s;overflow:auto;padding:24px 22px 40px}
+.drawer.open{transform:none}
+.drawer .x{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.drawer details{border-bottom:1px solid var(--line)}
+.drawer summary{list-style:none;display:flex;justify-content:space-between;padding:18px 0;font:500 20px/1 var(--serif);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.drawer summary::after{content:"+";font-family:var(--sans);font-weight:300;color:var(--gold-d)}
+.drawer details[open] summary::after{content:"–"}
+.drawer ul{list-style:none;padding:0 0 18px;display:grid;gap:12px;color:var(--muted)}
+
+@media (max-width:1000px){
+  .wrap{padding:0 20px}
+  nav.main,.left .txtlink,.tools .lang{display:none}
+  .burger{display:block}
+  .bar{height:64px}
+  .logo .mark{font-size:25px}
+  .hero{height:88vh}
+  .hero .copy{bottom:6vh}
+  .btn{height:46px;padding:0 20px}
+  .sound{top:80px;right:20px}
+  .trust .wrap{gap:14px 26px;justify-content:flex-start}
+  .trust div{font-size:11.5px}
+  section{padding:70px 0}
+  .head{flex-direction:column;align-items:flex-start;margin-bottom:28px}
+  .cats{grid-template-columns:1fr 1fr;gap:10px}
+  .cat .t{left:14px;right:14px;bottom:14px}
+  .cat h3{font-size:16px;letter-spacing:.14em}
+  .cat p,.cat .arr{display:none}
+  .prods{grid-template-columns:1fr 1fr;gap:22px 10px}
+  .p .add{opacity:1;transform:none;height:36px;font-size:10px;left:8px;right:8px;bottom:8px}
+  .p h4{font-size:16px}
+  .split{grid-template-columns:1fr}
+  .split .media{aspect-ratio:4/5}
+  .split .txt{padding:50px 20px 60px}
+  .raksti .grid{grid-template-columns:1fr;gap:40px}
+  .story{height:70vh}
+  .story::after{background:linear-gradient(0deg,rgba(15,12,9,.85) 0%,rgba(15,12,9,.2) 75%)}
+  .story .wrap{align-self:flex-end;padding-bottom:50px}
+  .visit .grid{grid-template-columns:1fr;gap:34px}
+  footer .cols{grid-template-columns:1fr 1fr}
+  footer .bottom{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="wrap bar">
+    <div class="left">
+      <svg class="ico burger" id="burger" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <a class="txtlink" href="#">Meklēt</a>
+    </div>
+    <a class="logo" href="#"><span class="mark">endzi <i>style</i></span><small>Ražots Kuldīgā</small></a>
+    <div class="tools">
+      <span class="lang"><b>LV</b> &nbsp; EN &nbsp; DE</span>
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+      <span class="cart"><svg class="ico" viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span id="cc">0</span></span>
+    </div>
+  </div>
+
+  <nav class="main">
+    <div><a href="#kategorijas">Softshell</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>Bērniem</h4><ul><li><a href="#">Mēteļi meitenēm</a></li><li><a href="#">Jakas un komplekti zēniem</a></li><li><a href="#">Kombinezoni starpsezonai</a></li><li><a href="#">Kombinezoni ziemai ar oderi</a></li><li><a href="#">Bikses</a></li></ul></div>
+        <div><h4>Pieaugušajiem</h4><ul><li><a href="#">Mēteļi sievietēm</a></li><li><a href="#">Jakas un vestes</a></li></ul><h4 style="margin-top:28px">Papildini</h4><ul><li><a href="#">Cimdi</a></li><li><a href="#">Zābaciņi</a></li><li><a href="#">Ķivercepures</a></li></ul></div>
+        <a class="pic" href="#"><img src="img/cat-kombinezoni.jpg" alt=""><span>Bērniem</span></a>
+        <a class="pic" href="#"><img src="img/cat-sievietem.jpg" alt=""><span>Sievietēm</span></a>
+      </div></div>
+    </div>
+    <div><a href="#kategorijas">Meitenēm</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>Apģērbs</h4><ul><li><a href="#">Kleitas un svārki</a></li><li><a href="#">Tautiskās lina kleitas</a></li><li><a href="#">Kleitas un sarafāni skolai</a></li><li><a href="#">Džemperi un jakas</a></li><li><a href="#">Legingi un bikses</a></li></ul></div>
+        <div><h4>Svētkiem</h4><ul><li><a href="#">Kristību kleitas</a></li><li><a href="#">Ziedu vainadziņi</a></li><li><a href="#">Lina apkaklītes</a></li></ul></div>
+        <a class="pic" href="#"><img src="img/cat-kleitas-meitenem.jpg" alt=""><span>Kleitas</span></a>
+        <a class="pic" href="#"><img src="img/cat-lina.jpg" alt=""><span>Lina tērpi</span></a>
+      </div></div>
+    </div>
+    <div><a href="#kategorijas">Zēniem</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>Apģērbs</h4><ul><li><a href="#">Lina krekli</a></li><li><a href="#">Lina bikses un šorti</a></li><li><a href="#">Džemperi un hūdiji</a></li><li><a href="#">Apģērbu komplekti</a></li></ul></div>
+        <div><h4>Svētkiem</h4><ul><li><a href="#">Kristību un svētku apģērbs</a></li></ul></div>
+        <a class="pic" href="#"><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/0FF6FBB7-DA9F-49B4-AFC0-1FE496672E18-dc06fd47.jpg" alt=""><span>Lina krekli</span></a>
+        <a class="pic" href="#"><img src="img/cat-kombinezoni.jpg" alt=""><span>Softshell</span></a>
+      </div></div>
+    </div>
+    <div><a href="#kategorijas">Mazuļiem</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>0–12 mēneši</h4><ul><li><a href="#">Jaundzimušo apģērbs</a></li><li><a href="#">Zābaciņi</a></li><li><a href="#">Cepurītes</a></li></ul></div>
+        <div><h4>Dāvanas</h4><ul><li><a href="#">Sedziņas</a></li><li><a href="#">Tamborējumi un rotaļlietas</a></li><li><a href="#">Dāvanas raudzībām</a></li></ul></div>
+        <a class="pic" href="#"><img src="img/cat-mazuli.jpg" alt=""><span>Mazuļiem</span></a>
+        <a class="pic" href="#"><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/EE8B48D8-0C90-43D5-AED6-19B63461E010-6ff7b471.jpg" alt=""><span>Sedziņas</span></a>
+      </div></div>
+    </div>
+    <div><a href="#kategorijas">Sievietēm</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>Apģērbs</h4><ul><li><a href="#">Softshell mēteļi un jakas</a></li><li><a href="#">Kleitas</a></li><li><a href="#">Svārki, blūzes, džemperi</a></li><li><a href="#">Lina krekli</a></li></ul></div>
+        <div><h4>Vīriešiem</h4><ul><li><a href="#">Softshell jakas</a></li><li><a href="#">T-krekli ar rakstu zīmēm</a></li><li><a href="#">Lina krekli</a></li></ul></div>
+        <a class="pic" href="#"><img src="img/cat-meteli.jpg" alt=""><span>Mēteļi</span></a>
+        <a class="pic" href="#"><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_9832-4ce59a11.jpeg" alt=""><span>Kleitas</span></a>
+      </div></div>
+    </div>
+    <div><a href="#raksti">Latviskie raksti</a></div>
+    <div><a href="#">Dāvanas</a>
+      <div class="mega"><div class="wrap">
+        <div><h4>Dāvanām</h4><ul><li><a href="#">Dāvanu kartes</a></li><li><a href="#">Krūzes ar apdruku</a></li><li><a href="#">Somas un lina maisiņi</a></li></ul></div>
+        <div><h4>Vēl</h4><ul><li><a href="#">Audumi</a></li><li><a href="#">Pēdējie izmēri</a></li></ul></div>
+        <a class="pic" href="#"><img src="img/cat-lina.jpg" alt=""><span>Vainadziņi</span></a>
+        <a class="pic" href="#"><img src="img/cat-mazuli.jpg" alt=""><span>Raudzībām</span></a>
+      </div></div>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="padding:0">
+  <video id="hv" autoplay muted loop playsinline poster="img/poster.jpg">
+    <source src="hero-m.mp4" media="(max-width:900px)" type="video/mp4">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="copy"><div class="wrap row">
+    <div>
+      <div class="eyebrow" style="color:#E8CF9F;margin-bottom:22px">Bērniem · Sievietēm · Mazuļiem</div>
+      <h1>Šūts ar rokām <i>Kuldīgā.</i></h1>
+    </div>
+    <div class="btns">
+      <a class="btn fill" href="#kategorijas">Bērniem</a>
+      <a class="btn ghost" href="#kategorijas">Sievietēm</a>
+    </div>
+  </div></div>
+</section>
+
+<div class="trust"><div class="wrap">
+  <div>Ražots Kuldīgā</div><div>Šūts ar rokām</div><div>Latviskie raksti</div>
+</div></div>
+
+<!-- ===== CATEGORIES ===== -->
+<section id="kategorijas"><div class="wrap">
+  <div class="head">
+    <div><div class="eyebrow">Veikals</div><h2>Izvēlies, kam meklē</h2></div>
+    <a class="link" href="#">Visi produkti</a>
+  </div>
+  <div class="cats">
+    <a class="cat" href="https://www.endzistyle.lv/veikals/softshell-produkti/" target="_blank"><img src="img/cat-kombinezoni.jpg" alt=""><div class="t"><div><h3>Softshell</h3><p>Mēteļi, kombinezoni, jakas</p></div><span class="arr">→</span></div></a>
+    <a class="cat" href="https://www.endzistyle.lv/veikals/meitenem/" target="_blank"><img src="img/cat-kleitas-meitenem.jpg" alt=""><div class="t"><div><h3>Meitenēm</h3><p>Kleitas, svārki, kristībām</p></div><span class="arr">→</span></div></a>
+    <a class="cat" href="https://www.endzistyle.lv/veikals/mazuliem-apgerbs-no-0-12menesi/" target="_blank"><img src="img/cat-mazuli.jpg" alt=""><div class="t"><div><h3>Mazuļiem</h3><p>0–12 mēneši, sedziņas, dāvanas</p></div><span class="arr">→</span></div></a>
+    <a class="cat" href="https://www.endzistyle.lv/veikals/zeniem/" target="_blank"><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/0FF6FBB7-DA9F-49B4-AFC0-1FE496672E18-dc06fd47.jpg" alt=""><div class="t"><div><h3>Zēniem</h3><p>Lina krekli, komplekti, svētkiem</p></div><span class="arr">→</span></div></a>
+    <a class="cat" href="https://www.endzistyle.lv/veikals/sievietem/" target="_blank"><img src="img/cat-meteli.jpg" alt=""><div class="t"><div><h3>Sievietēm</h3><p>Mēteļi, kleitas, lina krekli</p></div><span class="arr">→</span></div></a>
+    <a class="cat" href="#raksti"><img src="img/cat-lina.jpg" alt=""><div class="t"><div><h3>Latviskie raksti</h3><p>Lina tērpi un rakstu zīmes</p></div><span class="arr">→</span></div></a>
+  </div>
+</div></section>
+
+<!-- ===== EDITORIAL: softshell women ===== -->
+<div class="split">
+  <div class="media"><img src="img/cat-sievietem.jpg" alt="" style="object-position:50% 30%"></div>
+  <div class="txt">
+    <div class="eyebrow" style="color:#E8CF9F">Sezonas izvēle</div>
+    <h2>Softshell mēteļi <i>sievietēm.</i></h2>
+    <p>Ar latvisku rakstu. Šūti Kuldīgā.</p>
+    <a class="btn" href="https://www.endzistyle.lv/veikals/category/softshell-jakas-un-meteli-sievietem/" target="_blank">Skatīt mēteļus</a>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section><div class="wrap">
+  <div class="head">
+    <div><div class="eyebrow">Iecienītākie</div><h2>Ko pērk tagad</h2></div>
+    <a class="link" href="#">Skatīt visus</a>
+  </div>
+  <div class="prods" id="prods"></div>
+</div></section>
+
+<!-- ===== RAKSTI ===== -->
+<section class="raksti" id="raksti"><div class="wrap grid">
+  <div>
+    <div class="eyebrow">Latviskie raksti</div>
+    <h2 style="font-size:clamp(34px,3.6vw,54px);line-height:1.02;margin:14px 0 18px">Izvēlies pēc rakstu zīmes</h2>
+    <p style="color:var(--muted);max-width:40ch;margin-bottom:28px">Krekli, kleitas un t-krekli ar latviskām rakstu zīmēm. Lielajiem un mazajiem.</p>
+    <div class="chips">
+      <a class="chip" href="#"><svg viewBox="0 0 40 40"><path d="M20 4v32M4 20h32M8.7 8.7l22.6 22.6M31.3 8.7L8.7 31.3"/><path d="M20 10l10 10-10 10-10-10z"/></svg><div><span>Auseklis</span><small>Rīta zvaigzne</small></div></a>
+      <a class="chip" href="#"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="6"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.7 8.7l4.3 4.3M27 27l4.3 4.3M31.3 8.7L27 13M13 27l-4.3 4.3"/></svg><div><span>Saule</span><small>Staru saule</small></div></a>
+      <a class="chip" href="#"><svg viewBox="0 0 40 40"><path d="M6 26c4-8 8 8 12 0s8 8 12 0 4-4 4-4"/><path d="M6 16c4-8 8 8 12 0s8 8 12 0 4-4 4-4"/></svg><div><span>Zalktis</span><small>Gudrība</small></div></a>
+      <a class="chip" href="#"><svg viewBox="0 0 40 40"><path d="M20 20V8h8M20 20h12v8M20 20v12h-8M20 20H8v-8"/></svg><div><span>Ugunskrusts</span><small>Spēks</small></div></a>
+    </div>
+  </div>
+  <div class="ph">
+    <div><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_3394-4f7fccfa.jpg" alt=""></div>
+    <div><img src="https://site-940310.mozfiles.com/files/940310/catitems/lt/IMG_3534-289139a2.jpg" alt=""></div>
+  </div>
+</div></section>
+
+<!-- ===== STORY ===== -->
+<div class="story">
+  <img src="img/story-sewing.jpg" alt="">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#E8CF9F">Mūsu darbnīca</div>
+    <h2>Katra vīle Kuldīgā.</h2>
+    <p>No auduma līdz gatavam apģērbam. Šūts ar rokām.</p>
+  </div>
+</div>
+
+<!-- ===== VISIT ===== -->
+<section class="visit"><div class="wrap">
+  <div class="head" style="margin-bottom:0"><div><div class="eyebrow">Ciemos</div><h2>Atnāc apskatīt klātienē</h2></div></div>
+  <div class="grid" style="margin-top:40px">
+    <div><h3>Veikals Kuldīgā</h3><p>Smilšu iela 12, Kuldīga</p><a class="link" style="display:inline-block;margin-top:22px" href="#">Kā atrast</a></div>
+    <div><h3>Darba laiks</h3><ul><li><b>Pirmdiena–Piektdiena</b>09:00–18:00</li><li><b>Sestdiena</b>09:00–17:00</li><li><b>Svētdiena</b>Slēgts</li></ul></div>
+    <div><h3>Seko mums</h3><p>Jaunumi, aizkulises un šūšanas process.</p><div class="social"><a href="https://www.instagram.com/endzistyle/" target="_blank">Instagram</a><a href="https://www.tiktok.com/@endzibaby" target="_blank">TikTok</a></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><div class="logo"><span class="mark">endzi <i>style</i></span><small>Ražots Kuldīgā</small></div><p style="margin-top:22px;max-width:28ch">Bērnu un sieviešu apģērbs ar latviskiem rakstiem.</p></div>
+    <div><h5>Veikals</h5><ul><li><a href="#">Softshell</a></li><li><a href="#">Meitenēm</a></li><li><a href="#">Zēniem</a></li><li><a href="#">Mazuļiem</a></li><li><a href="#">Sievietēm</a></li></ul></div>
+    <div><h5>Palīdzība</h5><ul><li><a href="#">Piegāde</a></li><li><a href="#">Izmēru tabula</a></li><li><a href="#">Noderīga informācija</a></li><li><a href="#">Noteikumi</a></li></ul></div>
+    <div><h5>Par mums</h5><ul><li><a href="#">Mūsu stāsts</a></li><li><a href="#">Kontakti</a></li><li><a href="#">Dāvanu kartes</a></li></ul></div>
+    <div><h5>Seko</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Facebook</a></li></ul></div>
+  </div>
+  <div class="bottom"><span>© SIA „ENDZI BABY”. Kuldīga.</span><span>Paldies, ka atbalsti ražots Latvijā.</span></div>
+</div></footer>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer">
+  <div class="x"><div class="logo" style="align-items:flex-start"><span class="mark" style="font-size:24px">endzi <i>style</i></span></div><svg class="ico" id="close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></div>
+  <details open><summary>Softshell</summary><ul><li>Mēteļi meitenēm</li><li>Jakas un komplekti zēniem</li><li>Kombinezoni</li><li>Bikses</li><li>Mēteļi sievietēm</li><li>Cimdi un zābaciņi</li></ul></details>
+  <details><summary>Meitenēm</summary><ul><li>Kleitas un svārki</li><li>Tautiskās lina kleitas</li><li>Kristību kleitas</li><li>Džemperi un jakas</li></ul></details>
+  <details><summary>Zēniem</summary><ul><li>Lina krekli</li><li>Lina bikses un šorti</li><li>Kristību un svētku apģērbs</li></ul></details>
+  <details><summary>Mazuļiem</summary><ul><li>Jaundzimušo apģērbs</li><li>Sedziņas</li><li>Dāvanas raudzībām</li></ul></details>
+  <details><summary>Sievietēm</summary><ul><li>Softshell mēteļi</li><li>Kleitas</li><li>Lina krekli</li><li>Vīriešiem</li></ul></details>
+  <details><summary>Latviskie raksti</summary><ul><li>Auseklis</li><li>Saule</li><li>Zalktis</li><li>Ugunskrusts</li></ul></details>
+  <details><summary>Dāvanas</summary><ul><li>Dāvanu kartes</li><li>Krūzes</li><li>Somas un maisiņi</li></ul></details>
+</div>
+
+<div class="mocklabel"><b>Paraugs</b> · Jaunā sākumlapa · Vdigital</div>
+
+<script>
+const B='https://site-940310.mozfiles.com/files/940310/catitems/lt/';
+const P=[
+ ['IMG_5665-7f9c5be6.jpg','Softshell komplekts „Marta”','104–110',55,'Uzreiz pieejams'],
+ ['IMG_0023-5fc4a54b.jpg','Sieviešu mētelis, abpusējs','Oversize',125,''],
+ ['IMG_1387-c308ef55.jpeg','Kristību kleita „Bantītes”','62–110',35,''],
+ ['IMG_9451-a7da6566.jpeg','Kombinezons „Rozā vilnīši”','74–128',42,''],
+ ['IMG_3534-289139a2.jpg','Sarafāns „Jana”','80–134',28,''],
+ ['0FF6FBB7-DA9F-49B4-AFC0-1FE496672E18-dc06fd47.jpg','Lina krekls „Pēteris”','86–134',24.5,''],
+ ['IMG_5184-321e87b8.jpeg','Softshell gara jaka, pūderrozā','98–158',45,'Uzreiz pieejams'],
+ ['EE8B48D8-0C90-43D5-AED6-19B63461E010-6ff7b471.jpg','Sedziņa „Mākonītis”','85×100 cm',22.5,'']
+];
+const heart='<svg class="ico" viewBox="0 0 24 24" style="width:17px;height:17px"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+document.getElementById('prods').innerHTML=P.map(p=>`<div class="p"><div class="img"><img loading="lazy" src="${B+p[0]}" alt="">${p[4]?`<span class="tag">${p[4]}</span>`:''}<span class="fav">${heart}</span><button class="add">Ielikt grozā</button></div><h4>${p[1]}</h4><div class="meta"><span>${p[2]}</span><b>€${p[3].toFixed(2).replace('.',',')}</b></div></div>`).join('');
+let n=0;const cc=document.getElementById('cc');
+document.querySelectorAll('.add').forEach(b=>b.onclick=()=>{cc.textContent=++n;b.textContent='Grozā ✓';b.classList.add('done')});
+document.querySelectorAll('.fav').forEach(f=>f.onclick=()=>f.classList.toggle('on'));
+const h=document.getElementById('hdr');const s=()=>h.classList.toggle('solid',scrollY>60);addEventListener('scroll',s);s();
+const d=document.getElementById('drawer');document.getElementById('burger').onclick=()=>d.classList.add('open');document.getElementById('close').onclick=()=>d.classList.remove('open');
+</script>
+</body>
+</html>
