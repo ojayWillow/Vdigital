@@ -26,7 +26,8 @@ Professional website agency for Latvian businesses. Standalone static site with 
 │
 ├── assets/
 │   ├── brand/              # Logo SVGs: vdigital-word.svg (header mask), logo-dark.svg, logo-light.svg
-│   └── portfolio/          # Static WebP screenshots of live portfolio sites
+│   ├── portfolio/          # Static WebP screenshots of live portfolio sites
+│   └── web/                # Stills for the "Mājas lapas" demo page (made-up brand MIGLA, cut from ad-bottle)
 │
 ├── css/
 │   ├── base.css            # CSS variables, reset, typography, dark/light tokens
@@ -42,6 +43,7 @@ Professional website agency for Latvian businesses. Standalone static site with 
 │   ├── utilities.css       # Shared utilities, buttons, badges, scroll-to-top, animations
 │   ├── responsive.css      # All media queries
 │   ├── preview.css         # Styles for the industry mock-up pages
+│   ├── web.css             # "Mājas lapas": chooser + demo page that builds sketch → live (own @container phone layout)
 │   └── kapec-mais-lapa.css # Page-specific styles for the article page
 │
 └── js/
@@ -51,6 +53,7 @@ Professional website agency for Latvian businesses. Standalone static site with 
     ├── hero.js             # Spotlight, typewriter, stats counter
     ├── animations.js       # Scroll fade-in, services tilt, packages spotlight, magnetic hover
     ├── portfolio.js        # Portfolio category filter
+    ├── web.js              # "Mājas lapas": build steps, cursor demo, before/after line, fills the contact form
     └── contact.js          # Contact form submission handling
 ```
 
